@@ -19,6 +19,7 @@ import {Home} from './components/home';
 const AppNavigator = createStackNavigator(
   {
     Login: {screen: Login},
+    Home: {screen: Home}
   },
   {
     headerMode: 'screen'
