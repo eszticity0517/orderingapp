@@ -1,4 +1,5 @@
-import {Dimensions, AsyncStorage} from 'react-native';
+import {Dimensions} from 'react-native';
+import AsyncStorage from "@react-native-community/async-storage";
 
 global.baseUrl = "valami";
 global.size =  Dimensions.get('window');
