@@ -50,12 +50,12 @@ export class Login extends Component {
                     <CarouselComponent />
                     <Text style={{ marginTop: 20 }}>
                         Partnerazonosító
-                        {/* {this._renderFelhasznalonevErrorMessage()} */}
+                        {this._renderFelhasznalonevErrorMessage()}
                     </Text>
                     <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" value={this.state.felhasznalonev} onChangeText={(value) => this.onUsernameText(value, 'felhasznalonev')} />
                     <Text>
                         PIN kód
-                        {/* {this._renderJelszoErrorMessage()} */}
+                        {this._renderJelszoErrorMessage()}
                     </Text>
                     <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" secureTextEntry={true} value={this.state.jelszo} onChangeText={(value) => this.onPasswordText(value, 'jelszo')} />
                     <Text onPress={this.onForgotPress.bind(this)} style={styles.forgotPasswordText}>Elfelejtettem a jelszavamat</Text>
@@ -64,7 +64,7 @@ export class Login extends Component {
                 <ButtonContainer hidden={this.state.buttonishidden} style={{ bottom: 0 }}>
                     <ButtonComponent onPress={this.onLoginPress.bind(this)} text="Bejelentkezés" />
                 </ButtonContainer>
-                {/* {this._renderIndicator()} */}
+                {this._renderIndicator()}
             </Container>
         );
     }
@@ -184,128 +184,134 @@ export class Login extends Component {
         }
         else {
 
-            var values = {
-                id: true,
-            };
+            this.setState({
+                loading: true,
+            });
+    
+            this.props.navigation.navigate('Home');
 
-            var formBody = [];
-            for (var property in values) {
-                var encodedKey = encodeURIComponent(property);
-                var encodedValue = encodeURIComponent(values[property]);
-                formBody.push(encodedKey + '=' + encodedValue);
-            }
+            // var values = {
+            //     id: true,
+            // };
 
-            formBody = formBody.join('&');
+            // var formBody = [];
+            // for (var property in values) {
+            //     var encodedKey = encodeURIComponent(property);
+            //     var encodedValue = encodeURIComponent(values[property]);
+            //     formBody.push(encodedKey + '=' + encodedValue);
+            // }
 
-            // show spinner
-            this.setState({ loading: true });
+            // formBody = formBody.join('&');
 
-            fetch(global.baseUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                },
-                body: formBody,
-            }).then((response) => response.json())
-                .then((responseJson) => {
-                    // show spinner
-                    this.setState({ loading: false });
+            // // show spinner
+            // this.setState({ loading: true });
 
-                    var originalVendor = responseJson.vendor;
+            // fetch(global.baseUrl, {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            //     },
+            //     body: formBody,
+            // }).then((response) => response.json())
+            //     .then((responseJson) => {
+            //         // show spinner
+            //         this.setState({ loading: false });
 
-                    values = {
-                        id: JSON.stringify({
-                            vendor: base64.decode(responseJson.vendor),
-                            object: 'rshop',
-                            method: 'login',
+            //         var originalVendor = responseJson.vendor;
 
-                            params: {
-                                partner_id: this.state.felhasznalonev,
-                                PIN: this.state.jelszo,
-                            },
-                        }),
-                    };
+            //         values = {
+            //             id: JSON.stringify({
+            //                 vendor: base64.decode(responseJson.vendor),
+            //                 object: 'rshop',
+            //                 method: 'login',
 
-                    // show spinner
-                    this.setState({ loading: true });
+            //                 params: {
+            //                     partner_id: this.state.felhasznalonev,
+            //                     PIN: this.state.jelszo,
+            //                 },
+            //             }),
+            //         };
 
-                    formBody = [];
-                    for (var property in values) {
-                        var encodedKey = encodeURIComponent(property);
-                        var encodedValue = encodeURIComponent(values[property]);
-                        formBody.push(encodedKey + '=' + encodedValue);
-                    }
+            //         // show spinner
+            //         this.setState({ loading: true });
 
-                    formBody = formBody.join('&');
-                    fetch(global.baseUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                        },
-                        body: formBody,
-                    }).then((response) => response.json())
-                        .then((responseJson) => {
-                            // show spinner
-                            this.setState({ loading: false });
+            //         formBody = [];
+            //         for (var property in values) {
+            //             var encodedKey = encodeURIComponent(property);
+            //             var encodedValue = encodeURIComponent(values[property]);
+            //             formBody.push(encodedKey + '=' + encodedValue);
+            //         }
 
-                            if (responseJson.success) {
-                                global.storeData('partner_id', this.state.felhasznalonev);
-                                global.storeData('vendor', base64.decode(originalVendor));
-                                global.storeData('partnerneve', responseJson.success.partner);
+            //         formBody = formBody.join('&');
+            //         fetch(global.baseUrl, {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            //             },
+            //             body: formBody,
+            //         }).then((response) => response.json())
+            //             .then((responseJson) => {
+            //                 // show spinner
+            //                 this.setState({ loading: false });
 
-                                this.setState(state => {
-                                    state.felhasznalonev = '';
-                                    state.jelszo = '';
-                                    state.felhasznalonevVan = true;
-                                    state.jelszoVan = true;
-                                    return state;
-                                });
+            //                 if (responseJson.success) {
+            //                     global.storeData('partner_id', this.state.felhasznalonev);
+            //                     global.storeData('vendor', base64.decode(originalVendor));
+            //                     global.storeData('partnerneve', responseJson.success.partner);
 
-                                this._startInterval();
+            //                     this.setState(state => {
+            //                         state.felhasznalonev = '';
+            //                         state.jelszo = '';
+            //                         state.felhasznalonevVan = true;
+            //                         state.jelszoVan = true;
+            //                         return state;
+            //                     });
 
-                                global.getData('maintainBasket').then(maintainBasket => {
-                                    if (maintainBasket === null) {
-                                        // If the basket remained from previous usage, we have to delete it.
-                                        global.removeItemValue('basket').then(() => {
-                                            this.props.navigation.navigate('Home');
-                                        });
-                                    }
-                                    else {
-                                        global.removeItemValue('maintainBasket').then(() => {
-                                            this.props.navigation.navigate('Home');
-                                        });
-                                    }
-                                });
+            //                     this._startInterval();
 
-                            }
-                            else {
-                                //Toast.show('Sikertelen bejelentkezés.');
-                                Alert.alert(
-                                    'Hiba Történt',
-                                    'Helytelen felhasználónév vagy jelszó!',
-                                    [
-                                        { text: 'OK', onPress: () => console.log('OK Pressed') },
-                                    ],
-                                    { cancelable: false }
-                                );
-                            }
-                        })
-                        .catch((error) => {
-                            // show spinner
-                            this.setState({ loading: false });
+            //                     global.getData('maintainBasket').then(maintainBasket => {
+            //                         if (maintainBasket === null) {
+            //                             // If the basket remained from previous usage, we have to delete it.
+            //                             global.removeItemValue('basket').then(() => {
+            //                                 this.props.navigation.navigate('Home');
+            //                             });
+            //                         }
+            //                         else {
+            //                             global.removeItemValue('maintainBasket').then(() => {
+            //                                 this.props.navigation.navigate('Home');
+            //                             });
+            //                         }
+            //                     });
 
-                            console.error(error);
-                        });
-                    // Its important to make these fields empty, because componentDidMount wont be called anymore.
+            //                 }
+            //                 else {
+            //                     //Toast.show('Sikertelen bejelentkezés.');
+            //                     Alert.alert(
+            //                         'Hiba Történt',
+            //                         'Helytelen felhasználónév vagy jelszó!',
+            //                         [
+            //                             { text: 'OK', onPress: () => console.log('OK Pressed') },
+            //                         ],
+            //                         { cancelable: false }
+            //                     );
+            //                 }
+            //             })
+            //             .catch((error) => {
+            //                 // show spinner
+            //                 this.setState({ loading: false });
+
+            //                 console.error(error);
+            //             });
+            //         // Its important to make these fields empty, because componentDidMount wont be called anymore.
 
 
-                })
-                .catch((error) => {
-                    // show spinner
-                    this.setState({ loading: false });
+            //     })
+            //     .catch((error) => {
+            //         // show spinner
+            //         this.setState({ loading: false });
 
-                    console.error(error);
-                });
+            //         console.error(error);
+            //     });
         }
     }
 
