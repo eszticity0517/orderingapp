@@ -1,23 +1,27 @@
 import React from 'react';
+import { Component } from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 
-export default function Indicator(props)
+export class Indicator extends Component
 {
-    if (props.visible)
-	{
-        return (
-            <View style={styles.indicator}>
-                <ActivityIndicator
-                    size="large"
-                    color={props.color || '#fff'}
-                    style={{margin: 'auto', backgroundColor: 'transparent'}}
-                    hidesWhenStopped={true}
-                />
-            </View>
-        );
+    render()
+    {
+        if (this.props.visible)
+        {
+            return (
+                <View style={styles.indicator}>
+                    <ActivityIndicator
+                        size="large"
+                        color={this.props.color || '#fff'}
+                        style={{margin: 'auto', backgroundColor: 'transparent'}}
+                        hidesWhenStopped={true}
+                    />
+                </View>
+            );
+        }
+        
+        return null;
     }
-	
-    return null;
 }
 
 export const styles = StyleSheet.create({
@@ -30,6 +34,6 @@ export const styles = StyleSheet.create({
         right: 0,
         bottom: 0,
         zIndex: 100,
-        backgroundColor: props.transparent ? 'rgba(0, 0, 0, 0.02)' : 'rgba(0, 0, 0, 0.4)'
+        backgroundColor: 'rgba(0, 0, 0, 0.02)'
     }
 });

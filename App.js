@@ -13,14 +13,14 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {Example} from './components/example';
+import {Login} from './components/login';
 
 const AppNavigator = createStackNavigator(
   {
-    Example: {screen: Example},
+    Login: {screen: Login},
   },
   {
-    headerMode: 'screen',
+    headerMode: 'screen'
   },
 );
 

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export class ButtonComponent extends Component
 {
