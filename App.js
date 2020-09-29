@@ -14,6 +14,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {Login} from './components/login';
+import {Home} from './components/home';
 
 const AppNavigator = createStackNavigator(
   {

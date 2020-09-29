@@ -9,7 +9,7 @@ export class CarouselComponent extends Component
     {
         super();
         this.state = {
-            size: global.size
+            size: global.size,
         };
     }
 
