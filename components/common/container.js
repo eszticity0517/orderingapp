@@ -5,7 +5,7 @@ export class Container extends Component
 {
     render()
     {
-        return(
+        return (
             <View style={styles.container}>
                 {this.props.children}
             </View>
