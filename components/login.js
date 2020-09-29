@@ -12,14 +12,13 @@ import '../global.js';
 import { Indicator } from "./common/indicator";
 import { Container } from "./common/container";
 import {StyleSheet} from 'react-native';
-import AsyncStorage from "@react-native-community/async-storage";
 
 export class Login extends Component {
     _intervalHandler;
     _maintainBasketHandler;
 
     static navigationOptions = {
-        headerShown: true
+        headerShown: false
     };
 
     constructor() {
@@ -48,7 +47,7 @@ export class Login extends Component {
         return (
             <Container>
                 <ScrollComponent>
-                    {/* <CarouselComponent /> */}
+                    <CarouselComponent />
                     <Text style={{ marginTop: 20 }}>
                         Partnerazonosító
                         {/* {this._renderFelhasznalonevErrorMessage()} */}
