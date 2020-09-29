@@ -1,16 +1,16 @@
-import base64 from "react-native-base64";
+import base64 from 'react-native-base64';
 
 import React, { Component } from 'react';
-import { Alert, Keyboard, Text, TextInput, View } from 'react-native';
+import { Alert, Keyboard, Text, TextInput } from 'react-native';
 
-import { ErrorText } from "./common/error-text";
-import { ButtonComponent } from "./common/button-component";
-import { CarouselComponent } from "./sections/carousel-component";
-import { ScrollComponent } from "./common/scroll-component";
-import { ButtonContainer } from "./common/button-container";
+import { ErrorText } from './common/error-text';
+import { ButtonComponent } from './common/button-component';
+import { CarouselComponent } from './sections/carousel-component';
+import { ScrollComponent } from './common/scroll-component';
+import { ButtonContainer } from './common/button-container';
 import '../global.js';
-import { Indicator } from "./common/indicator";
-import { Container } from "./common/container";
+import { Indicator } from './common/indicator';
+import { Container } from './common/container';
 import {StyleSheet} from 'react-native';
 
 export class Login extends Component {
@@ -18,7 +18,7 @@ export class Login extends Component {
     _maintainBasketHandler;
 
     static navigationOptions = {
-        headerShown: false
+        headerShown: false,
     };
 
     constructor() {
@@ -29,14 +29,14 @@ export class Login extends Component {
             felhasznalonevVan: true,
             jelszoVan: true,
             buttonishidden: false,
-            loading: false
+            loading: false,
         };
     }
 
     componentDidMount() {
         this.subs = [
-            this.props.navigation.addListener("didFocus", () => this.handleNavigateBack()),
-            this.props.navigation.addListener("willBlur", () => console.log("blurred"))
+            this.props.navigation.addListener('didFocus', () => this.handleNavigateBack()),
+            this.props.navigation.addListener('willBlur', () => console.log('blurred')),
         ];
         // This component mounts once hence it is the first component in the stacknavigator.
         this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
@@ -52,12 +52,12 @@ export class Login extends Component {
                         Partnerazonosító
                         {/* {this._renderFelhasznalonevErrorMessage()} */}
                     </Text>
-                    <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType='numeric' value={this.state.felhasznalonev} onChangeText={(value) => this.onUsernameText(value, "felhasznalonev")} />
+                    <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" value={this.state.felhasznalonev} onChangeText={(value) => this.onUsernameText(value, 'felhasznalonev')} />
                     <Text>
                         PIN kód
                         {/* {this._renderJelszoErrorMessage()} */}
                     </Text>
-                    <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType='numeric' secureTextEntry={true} value={this.state.jelszo} onChangeText={(value) => this.onPasswordText(value, "jelszo")} />
+                    <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" secureTextEntry={true} value={this.state.jelszo} onChangeText={(value) => this.onPasswordText(value, 'jelszo')} />
                     <Text onPress={this.onForgotPress.bind(this)} style={styles.forgotPasswordText}>Elfelejtettem a jelszavamat</Text>
                 </ScrollComponent>
 
@@ -82,7 +82,7 @@ export class Login extends Component {
     }
 
     _renderFelhasznalonevErrorMessage() {
-        return (this.state.felhasznalonevVan ? undefined : (<ErrorText keyboardType='numeric' text="Kötelező megadni." />));
+        return (this.state.felhasznalonevVan ? undefined : (<ErrorText keyboardType="numeric" text="Kötelező megadni." />));
     }
 
     _renderJelszoErrorMessage() {
@@ -90,18 +90,18 @@ export class Login extends Component {
     }
 
     handleNavigateBack() {
-        global.getData("maintainBasket").then(maintainBasket => {
+        global.getData('maintainBasket').then(maintainBasket => {
             if (maintainBasket !== null && !this._maintainBasketHandler) {
                 this._maintainBasketHandler = setTimeout(this.removeMaintainBasket, 600000);
             }
-        })
+        });
     }
 
     _startInterval() {
         this._intervalHandler = setInterval(() => {
-            global.getData("partner_id").then(partnerId => {
+            global.getData('partner_id').then(partnerId => {
                 if (partnerId !== null) {
-                    global.getData("vendor").then(vendor => {
+                    global.getData('vendor').then(vendor => {
                         if (vendor !== null) {
                             var values = {
                                 id: JSON.stringify({
@@ -109,33 +109,33 @@ export class Login extends Component {
                                     object: 'rshop',
                                     method: 'kategoriak',
 
-                                    params: {}
-                                })
+                                    params: {},
+                                }),
                             };
 
                             var formBody = [];
                             for (var property in values) {
                                 var encodedKey = encodeURIComponent(property);
                                 var encodedValue = encodeURIComponent(values[property]);
-                                formBody.push(encodedKey + "=" + encodedValue);
+                                formBody.push(encodedKey + '=' + encodedValue);
                             }
 
-                            formBody = formBody.join("&");
+                            formBody = formBody.join('&');
                             fetch(global.baseUrl, {
                                 method: 'POST',
                                 headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                                 },
-                                body: formBody
+                                body: formBody,
                             }).then((response) => response.json())
-                                .then((responseJson) => { })
+                                .then(() => { })
                                 .catch((error) => {
                                     console.error(error);
                                 });
                         }
                     });
                 }
-            })
+            });
         }, 25000);
     }
 
@@ -143,41 +143,41 @@ export class Login extends Component {
         this.setState(state => {
             state.buttonishidden = true;
             return state;
-        })
+        });
     }
 
     _keyboardDidHide() {
         this.setState(state => {
             state.buttonishidden = false;
             return state;
-        })
+        });
     }
 
     onLoginPress() {
         clearTimeout(this._maintainBasketHandler);
         this._maintainBasketHandler = undefined;
 
-        if (this.state.felhasznalonev.trim() === "" || this.state.jelszo.trim() === "") {
-            if (this.state.felhasznalonev.trim() === "") {
-                this.setState(state => {
+        if (this.state.felhasznalonev.trim() === '' || this.state.jelszo.trim() === '') {
+            if (this.state.felhasznalonev.trim() === '') {
+                this.setState(() => {
                     return { felhasznalonevVan: false };
                 });
             }
 
-            if (this.state.felhasznalonev.trim() !== "") {
-                this.setState(state => {
+            if (this.state.felhasznalonev.trim() !== '') {
+                this.setState(() => {
                     return { felhasznalonevVan: true };
                 });
             }
 
-            if (this.state.jelszo.trim() === "") {
-                this.setState(state => {
+            if (this.state.jelszo.trim() === '') {
+                this.setState(() => {
                     return { jelszoVan: false };
                 });
             }
 
-            if (this.state.jelszo.trim() !== "") {
-                this.setState(state => {
+            if (this.state.jelszo.trim() !== '') {
+                this.setState(() => {
                     return { jelszoVan: true };
                 });
             }
@@ -185,17 +185,17 @@ export class Login extends Component {
         else {
 
             var values = {
-                id: true
+                id: true,
             };
 
             var formBody = [];
             for (var property in values) {
                 var encodedKey = encodeURIComponent(property);
                 var encodedValue = encodeURIComponent(values[property]);
-                formBody.push(encodedKey + "=" + encodedValue);
+                formBody.push(encodedKey + '=' + encodedValue);
             }
 
-            formBody = formBody.join("&");
+            formBody = formBody.join('&');
 
             // show spinner
             this.setState({ loading: true });
@@ -203,9 +203,9 @@ export class Login extends Component {
             fetch(global.baseUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                 },
-                body: formBody
+                body: formBody,
             }).then((response) => response.json())
                 .then((responseJson) => {
                     // show spinner
@@ -221,9 +221,9 @@ export class Login extends Component {
 
                             params: {
                                 partner_id: this.state.felhasznalonev,
-                                PIN: this.state.jelszo
-                            }
-                        })
+                                PIN: this.state.jelszo,
+                            },
+                        }),
                     };
 
                     // show spinner
@@ -233,25 +233,25 @@ export class Login extends Component {
                     for (var property in values) {
                         var encodedKey = encodeURIComponent(property);
                         var encodedValue = encodeURIComponent(values[property]);
-                        formBody.push(encodedKey + "=" + encodedValue);
+                        formBody.push(encodedKey + '=' + encodedValue);
                     }
 
-                    formBody = formBody.join("&");
+                    formBody = formBody.join('&');
                     fetch(global.baseUrl, {
                         method: 'POST',
                         headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
                         },
-                        body: formBody
+                        body: formBody,
                     }).then((response) => response.json())
                         .then((responseJson) => {
                             // show spinner
                             this.setState({ loading: false });
 
                             if (responseJson.success) {
-                                global.storeData("partner_id", this.state.felhasznalonev);
-                                global.storeData("vendor", base64.decode(originalVendor));
-                                global.storeData("partnerneve", responseJson.success.partner);
+                                global.storeData('partner_id', this.state.felhasznalonev);
+                                global.storeData('vendor', base64.decode(originalVendor));
+                                global.storeData('partnerneve', responseJson.success.partner);
 
                                 this.setState(state => {
                                     state.felhasznalonev = '';
@@ -263,19 +263,19 @@ export class Login extends Component {
 
                                 this._startInterval();
 
-                                global.getData("maintainBasket").then(maintainBasket => {
+                                global.getData('maintainBasket').then(maintainBasket => {
                                     if (maintainBasket === null) {
                                         // If the basket remained from previous usage, we have to delete it.
-                                        global.removeItemValue("basket").then(() => {
-                                            this.props.navigation.navigate("Home");
+                                        global.removeItemValue('basket').then(() => {
+                                            this.props.navigation.navigate('Home');
                                         });
                                     }
                                     else {
-                                        global.removeItemValue("maintainBasket").then(() => {
-                                            this.props.navigation.navigate("Home");
+                                        global.removeItemValue('maintainBasket').then(() => {
+                                            this.props.navigation.navigate('Home');
                                         });
                                     }
-                                })
+                                });
 
                             }
                             else {
@@ -311,11 +311,11 @@ export class Login extends Component {
 
     onForgotPress() {
         clearTimeout(this._maintainBasketHandler);
-        this.props.navigation.navigate("ForgottenPassword");
+        this.props.navigation.navigate('ForgottenPassword');
     }
 
     onUsernameText(value, name) {
-        if (value.trim !== "") {
+        if (value.trim !== '') {
             this.setState(state => {
                 state[name] = value;
                 state.felhasznalonevVan = true;
@@ -332,7 +332,7 @@ export class Login extends Component {
 
 
     onPasswordText(value, name) {
-        if (value.trim !== "") {
+        if (value.trim !== '') {
             this.setState(state => {
                 state[name] = value;
                 state.jelszoVan = true;
@@ -361,11 +361,11 @@ export class Login extends Component {
 
 export const styles = StyleSheet.create({
     forgotPasswordText: {
-        textAlign: "center",
+        textAlign: 'center',
         textDecorationLine: 'underline',
-        textDecorationColor: "black",
-        marginTop: 10
-    }
+        textDecorationColor: 'black',
+        marginTop: 10,
+    },
 });
 
 
