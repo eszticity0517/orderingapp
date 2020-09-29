@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 export class ButtonContainer extends Component
 {
@@ -29,7 +30,7 @@ export const styles = StyleSheet.create({
         right: 0,
         left: 0,
         zIndex: 1,
-        paddingLeft: UNIT,
-        paddingRight: UNIT
+        paddingLeft: 20,
+        paddingRight: 20
     }
 });

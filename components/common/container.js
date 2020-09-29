@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import * as styles from "./container.scss";
+import {StyleSheet, View} from 'react-native';
 
 export class Container extends Component
 {
