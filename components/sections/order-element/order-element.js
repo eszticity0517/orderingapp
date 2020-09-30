@@ -14,26 +14,11 @@ export class OrderElement extends Component
 
     render()
     {
-        let termekek = '';
-
-        for (let i = 0; i < this.props.response.items.length; i++)
-        {
-            termekek += this.props.response.items[i].megn;
-
-            if (this.props.response.items.length - 1 !== i)
-            {
-                termekek += ' ,';
-            }
-        }
-
         return (
             <View style={{ flexDirection: 'row', borderBottomColor: 'black', borderBottomWidth: 1 }}>
-                {/* <TouchableOpacity style={{ flex: 1, height: 80, justifyContent: "center" }}>
-                    <CheckBox value={this.state.isChecked} onValueChange={this.onCheck.bind(this)} />
-                </TouchableOpacity> */}
                 <View style={{ flex: 5, height: 80, justifyContent: 'center' }}>
                     <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.response.kelt}</Text>
-                    <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({termekek}</Text>
+                    <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({this.renderTermekek()}</Text>
 
                 </View>
                 <View style={{ flex: 0.5, height: 80, justifyContent: 'center' }}>
@@ -48,6 +33,23 @@ export class OrderElement extends Component
                 </TouchableOpacity>
             </View>
         );
+    }
+
+    renderTermekek()
+    {
+        let termekek = '';
+
+        for (let i = 0; i < this.props.response.items.length; i++)
+        {
+            termekek += this.props.response.items[i].megn;
+
+            if (this.props.response.items.length - 1 !== i)
+            {
+                termekek += ' ,';
+            }
+        }
+
+        return termekek;
     }
 
     onPress(value)
