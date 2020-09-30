@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
-import {ButtonContainer} from '../../common/button-component';
+import {View} from 'react-native';
+import {ButtonContainer} from '../../common/button-container';
 import '../../../global';
 import {StyleSheet} from 'react-native';
-import { FooterImage } from './components/footer-image';
+import { FooterIconButton } from './components/footer-icon-button';
 
 export class FooterComponent extends Component
 {
@@ -12,11 +12,11 @@ export class FooterComponent extends Component
         return (
             <ButtonContainer hidden={this.props.hidden} style={styles.footerButtonContainer}>
                 <View style={{ height: 40, width: '100%', backgroundColor: 'black', flexDirection: 'row', alignSelf: 'stretch' }}>
-                    <FooterImage source={require('../../../Sources/Footermenu/home_100px.png')} />
-                    <FooterImage source={require('../../../Sources/Footermenu/star_100px.png')} />
-                    <FooterImage source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} />
-                    <FooterImage source={require('../../../Sources/Footermenu/chat_100px.png')} />
-                    <FooterImage source={require('../../../Sources/Footermenu/gender_neutral_user_100px.png')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/home_100px.png')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/star_100px.png')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/chat_100px.png')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/gender_neutral_user_100px.png')} />
                 </View>
             </ButtonContainer>
         );
@@ -58,7 +58,7 @@ export const styles = StyleSheet.create({
         zIndex: 1,
         paddingLeft: 20,
         paddingRight: 20,
-        bottom: 12
+        bottom: 12,
     },
 });
 

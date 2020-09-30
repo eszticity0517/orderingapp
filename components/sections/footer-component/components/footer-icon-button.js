@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Image, TouchableOpacity, View } from 'react-native';
 
-export class FooterImage extends Component {
+export class FooterIconButton extends Component {
     render() {
         return (
             <TouchableOpacity style={{ flex: 1, alignItems: 'center', height: 40, alignContent: 'center' }} onPress={(value) => this.onPress('Home')}>
