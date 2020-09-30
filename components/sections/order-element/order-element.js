@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { OrderElementContainer } from './components/order-element-container';
+import { OrderElementDetails } from './components/order-element-details';
 import { OrderElementIconButton } from './components/order-element-icon-button';
 
 export class OrderElement extends Component
@@ -18,11 +19,7 @@ export class OrderElement extends Component
     {
         return (
             <OrderElementContainer>
-                <View style={{ flex: 5, height: 80, justifyContent: 'center' }}>
-                    <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.response.kelt}</Text>
-                    <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({this.renderTermekek()}</Text>
-                </View>
-
+                <OrderElementDetails createDate={this.props.response.kelt} products={this.renderTermekek()} />
                 <OrderElementIconButton onPress={this.onPress.bind(this)} />
             </OrderElementContainer>
         );

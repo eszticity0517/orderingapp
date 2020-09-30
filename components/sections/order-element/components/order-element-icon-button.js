@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet} from 'react-native';
 
 
 export class OrderElementIconButton extends Component
