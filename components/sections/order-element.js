@@ -32,7 +32,7 @@ export class OrderElement extends Component
                     <CheckBox value={this.state.isChecked} onValueChange={this.onCheck.bind(this)} />
                 </TouchableOpacity> */}
                 <View style={{ flex: 5, height: 80, justifyContent: 'center' }}>
-                    <Text numberOfLines={1} style={styles.thickgreentext}>{this.props.response.kelt}</Text>
+                    <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.response.kelt}</Text>
                     <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({termekek}</Text>
 
                 </View>
