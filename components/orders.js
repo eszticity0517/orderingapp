@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {AppRegistry, AppState, AsyncStorage, Text, View, StyleSheet} from 'react-native';
+import React, { Component } from 'react';
+import { AppRegistry, AppState, AsyncStorage, Text, View, StyleSheet } from 'react-native';
 
-import {ScrollComponent} from './common/scroll-component';
-import {FooterComponent} from './sections/footer-component';
-import {OrderElement} from './sections/order-element';
+import { ScrollComponent } from './common/scroll-component';
+import { FooterComponent } from './sections/footer-component';
+import { OrderElement } from './sections/order-element';
 import '../global.js';
-import {Indicator} from './common/indicator';
-import {Container} from './common/container';
+import { Indicator } from './common/indicator';
+import { Container } from './common/container';
+import { SeparatorLine } from './common/separator-line';
 
 export class Orders extends Component {
     static navigationOptions = {
@@ -26,8 +27,7 @@ export class Orders extends Component {
         };
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         AppState.addEventListener('change', this._handleAppStateChange);
 
         // global.getData('partner_id').then(partnerId =>
@@ -80,16 +80,12 @@ export class Orders extends Component {
         // });
     }
 
-    render()
-    {
+    render() {
         var rendelesek = [];
 
-        if (this.state.orders !== null)
-        {
-            for (let i = 0; i < this.state.orders.length; i++)
-            {
-                if (this.state.orders[i].items !== null)
-                {
+        if (this.state.orders !== null) {
+            for (let i = 0; i < this.state.orders.length; i++) {
+                if (this.state.orders[i].items !== null) {
                     rendelesek.push(<OrderElement key={i} response={this.state.orders[i]} navigation={this.props.navigation} />);
                 }
             }
@@ -97,18 +93,25 @@ export class Orders extends Component {
 
         return (
             <Container>
+                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                    <Text style={{
+                        fontSize: 20,
+                        margin: 10,
+                    }}>Összes rendelés</Text>
+                    <SeparatorLine />
+                </View>
+
                 <ScrollComponent style={styles.scroll}>
                     {rendelesek}
                 </ScrollComponent>
 
                 <FooterComponent navigation={this.props.navigation} />
-                <Indicator  transparent={false} visible={this.state.loading}/>
+                <Indicator transparent={false} visible={this.state.loading} />
             </Container>
         );
     }
 
-    componentWillUnmount()
-    {
+    componentWillUnmount() {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
@@ -117,35 +120,27 @@ export class Orders extends Component {
 
     //#region
 
-    onPress(value)
-    {
+    onPress(value) {
         this.props.navigation.navigate(value);
     }
 
-    onCheck()
-    {
-        if (this.state.isChecked)
-        {
-            this.setState(state =>
-            {
+    onCheck() {
+        if (this.state.isChecked) {
+            this.setState(state => {
                 state.isChecked = false;
                 return state;
             });
         }
-        else
-        {
-            this.setState(state =>
-            {
+        else {
+            this.setState(state => {
                 state.isChecked = true;
                 return state;
             });
         }
     }
 
-    _handleAppStateChange = (nextAppState) =>
-    {
-        if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
-        {
+    _handleAppStateChange = (nextAppState) => {
+        if (nextAppState.match(/inactive|background/) && this.state.appState === 'active') {
             this.setState({ appState: nextAppState });
             AsyncStorage.setItem('maintainBasket', 'yes').then(() => {
                 this.props.navigation.navigate('Login');
@@ -157,9 +152,10 @@ export class Orders extends Component {
 }
 
 export const styles = StyleSheet.create({
-    scroll: { flex: 1,
+    scroll: {
+        flex: 1,
         paddingLeft: 20,
         paddingRight: 20,
-        marginBottom: 55
+        marginBottom: 55,
     },
 });
