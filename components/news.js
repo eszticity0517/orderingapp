@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
-import { AppRegistry, AppState, AsyncStorage, Text, View, StyleSheet } from 'react-native';
+import { AppRegistry, AppState, AsyncStorage, Text, View } from 'react-native';
 
 import { ScrollComponent } from './common/scroll-component';
 import { FooterComponent } from './sections/footer-component';
-import { OrderElement } from './sections/order-element';
 import '../global.js';
 import { Indicator } from './common/indicator';
 import { Container } from './common/container';
 import { SeparatorLine } from './common/separator-line';
+import { NewsElement } from './sections/news-element';
 
 export class News extends Component
 {
     static navigationOptions = {
-        header: null,
+        headerShown: false,
     };
-
-    //#region
 
     constructor()
     {
@@ -27,7 +25,7 @@ export class News extends Component
         };
     }
 
-    componentWillMount()
+    componentDidMount()
     {
         AppState.addEventListener('change', this._handleAppStateChange);
 
@@ -82,23 +80,23 @@ export class News extends Component
 
     render()
     {
-        // let ujdonsagok = [];
+        let ujdonsagok = [];
 
-        // if (this.state.news !== null)
-        // {
-        //     for (let i = 0; i < this.state.news.items.length; i++)
-        //     {
-        //         ujdonsagok.push(
-        //             <NewsElement
-        //                 key={i}
-        //                 text={this.state.news.items[i].megn}
-        //                 source={{ uri: this.state.news.items[i].image }}
-        //                 unitprice={this.state.news.items[i].nettoear}
-        //                 unit={this.state.news.items[i].egyseg}
-        //             />
-        //         );
-        //     }
-        // }
+        if (this.state.news !== null)
+        {
+            for (let i = 0; i < this.state.news.items.length; i++)
+            {
+                ujdonsagok.push(
+                    <NewsElement
+                        key={i}
+                        text={this.state.news.items[i].megn}
+                        source={{ uri: this.state.news.items[i].image }}
+                        unitprice={this.state.news.items[i].nettoear}
+                        unit={this.state.news.items[i].egyseg}
+                    />
+                );
+            }
+        }
 
         return (
             <Container>
