@@ -8,9 +8,9 @@ export class OrderElementIconButton extends Component
     render()
     {
         return (
-            <TouchableOpacity style={{ flex: 1, justifyContent: 'center', height: 80 }} onPress={(value) => this.props.onPress('Reorder')}>
+            <TouchableOpacity style={styles.touchablePart} onPress={(value) => this.props.onPress('Reorder')}>
                 <Image
-                    style={{ width: 20, height: 20, margin: 10 }}
+                    style={styles.image}
                     source={require('../../../../Sources/Orders/right-angle-arrow-icon-76339.png')}
                     resizeMode="contain"
                 />
@@ -18,3 +18,17 @@ export class OrderElementIconButton extends Component
         );
     }
 }
+
+export const styles = StyleSheet.create({
+    touchablePart: {
+        flex: 1,
+        justifyContent: 'center',
+        height: 80,
+    },
+    image : {
+        width: 20,
+        height: 20,
+        margin: 10,
+    },
+});
+
