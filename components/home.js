@@ -150,23 +150,23 @@ export class Home extends Component
                 <ScrollComponent>
                     <CarouselComponent />
                     <HomeMenuElement
-                        onPress={(value) => this.onPress('Orders')}
+                        onPress={() => this.onPress('Orders')}
                         source={require('../Sources/Homemenu/mua_doboz_over.png')}
-                        text="KORÁBBI RENDELÉSEK"
+                        text="korábbi rendelések"
                         number={this.state.rendelesek}
                     />
 
                     <HomeMenuElement
-                        onPress={(value) => this.onPress('News')}
+                        onPress={() => this.onPress('News')}
                         source={require('../Sources/Homemenu/star.png')}
-                        text="ÚJDONSÁGOK"
+                        text="újdonságok"
                         number={this.state.ujdonsagok}
                     />
 
                     <HomeMenuElement
-                        onPress={(value) => this.onPress('Products')}
+                        onPress={() => this.onPress('Products')}
                         source={require('../Sources/Homemenu/hearth.png')}
-                        text="TERMÉKEK"
+                        text="termékek"
                     />
                 </ScrollComponent>
 
@@ -179,10 +179,6 @@ export class Home extends Component
     {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
-
-    //#endregion
-
-    //#region
 
     onPress(value)
     {
@@ -199,6 +195,4 @@ export class Home extends Component
             });
         }
     }
-
-    //#endregion
 }

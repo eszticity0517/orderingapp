@@ -22,7 +22,11 @@ export class HomeMenuElement extends Component
 
                 <Text
                     onPress={this.props.onPress.bind(this)}
-                    style={{ flex: 2, marginTop: ((this.state.size.height - this.state.size.height / 3 - 100) / 3 / 2) - 10 }}>{this.props.text}
+                    style={{
+                        flex: 2,
+                        marginTop: ((this.state.size.height - this.state.size.height / 3 - 100) / 3 / 2) - 10,
+                        textTransform: 'uppercase'
+                         }}>{this.props.text}
                 </Text>
                 <Text
                     onPress={this.props.onPress.bind(this)}
