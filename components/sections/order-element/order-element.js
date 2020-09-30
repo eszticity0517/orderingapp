@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { OrderElementContainer } from './components/order-element-container';
 
 export class OrderElement extends Component
 {
@@ -15,7 +16,7 @@ export class OrderElement extends Component
     render()
     {
         return (
-            <View style={{ flexDirection: 'row', borderBottomColor: 'black', borderBottomWidth: 1 }}>
+            <OrderElementContainer>
                 <View style={{ flex: 5, height: 80, justifyContent: 'center' }}>
                     <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.response.kelt}</Text>
                     <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({this.renderTermekek()}</Text>
@@ -27,11 +28,11 @@ export class OrderElement extends Component
                 <TouchableOpacity style={{ flex: 1, justifyContent: 'center', height: 80 }} onPress={(value) => this.onPress('Reorder')}>
                     <Image
                         style={{ width: 20, height: 20, margin: 10 }}
-                        source={require('../../Sources/Orders/right-angle-arrow-icon-76339.png')}
+                        source={require('../../../Sources/Orders/right-angle-arrow-icon-76339.png')}
                         resizeMode="contain"
                     />
                 </TouchableOpacity>
-            </View>
+            </OrderElementContainer>
         );
     }
 
