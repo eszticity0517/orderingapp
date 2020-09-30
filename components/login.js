@@ -184,9 +184,9 @@ export class Login extends Component {
         }
         else {
 
-            this.setState({
-                loading: true,
-            });
+            // this.setState({
+            //     loading: true,
+            // });
     
             this.props.navigation.navigate('Home');
 
