@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { AppRegistry, AppState, AsyncStorage, Text, View } from 'react-native';
-
+import { AppRegistry, AppState, Text, View } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { ScrollComponent } from './common/scroll-component';
 import { FooterComponent } from './sections/footer-component';
 import '../global.js';
