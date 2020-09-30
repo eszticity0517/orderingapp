@@ -12,12 +12,14 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {Login} from './components/login';
 import {Home} from './components/home';
 import {Orders} from './components/orders';
+import {News} from './components/news';
 
 const AppNavigator = createStackNavigator(
   {
     Login: {screen: Login},
     Home: {screen: Home},
     Orders: {screen: Orders},
+    News: {screen: News},
   },
   {
     headerMode: 'screen',
