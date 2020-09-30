@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { OrderElementContainer } from './components/order-element-container';
+import { OrderElementIconButton } from './components/order-element-icon-button';
 
 export class OrderElement extends Component
 {
@@ -20,18 +21,9 @@ export class OrderElement extends Component
                 <View style={{ flex: 5, height: 80, justifyContent: 'center' }}>
                     <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.response.kelt}</Text>
                     <Text numberOfLines={1} style={{ fontStyle: 'italic' }}>({this.renderTermekek()}</Text>
+                </View>
 
-                </View>
-                <View style={{ flex: 0.5, height: 80, justifyContent: 'center' }}>
-                    <Text numberOfLines={1} style={{ fontStyle: 'italic', marginTop: 14 }}>)</Text>
-                </View>
-                <TouchableOpacity style={{ flex: 1, justifyContent: 'center', height: 80 }} onPress={(value) => this.onPress('Reorder')}>
-                    <Image
-                        style={{ width: 20, height: 20, margin: 10 }}
-                        source={require('../../../Sources/Orders/right-angle-arrow-icon-76339.png')}
-                        resizeMode="contain"
-                    />
-                </TouchableOpacity>
+                <OrderElementIconButton onPress={this.onPress.bind(this)} />
             </OrderElementContainer>
         );
     }
@@ -46,7 +38,7 @@ export class OrderElement extends Component
 
             if (this.props.response.items.length - 1 !== i)
             {
-                termekek += ' ,';
+                termekek += ', ';
             }
         }
 
