@@ -14,6 +14,8 @@ import {Home} from './components/home';
 import {Orders} from './components/orders';
 import {News} from './components/news';
 import {Profile} from './components/profile';
+import {ForgottenPassword} from './components/forgotten-password';
+import {PasswordSent} from './components/password-sent';
 
 const AppNavigator = createStackNavigator(
   {
@@ -22,6 +24,8 @@ const AppNavigator = createStackNavigator(
     Orders: {screen: Orders},
     News: {screen: News},
     Profile: {screen: Profile},
+    ForgottenPassword: {screen: ForgottenPassword},
+    PasswordSent: {screen: PasswordSent},
   },
   {
     headerMode: 'screen',
