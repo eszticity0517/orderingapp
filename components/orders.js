@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, AppState, AsyncStorage, Text, View, StyleSheet } from 'react-native';
+import { AppState, AsyncStorage, StyleSheet } from 'react-native';
 
 import { ScrollComponent } from './common/scroll-component';
 import { FooterComponent } from './sections/footer-component';
@@ -7,7 +7,7 @@ import { OrderElement } from './sections/order-element';
 import '../global.js';
 import { Indicator } from './common/indicator';
 import { Container } from './common/container';
-import { SeparatorLine } from './common/separator-line';
+import { TitleHeader } from './sections/title-header';
 
 export class Orders extends Component {
     static navigationOptions = {
@@ -93,13 +93,7 @@ export class Orders extends Component {
 
         return (
             <Container>
-                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-                    <Text style={{
-                        fontSize: 20,
-                        margin: 10,
-                    }}>Összes rendelés</Text>
-                    <SeparatorLine />
-                </View>
+                <TitleHeader title="Összes rendelés"/>
 
                 <ScrollComponent style={styles.scroll}>
                     {rendelesek}

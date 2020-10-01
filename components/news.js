@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { AppRegistry, AppState, Text, View } from 'react-native';
+import { AppRegistry, AppState } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { ScrollComponent } from './common/scroll-component';
 import { FooterComponent } from './sections/footer-component';
 import '../global.js';
 import { Indicator } from './common/indicator';
 import { Container } from './common/container';
-import { SeparatorLine } from './common/separator-line';
 import { NewsElement } from './sections/news-element';
+import { TitleHeader } from './sections/title-header';
 
 export class News extends Component
 {
@@ -100,13 +100,7 @@ export class News extends Component
 
         return (
             <Container>
-                               <View style={{ paddingLeft: 20, paddingRight: 20 }}>
-                    <Text style={{
-                        fontSize: 20,
-                        margin: 10,
-                    }}>Újdonságok</Text>
-                    <SeparatorLine />
-                </View>
+                <TitleHeader title="Újdonságok"/>
                 <ScrollComponent>
                     {/* {ujdonsagok} */}
                 </ScrollComponent>
