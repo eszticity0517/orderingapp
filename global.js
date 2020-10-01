@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native';
-import AsyncStorage from "@react-native-community/async-storage";
+import AsyncStorage from '@react-native-community/async-storage';
 
-global.baseUrl = "valami";
+global.baseUrl = 'valami';
 global.size =  Dimensions.get('window');
 
 
@@ -9,7 +9,7 @@ global.getData = async (key) =>
 {
     var item = await AsyncStorage.getItem(key);
     return item;
-}
+};
 
 
 global.storeData = async (name, data) =>
@@ -21,7 +21,7 @@ global.storeData = async (name, data) =>
     {
         console.log(error);
     }
-}
+};
 
 global.guidGenerator = function()
 {
@@ -29,8 +29,8 @@ global.guidGenerator = function()
     {
         return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
     };
-    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
-}
+    return (S4() + S4() + '-' + S4() + '-' + S4() + '-' + S4() + '-' + S4() + S4() + S4());
+};
 
 global.removeItemValue = async (key) =>
 {
@@ -43,8 +43,8 @@ global.removeItemValue = async (key) =>
     {
         return false;
     }
-}
+};
 
 global.numberWithSpaces = function(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+};
