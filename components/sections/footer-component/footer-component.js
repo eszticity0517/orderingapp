@@ -11,7 +11,7 @@ export class FooterComponent extends Component
     {
         return (
             <ButtonContainer hidden={this.props.hidden} style={styles.footerButtonContainer}>
-                <View style={{ height: 40, width: '100%', backgroundColor: 'black', flexDirection: 'row', alignSelf: 'stretch' }}>
+                <View style={styles.innerContainer}>
                     <FooterIconButton source={require('../../../Sources/Footermenu/home_100px.png')} onPress={() => this.onPress('Home')} />
                     <FooterIconButton source={require('../../../Sources/Footermenu/star_100px.png')} onPress={() => this.onPress('Favourites')}/>
                     <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} onPress={() => this.onPress('ShoppingCart')}/>
@@ -59,6 +59,13 @@ export const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         bottom: 12,
+    },
+    innerContainer: {
+        height: 40,
+        width: '100%',
+        backgroundColor: 'black',
+        flexDirection: 'row',
+        alignSelf: 'stretch',
     },
 });
 
