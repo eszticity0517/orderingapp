@@ -12,11 +12,11 @@ export class FooterComponent extends Component
         return (
             <ButtonContainer hidden={this.props.hidden} style={styles.footerButtonContainer}>
                 <View style={{ height: 40, width: '100%', backgroundColor: 'black', flexDirection: 'row', alignSelf: 'stretch' }}>
-                    <FooterIconButton source={require('../../../Sources/Footermenu/home_100px.png')} onPress={this.onPress.bind(this)} />
-                    <FooterIconButton source={require('../../../Sources/Footermenu/star_100px.png')} onPress={this.onPress.bind(this)}/>
-                    <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} onPress={this.onPress.bind(this)}/>
-                    <FooterIconButton source={require('../../../Sources/Footermenu/chat_100px.png')} onPress={this.onPress.bind(this)}/>
-                    <FooterIconButton source={require('../../../Sources/Footermenu/gender_neutral_user_100px.png')} onPress={this.onPress.bind(this)}/>
+                    <FooterIconButton source={require('../../../Sources/Footermenu/home_100px.png')} onPress={() => this.onPress('Home')} />
+                    <FooterIconButton source={require('../../../Sources/Footermenu/star_100px.png')} onPress={() => this.onPress('Favourites')}/>
+                    <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} onPress={() => this.onPress('ShoppingCart')}/>
+                    <FooterIconButton source={require('../../../Sources/Footermenu/chat_100px.png')} onPress={() => this.onPress('Chat')}/>
+                    <FooterIconButton source={require('../../../Sources/Footermenu/gender_neutral_user_100px.png')} onPress={() => this.onPress('Profile')}/>
                 </View>
             </ButtonContainer>
         );
