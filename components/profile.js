@@ -123,69 +123,71 @@ export class Profile extends Component
 
     onPress()
     {
-        global.getData('partner_id').then(partnerId =>
-        {
-            global.getData('vendor').then(vendor =>
-            {
-                var values = {
-                    id: JSON.stringify({
-                        vendor: vendor,
-                        object: 'rshop',
-                        method: 'logout',
+        this.props.navigation.navigate('Login');
 
-                        params: {
-                            partner_id: parseInt(partnerId),
-                        },
-                    }),
-                };
+        // global.getData('partner_id').then(partnerId =>
+        // {
+        //     global.getData('vendor').then(vendor =>
+        //     {
+        //         var values = {
+        //             id: JSON.stringify({
+        //                 vendor: vendor,
+        //                 object: 'rshop',
+        //                 method: 'logout',
 
-                var formBody = [];
-                for (var property in values)
-                {
-                    var encodedKey = encodeURIComponent(property);
-                    var encodedValue = encodeURIComponent(values[property]);
-                    formBody.push(encodedKey + '=' + encodedValue);
-                }
+        //                 params: {
+        //                     partner_id: parseInt(partnerId),
+        //                 },
+        //             }),
+        //         };
 
-                formBody = formBody.join('&');
-                fetch(global.baseUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-                    },
-                    body: formBody,
-                }).then((response) => response.json())
-                    .then((responseJson) =>
-                    {
-                        if (responseJson.success)
-                        {
-                            this.setState(state =>
-                            {
-                                state.felhasznalonev = '';
-                                state.jelszo = '';
-                            });
+        //         var formBody = [];
+        //         for (var property in values)
+        //         {
+        //             var encodedKey = encodeURIComponent(property);
+        //             var encodedValue = encodeURIComponent(values[property]);
+        //             formBody.push(encodedKey + '=' + encodedValue);
+        //         }
 
-                            AsyncStorage.clear().then(() =>
-                            {
-                                global.removeItemValue('basket').then(() =>
-                                {
-                                    this.props.navigation.navigate('Login');
-                                });
-                            });
-                        }
-                        else
-                        {
-                            console.log('Something went wrong');
-                        }
-                    })
-                    .catch((error) =>
-                    {
-                        console.error(error);
-                    });
-            });
+        //         formBody = formBody.join('&');
+        //         fetch(global.baseUrl, {
+        //             method: 'POST',
+        //             headers: {
+        //                 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+        //             },
+        //             body: formBody,
+        //         }).then((response) => response.json())
+        //             .then((responseJson) =>
+        //             {
+        //                 if (responseJson.success)
+        //                 {
+        //                     this.setState(state =>
+        //                     {
+        //                         state.felhasznalonev = '';
+        //                         state.jelszo = '';
+        //                     });
+
+        //                     AsyncStorage.clear().then(() =>
+        //                     {
+        //                         global.removeItemValue('basket').then(() =>
+        //                         {
+        //                             this.props.navigation.navigate('Login');
+        //                         });
+        //                     });
+        //                 }
+        //                 else
+        //                 {
+        //                     console.log('Something went wrong');
+        //                 }
+        //             })
+        //             .catch((error) =>
+        //             {
+        //                 console.error(error);
+        //             });
+        //     });
 
 
-        });
+        // });
     }
 
     _handleAppStateChange = (nextAppState) =>
