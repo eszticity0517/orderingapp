@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {AppRegistry, Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import {AppRegistry, Text, View, StyleSheet} from 'react-native';
 import {HeaderMenuComponent} from './components/header-menu-component';
 import '../../../global';
+import { HeaderCloseButton } from './components/header-close-button';
+import { HeaderMenuHandlerButton } from './components/header-menu-handler-button';
 
 export class HeaderComponent extends Component
 {
@@ -38,21 +40,14 @@ export class HeaderComponent extends Component
                 {this.renderSecondaryHeaderShape()}
 
                 <View flexDirection="row" style={{ position: 'absolute', zIndex: 1 }}>
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={this.props.onPress.bind(this)}>
-                        <Image
-                            style={{ width: 20, height: 20, margin: 10, marginLeft: 5 }}
-                            source={require('../../../Sources/Headermenu/closeMenu_over.png')}
-                        />
-                    </TouchableOpacity>
+                    <HeaderCloseButton onPress={this.props.onPress.bind(this)}/>
                     <Text style={styles.welcome}>Áttekintés</Text>
-                    <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={this.props.onMenuOpenPress.bind(this)}>
-                        <Image
-                            style={{ width: 20, height: 20, margin: 10, position: 'absolute', right: 0 }}
-                            source={require('../../../Sources/Headermenu/openMenu_over.png')}
-                        />
-                    </TouchableOpacity>
+                    <HeaderMenuHandlerButton onMenuOpenPress={this.props.onMenuOpenPress.bind(this)} />
                 </View>
-                <View style={{ flexDirection: 'row', backgroundColor: '#77D353', padding: 20, height: this.state.size.height / 3, width: this.state.size.width - 40 }}>
+                <View style={[styles.primaryHeaderShape, {
+                    height: this.state.size.height / 3,
+                    width: this.state.size.width - 40,
+                }]}>
                     <View style={{ flex: 2, marginTop: this.state.size.height / 6 - 20 }}>
                         <Text>SZÁLLÍTÁS</Text>
                         <Text style={{ color: 'white' }}>{this.state.partnerneve}</Text>
@@ -125,6 +120,11 @@ export const styles = StyleSheet.create({
         zIndex: 1,
         left: -20,
         backgroundColor: 'white',
+    },
+    primaryHeaderShape: {
+        flexDirection: 'row',
+        backgroundColor: '#77D353',
+        padding: 20,
     },
 });
 
