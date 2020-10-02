@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import {AppState, AsyncStorage, Text, View, StyleSheet} from 'react-native';
+import {AppState, Text, View, StyleSheet} from 'react-native';
 import { Container } from './common/container';
 import {FooterComponent} from './sections/footer-component';
 import {ButtonComponent} from './common/button-component';
 import {SummaryComponent} from './sections/summary-component';
 import '../global.js';
 import {Indicator} from './common/indicator';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export class Profile extends Component
 {

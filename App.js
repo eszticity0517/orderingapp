@@ -19,6 +19,7 @@ import {PasswordSent} from './components/password-sent';
 import {Favourites} from './components/favourites';
 import {EmptyCart} from './components/empty-cart';
 import {Chat} from './components/chat';
+import {Products} from './components/products';
 
 const AppNavigator = createStackNavigator(
   {
@@ -32,6 +33,7 @@ const AppNavigator = createStackNavigator(
     Favourites: {screen: Favourites},
     EmptyCart: {screen: EmptyCart},
     Chat: {screen: Chat},
+    Products: {screen: Products},
   },
   {
     headerMode: 'screen',
