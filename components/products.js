@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import
 {
-    Alert,
     AppState,
     Keyboard,
     ScrollView,
@@ -51,48 +50,6 @@ export class Products extends Component
 
     render()
     {
-        let termekek = [];
-
-        if (this.state.products)
-        {
-            for (let i = 0; i < this.state.products.length; i++)
-            {
-                if (this.state.filter.length >= 3 && this.state.products[i].megn.toLowerCase().includes(this.state.filter.toLowerCase()) || this.state.filter.length < 3)
-                {
-                    termekek.push(
-                        <ProductElement
-                            key={i}
-                            product={JSON.parse(JSON.stringify(this.state.products[i]))}
-                            onCheck={(uid) => this.onProductCheck(uid)}
-                            onPickerValueChange={(id, value) => this.onPickerValueChange(id, value)}
-                            onCounterButtonPress={(id, value) => this.onCounterButtonPress(id, value)}
-                            showPieces={true}
-                        />
-                    );
-                }
-            }
-        }
-
-        var scrollenabled = !(this.state.isCategoryOpen || this.state.isGroupOpen);
-
-        var kategoriak = [];
-
-        kategoriak.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
-
-        for (let i = 0; i < this.state.kategoriak.length; i++)
-        {
-            kategoriak.push(<Text style={{ color: 'black' }}>{this.state.kategoriak[i]}</Text>);
-        }
-
-        var alcsoportok = [];
-
-        alcsoportok.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
-
-        for (let i = 0; i < this.state.alcsoportok.length; i++)
-        {
-            alcsoportok.push(<Text style={{ color: 'black' }}>{this.state.alcsoportok[i]}</Text>);
-        }
-
         return (
             <Container>
                 <View style={styles.productViewContainer}>
@@ -116,13 +73,11 @@ export class Products extends Component
                     <SeparatorLine />
                 </View>
 
-                <ScrollView style={{
-                    flex: 1,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    marginBottom: 55,
-                }} scrollEnabled={scrollenabled}>
-                    {termekek}
+                <ScrollView
+                    style={styles.scroller}
+                    scrollEnabled={this.isScrollEnabled()}
+                >
+                    {this.renderTermekek()}
                 </ScrollView>
 
                 <FooterComponent hidden={this.state.buttonishidden} navigation={this.props.navigation} />
@@ -131,13 +86,12 @@ export class Products extends Component
                 <View>
                     <ActionSheet
                         ref={o => this.kategoriakMenu = o}
-                        // title={<Text style={{ color: '#000', fontSize: 18 }}>Átvétel módja</Text>}
-                        options={kategoriak}
+                        options={this.renderKategoriak()}
                         cancelButtonIndex={0}
                         destructiveButtonIndex={this.state.kategoriak.length}
                         onPress={(index) =>
                         {
-                            // Zero index is the cancel button
+                            // Zero index is for the cancel button.
                             if (index !== 0)
                             {
                                 this.onCategoryValueChange('', this.state.kategoriak[index - 1]);
@@ -149,8 +103,7 @@ export class Products extends Component
                 <View>
                     <ActionSheet
                         ref={o => this.alcsoportokMenu = o}
-                        // title={<Text style={{ color: '#000', fontSize: 18 }}>Átvétel módja</Text>}
-                        options={alcsoportok}
+                        options={this.renderAlcsoportok()}
                         cancelButtonIndex={0}
                         destructiveButtonIndex={this.state.alcsoportok.length}
                         onPress={(index) =>
@@ -163,8 +116,66 @@ export class Products extends Component
                         }}
                     />
                 </View>
+            </Container >
+        );
+    }
 
-            </Container >);
+    renderAlcsoportok()
+    {
+        var alcsoportok = [];
+
+        alcsoportok.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+
+        for (let i = 0; i < this.state.alcsoportok.length; i++)
+        {
+            alcsoportok.push(<Text style={{ color: 'black' }}>{this.state.alcsoportok[i]}</Text>);
+        }
+
+        return alcsoportok;
+    }
+
+    renderKategoriak()
+    {
+        var kategoriak = [];
+
+        kategoriak.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+
+        for (let i = 0; i < this.state.kategoriak.length; i++)
+        {
+            kategoriak.push(<Text style={{ color: 'black' }}>{this.state.kategoriak[i]}</Text>);
+        }
+
+        return kategoriak;
+    }
+
+    isScrollEnabled()
+    {
+        return !(this.state.isCategoryOpen || this.state.isGroupOpen);
+    }
+
+    renderTermekek()
+    {
+        let termekek = [];
+
+        if (this.state.products)
+        {
+            for (let i = 0; i < this.state.products.length; i++)
+            {
+                if (this.state.filter.length >= 3 && this.state.products[i].megn.toLowerCase().includes(this.state.filter.toLowerCase()) || this.state.filter.length < 3)
+                {
+                    termekek.push(
+                        <ProductElement
+                            key={i}
+                            product={JSON.parse(JSON.stringify(this.state.products[i]))}
+                            onCheck={(uid) => this.onProductCheck(uid)}
+                            onPickerValueChange={(id, value) => this.onPickerValueChange(id, value)}
+                            onCounterButtonPress={(id, value) => this.onCounterButtonPress(id, value)}
+                            showPieces={true}
+                        />
+                    );
+                }
+            }
+        }
     }
 
     componentDidMount()
@@ -782,5 +793,11 @@ export const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop:20,
+    },
+    scroller: {
+        flex: 1,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginBottom: 55,
     },
 });
