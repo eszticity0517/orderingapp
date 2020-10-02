@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { AppRegistry, View, StyleSheet } from 'react-native';
-import '../../global.js';
-import {OpeningMenuElement} from './opening-menu-element';
+import '../../../../global.js';
+import {OpeningMenuElement} from '../../opening-menu-element';
 
-export class MenuComponent extends Component {
+export class HeaderMenuComponent extends Component {
     static navigationOptions = {
         headerShown: false,
     };
@@ -13,31 +13,31 @@ export class MenuComponent extends Component {
             <View style={styles.openingMenuContainer}>
 
                 <OpeningMenuElement
-                    source={require('../../Sources/Openingmenu/home_100px.png')}
+                    source={require('../../../../Sources/Openingmenu/home_100px.png')}
                     text="Home"
                     onPress={() => this.onPress('Home')}
                 />
 
                 <OpeningMenuElement
-                    source={require('../../Sources/Openingmenu/star_100px.png')}
+                    source={require('../../../../Sources/Openingmenu/star_100px.png')}
                     text="Kedvencek"
                     onPress={() => this.onPress('Favourites')}
                 />
 
                 <OpeningMenuElement
-                    source={require('../../Sources/Openingmenu/shopping_cart_100px.png')}
+                    source={require('../../../../Sources/Openingmenu/shopping_cart_100px.png')}
                     text="Kosár"
                     onPress={this.onBasketPress.bind(this)}
                 />
 
                 <OpeningMenuElement
-                    source={require('../../Sources/Openingmenu/chat_100px.png')}
+                    source={require('../../../../Sources/Openingmenu/chat_100px.png')}
                     text="Üzenetek"
                     onPress={() => this.onPress('Chat')}
                 />
 
                 <OpeningMenuElement
-                    source={require('../../Sources/Openingmenu/gender_neutral_user_100px.png')}
+                    source={require('../../../../Sources/Openingmenu/gender_neutral_user_100px.png')}
                     text="Profil"
                     onPress={() => this.onPress('Profile')}
                 />
@@ -78,4 +78,4 @@ export const styles = StyleSheet.create({
     },
 });
 
-AppRegistry.registerComponent('MenuComponent', () => MenuComponent);
+AppRegistry.registerComponent('HeaderMenuComponent', () => HeaderMenuComponent);

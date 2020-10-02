@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import {MenuComponent} from './menu-component';
-import '../../global';
+import {HeaderMenuComponent} from './components/header-menu-component';
+import '../../../global';
 
 export class HeaderComponent extends Component
 {
@@ -41,14 +41,14 @@ export class HeaderComponent extends Component
                     <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={this.props.onPress.bind(this)}>
                         <Image
                             style={{ width: 20, height: 20, margin: 10, marginLeft: 5 }}
-                            source={require('../../Sources/Headermenu/closeMenu_over.png')}
+                            source={require('../../../Sources/Headermenu/closeMenu_over.png')}
                         />
                     </TouchableOpacity>
                     <Text style={styles.welcome}>Áttekintés</Text>
                     <TouchableOpacity style={{ flex: 1, height: 50 }} onPress={this.props.onMenuOpenPress.bind(this)}>
                         <Image
                             style={{ width: 20, height: 20, margin: 10, position: 'absolute', right: 0 }}
-                            source={require('../../Sources/Headermenu/openMenu_over.png')}
+                            source={require('../../../Sources/Headermenu/openMenu_over.png')}
                         />
                     </TouchableOpacity>
                 </View>
@@ -82,7 +82,7 @@ export class HeaderComponent extends Component
 
     renderMenuComponent()
     {
-        return (this.props.isMenuOpened ? <MenuComponent navigation={this.props.navigation} onMenuOpenPress={this.props.onMenuOpenPress.bind(this)}/> : undefined);
+        return (this.props.isMenuOpened ? <HeaderMenuComponent navigation={this.props.navigation} onMenuOpenPress={this.props.onMenuOpenPress.bind(this)}/> : undefined);
     }
 
     renderRendelesAdatok()
