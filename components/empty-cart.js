@@ -36,12 +36,12 @@ export class EmptyCart extends Component
                 <ScrollComponent appearance="view">
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
                     <View style={{ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 20 * 4, width: this.state.size.width - 40}}>
-                        <Text style={styles.welcomenomargin}>A kosár üres.</Text>
+                        <Text style={styles.welcomeNoMargin}>A kosár üres.</Text>
                     </View>
 
                 </ScrollComponent>
                 <ButtonContainer>
-                    <ButtonComponent onPress={(value) => this.onPress('Products')} text="Termékek hozzáadása" />
+                    <ButtonComponent onPress={() => this.onPress('Products')} text="Termékek hozzáadása" />
                 </ButtonContainer>
             </Container>
         );
