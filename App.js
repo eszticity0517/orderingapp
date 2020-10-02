@@ -17,6 +17,7 @@ import {Profile} from './components/profile';
 import {ForgottenPassword} from './components/forgotten-password';
 import {PasswordSent} from './components/password-sent';
 import {Favourites} from './components/favourites';
+import {EmptyCart} from './components/empty-cart';
 
 const AppNavigator = createStackNavigator(
   {
@@ -28,6 +29,7 @@ const AppNavigator = createStackNavigator(
     ForgottenPassword: {screen: ForgottenPassword},
     PasswordSent: {screen: PasswordSent},
     Favourites: {screen: Favourites},
+    EmptyCart: {screen: EmptyCart},
   },
   {
     headerMode: 'screen',

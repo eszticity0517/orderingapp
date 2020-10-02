@@ -14,7 +14,7 @@ export class FooterComponent extends Component
                 <View style={styles.innerContainer}>
                     <FooterIconButton source={require('../../../Sources/Footermenu/home_100px.png')} onPress={() => this.onPress('Home')} />
                     <FooterIconButton source={require('../../../Sources/Footermenu/star_100px.png')} onPress={() => this.onPress('Favourites')}/>
-                    <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} onPress={() => this.onPress('ShoppingCart')}/>
+                    <FooterIconButton source={require('../../../Sources/Footermenu/shopping_cart_100px.png')} onPress={() => this.onCartPress()}/>
                     <FooterIconButton source={require('../../../Sources/Footermenu/chat_100px.png')} onPress={() => this.onPress('Chat')}/>
                     <FooterIconButton source={require('../../../Sources/Footermenu/gender_neutral_user_100px.png')} onPress={() => this.onPress('Profile')}/>
                 </View>
@@ -27,14 +27,14 @@ export class FooterComponent extends Component
         this.props.navigation.navigate(value);
     }
 
-    onBasketPress()
+    onCartPress()
     {
         var orderstate;
 
         global.getData('basket').then(basket => {
             if (basket === null)
             {
-                orderstate = 'EmptyBasket';
+                orderstate = 'EmptyCart';
             }
             else {
                 orderstate = 'OrderInProgress';
