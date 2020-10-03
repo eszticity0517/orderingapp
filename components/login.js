@@ -362,7 +362,6 @@ export class Login extends Component {
         //     return false;
         // }
     }
-    //#endregion
 }
 
 export const styles = StyleSheet.create({

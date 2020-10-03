@@ -201,7 +201,6 @@ export class Profile extends Component
             });
         }
     }
-    //#endregion
 }
 
 export const styles = StyleSheet.create({

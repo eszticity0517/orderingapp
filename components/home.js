@@ -15,8 +15,6 @@ export class Home extends Component
         headerShow: false,
     };
 
-    //#region
-
     constructor()
     {
         super();
