@@ -23,7 +23,7 @@ export class ForgottenPassword extends Component
             emailVan: true,
             felhasznalonev: '',
             felhasznalonevVan: true,
-            buttonishidden: false,
+            isButtonHidden: false,
             size: global.size,
             loading: false,
         };
@@ -48,10 +48,10 @@ export class ForgottenPassword extends Component
                 </ScrollComponent>
 
 
-                <ButtonContainer hidden={this.state.buttonishidden} style={styles.upperButtonContainer}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={styles.upperButtonContainer}>
                     <ButtonComponent onPress={this.onSendPress.bind(this)} text="Új jelszó küldése" />
                 </ButtonContainer>
-                <ButtonContainer hidden={this.state.buttonishidden}>
+                <ButtonContainer hidden={this.state.isButtonHidden}>
                     <ButtonComponent onPress={this.onCancelPress.bind(this)} text="Mégsem" backgroundColor="#989898" />
                 </ButtonContainer>
                 <Indicator  transparent={false} visible={this.state.loading}/>
@@ -74,7 +74,7 @@ export class ForgottenPassword extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
@@ -83,7 +83,7 @@ export class ForgottenPassword extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }

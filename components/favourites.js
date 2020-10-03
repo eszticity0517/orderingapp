@@ -33,7 +33,7 @@ export class Favourites extends Component
             isCategoryOpen: false,
             isGroupOpen: false,
             size: global.size,
-            buttonishidden: false,
+            isButtonHidden: false,
             partnerId: null,
             appState: AppState.currentState,
             loading: false,
@@ -159,7 +159,7 @@ export class Favourites extends Component
                     {this.renderTermekek()}
                 </ScrollView>
 
-                <FooterComponent hidden={this.state.buttonishidden} navigation={this.props.navigation} />
+                <FooterComponent hidden={this.state.isButtonHidden} navigation={this.props.navigation} />
                 <Indicator transparent={false} visible={this.state.loading} />
             </Container >);
     }
@@ -215,7 +215,7 @@ export class Favourites extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
@@ -224,7 +224,7 @@ export class Favourites extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }

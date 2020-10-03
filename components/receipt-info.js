@@ -33,7 +33,7 @@ export class ReceiptInfo extends Component
             cimek: [],
             aruatvetelek: [],
             megjegyzes: '',
-            buttonishidden: false,
+            isButtonHidden: false,
             fuvardij: 0,
             termekekara: 0,
             vendor: null,
@@ -419,11 +419,11 @@ export class ReceiptInfo extends Component
                 {this.renderTermekekAra()}
                 {this.renderFuvardij()}
 
-                <ButtonContainer style={styles.upperButtonContainer} hidden={this.state.buttonishidden}>
+                <ButtonContainer style={styles.upperButtonContainer} hidden={this.state.isButtonHidden}>
                     <TotalComponent text="Teljes összeg" sum={this.renderVegosszeg()} />
                 </ButtonContainer>
 
-                <ButtonContainer hidden={this.state.buttonishidden}>
+                <ButtonContainer hidden={this.state.isButtonHidden}>
                     <ButtonComponent onPress={(value) => this.onPress('OrderIsDone')} text="Megerősítés" />
                 </ButtonContainer>
                 <Indicator transparent={false} visible={this.state.loading} />
@@ -438,7 +438,7 @@ export class ReceiptInfo extends Component
 
         if (this.state.wayOfReceivingValue === 'Kiszállítás')
         {
-            fuvardij = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 1.5 }]} hidden={this.state.buttonishidden}>
+            fuvardij = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 1.5 }]} hidden={this.state.isButtonHidden}>
                 <TotalComponent text="Fuvardíj" sum={Math.round(this.state.fuvardij)} light />
             </ButtonContainer>;
         }
@@ -451,7 +451,7 @@ export class ReceiptInfo extends Component
         let termekekara;
         if (this.state.wayOfReceivingValue === 'Kiszállítás')
         {
-            termekekara = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]} hidden={this.state.buttonishidden}>
+            termekekara = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]} hidden={this.state.isButtonHidden}>
                 <TotalComponent text="Termékek ára" sum={Math.round(this.state.termekekara)} light />
             </ButtonContainer>;
         }
@@ -486,7 +486,7 @@ export class ReceiptInfo extends Component
 
     renderMarginBottom()
     {
-        return (this.state.buttonishidden ? 0 : 50);
+        return (this.state.isButtonHidden ? 0 : 50);
     }
 
     renderVegosszeg()
@@ -573,7 +573,7 @@ export class ReceiptInfo extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
@@ -582,7 +582,7 @@ export class ReceiptInfo extends Component
     {
         this.setState(state =>
         {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }

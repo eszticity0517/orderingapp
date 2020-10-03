@@ -141,11 +141,11 @@ export class SummaryComponent extends Component
                     <Text>nyitott</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 2, borderRightColor: 'black' }}>
-                    <Text style={styles.thickerblackText}>{this.state.teljesitettRendelesek}</Text>
+                    <Text style={styles.thickerBlackText}>{this.state.teljesitettRendelesek}</Text>
                     <Text>teljesített</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={styles.thickerblackText}>{this.state.uzenetekSzama}</Text>
+                    <Text style={styles.thickerBlackText}>{this.state.uzenetekSzama}</Text>
                     <Text>üzenet</Text>
                 </View>
             </View>
@@ -154,7 +154,7 @@ export class SummaryComponent extends Component
 }
 
 export const styles = StyleSheet.create({
-    thickerblackText: {
+    thickerBlackText: {
         fontSize: 12,
         fontWeight: 'bold',
         color: '#77D353',

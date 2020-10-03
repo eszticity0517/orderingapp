@@ -27,7 +27,7 @@ export class Reorder extends Component
             isMenuOpened: false,
             sum: 0,
             basket: null,
-            orderwithdata: null,
+            orderWithData: null,
             products: [],
             items: null,
             order: null,
@@ -71,7 +71,7 @@ export class Reorder extends Component
             </View>);
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
             cancelbutton = null;
         }
@@ -90,7 +90,7 @@ export class Reorder extends Component
             </ButtonContainer>);
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
             orderornewcontainer = null;
         }
@@ -125,7 +125,7 @@ export class Reorder extends Component
             );
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
             reorderbutton = null;
         }
@@ -151,7 +151,7 @@ export class Reorder extends Component
             );
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
             elemek = <View style={{ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' }}>
                 <Text style={styles.welcomenomargin}>Az elemek nem tölthetők be.</Text>
@@ -213,16 +213,16 @@ export class Reorder extends Component
                     {
                         this.setState({
                             loading: false,
-                            orderwithdata: responseJson.success,
+                            orderWithData: responseJson.success,
                         });
 
                         var sum = 0;
 
-                        if (this.state.orderwithdata.items !== null)
+                        if (this.state.orderWithData.items !== null)
                         {
-                            for (let i = 0; i < this.state.orderwithdata.items.length; i++)
+                            for (let i = 0; i < this.state.orderWithData.items.length; i++)
                             {
-                                sum += this.state.orderwithdata.items[i].cikk.nettoear * this.state.orderwithdata.items[i].mennyiseg;
+                                sum += this.state.orderWithData.items[i].cikk.nettoear * this.state.orderWithData.items[i].mennyiseg;
                             }
 
                             this.setState({ sum: sum });
@@ -271,14 +271,14 @@ export class Reorder extends Component
 
                                         item.kivalasztva = false;
 
-                                        if (this.state.orderwithdata.items[i].cikk.kiszereles !== null)
+                                        if (this.state.orderWithData.items[i].cikk.kiszereles !== null)
                                         {
                                             var kivalasztottegyseg;
                                             var valtoszam;
 
-                                            const dividend = parseFloat(this.state.orderwithdata.items[i].mennyiseg);
+                                            const dividend = parseFloat(this.state.orderWithData.items[i].mennyiseg);
 
-                                            this.state.orderwithdata.items[i].cikk.kiszereles.reverse().forEach(element =>
+                                            this.state.orderWithData.items[i].cikk.kiszereles.reverse().forEach(element =>
                                             {
                                                 let divisor = parseFloat(element.valtoszam);
 
@@ -295,11 +295,11 @@ export class Reorder extends Component
                                                         kivalasztottegyseg = element.megn;
                                                         secondaryMennyiseg = dividend % divisor;
 
-                                                        const index = this.state.orderwithdata.items[i].cikk.kiszereles.map(e => e.uid).indexOf(element.uid);
+                                                        const index = this.state.orderWithData.items[i].cikk.kiszereles.map(e => e.uid).indexOf(element.uid);
 
-                                                        for (let k = index + 1; k < this.state.orderwithdata.items[i].cikk.kiszereles.length - index; k++)
+                                                        for (let k = index + 1; k < this.state.orderWithData.items[i].cikk.kiszereles.length - index; k++)
                                                         {
-                                                            let element2 = this.state.orderwithdata.items[i].cikk.kiszereles[k];
+                                                            let element2 = this.state.orderWithData.items[i].cikk.kiszereles[k];
                                                             let divisor = parseFloat(element2.valtoszam);
 
                                                             if (secondaryMennyiseg % divisor === 0 && !secondaryKivalasztottEgyseg)
@@ -312,23 +312,23 @@ export class Reorder extends Component
                                                 }
                                             });
 
-                                            this.state.orderwithdata.items[i].cikk.kiszereles.reverse();
+                                            this.state.orderWithData.items[i].cikk.kiszereles.reverse();
 
                                             if (!kivalasztottegyseg)
                                             {
-                                                item.kivalasztottegyseg = this.state.orderwithdata.items[i].cikk.egyseg;
-                                                item.mennyiseg = parseInt(this.state.orderwithdata.items[i].mennyiseg);
+                                                item.kivalasztottegyseg = this.state.orderWithData.items[i].cikk.egyseg;
+                                                item.mennyiseg = parseInt(this.state.orderWithData.items[i].mennyiseg);
                                             }
                                             else
                                             {
                                                 item.kivalasztottegyseg = kivalasztottegyseg;
-                                                item.mennyiseg = Math.floor(parseInt(this.state.orderwithdata.items[i].mennyiseg) / valtoszam);
+                                                item.mennyiseg = Math.floor(parseInt(this.state.orderWithData.items[i].mennyiseg) / valtoszam);
                                             }
                                         }
                                         else
                                         {
-                                            item.kivalasztottegyseg = this.state.orderwithdata.items[i].cikk.egyseg;
-                                            item.mennyiseg = parseInt(this.state.orderwithdata.items[i].mennyiseg);
+                                            item.kivalasztottegyseg = this.state.orderWithData.items[i].cikk.egyseg;
+                                            item.mennyiseg = parseInt(this.state.orderWithData.items[i].mennyiseg);
                                         }
 
                                         // We get this from _ordersWithData first

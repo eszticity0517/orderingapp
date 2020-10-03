@@ -36,15 +36,15 @@ export class Products extends Component
             buttonishidden: false,
             partnerId: null,
             isFocused: false,
-            kivalasztottkategoria: null,
-            kivalasztottalcsoport: null,
+            kivalasztottKategoria: null,
+            kivalasztottAlcsoport: null,
             kategoriak: [],
             alcsoportok: [],
             appState: AppState.currentState,
             loading: false,
             products: null,
             basket: null,
-            kategoriakesalcsoportok: null,
+            kategoriakEsAlcsoportok: null,
         };
     }
 
@@ -55,13 +55,13 @@ export class Products extends Component
                 <View style={styles.productViewContainer}>
                     <DropdownComponent
                         onPress={this.showKategoriakMenu}
-                        title={this.state.kivalasztottkategoria}
+                        title={this.state.kivalasztottKategoria}
                     />
 
                     <View style={{ marginTop: 20 / 2 }}>
                         <DropdownComponent
                             onPress={this.showAlcsoportokMenu}
-                            title={this.state.kivalasztottalcsoport}
+                            title={this.state.kivalasztottAlcsoport}
                         />
                     </View>
 
@@ -231,40 +231,40 @@ export class Products extends Component
         //             {
         //                 this.setState({
         //                     loading: false,
-        //                     kategoriakesalcsoportok: responseJson,
+        //                     kategoriakEsAlcsoportok: responseJson,
         //                 });
 
         //                 let kategoriak = [];
         //                 let parentId;
 
-        //                 for (let i = 0; i < this.state.kategoriakesalcsoportok.length; i++)
+        //                 for (let i = 0; i < this.state.kategoriakEsAlcsoportok.length; i++)
         //                 {
-        //                     if (this.state.kategoriakesalcsoportok[i].parent_id === '0')
+        //                     if (this.state.kategoriakEsAlcsoportok[i].parent_id === '0')
         //                     {
-        //                         kategoriak.push(this.state.kategoriakesalcsoportok[i].megn);
+        //                         kategoriak.push(this.state.kategoriakEsAlcsoportok[i].megn);
 
         //                         if (!parentId)
         //                         {
-        //                             parentId = this.state.kategoriakesalcsoportok[i].id;
+        //                             parentId = this.state.kategoriakEsAlcsoportok[i].id;
         //                         }
         //                     }
         //                 }
 
         //                 let alcsoportok = [];
 
-        //                 for (let i = 0; i < this.state.kategoriakesalcsoportok.length; i++)
+        //                 for (let i = 0; i < this.state.kategoriakEsAlcsoportok.length; i++)
         //                 {
-        //                     if (this.state.kategoriakesalcsoportok[i].parent_id === parentId)
+        //                     if (this.state.kategoriakEsAlcsoportok[i].parent_id === parentId)
         //                     {
-        //                         alcsoportok.push(this.state.kategoriakesalcsoportok[i].megn);
+        //                         alcsoportok.push(this.state.kategoriakEsAlcsoportok[i].megn);
         //                     }
         //                 }
 
         //                 this.setState({
         //                     kategoriak: kategoriak,
-        //                     kivalasztottkategoria: kategoriak[0],
+        //                     kivalasztottKategoria: kategoriak[0],
         //                     alcsoportok: alcsoportok,
-        //                     kivalasztottalcsoport: alcsoportok[0],
+        //                     kivalasztottAlcsoport: alcsoportok[0],
         //                 });
         //             })
 
@@ -279,15 +279,15 @@ export class Products extends Component
 
     componentDidUpdate(prevProps, prevState)
     {
-        if (this.state.kivalasztottalcsoport !== prevState.kivalasztottalcsoport)
+        if (this.state.kivalasztottAlcsoport !== prevState.kivalasztottAlcsoport)
         {
             this.setState({ products: null });
 
             // global.getData('vendor').then(vendor =>
             // {
-            //     this.state.kategoriakesalcsoportok.forEach(element =>
+            //     this.state.kategoriakEsAlcsoportok.forEach(element =>
             //     {
-            //         if (element.megn === this.state.kivalasztottalcsoport)
+            //         if (element.megn === this.state.kivalasztottAlcsoport)
             //         {
 
             //             var values = {
@@ -731,7 +731,7 @@ export class Products extends Component
     {
         let parentId;
 
-        this.state.kategoriakesalcsoportok.forEach(element =>
+        this.state.kategoriakEsAlcsoportok.forEach(element =>
         {
             if (element.megn === value)
             {
@@ -743,7 +743,7 @@ export class Products extends Component
 
         if (parentId)
         {
-            this.state.kategoriakesalcsoportok.forEach(element =>
+            this.state.kategoriakEsAlcsoportok.forEach(element =>
             {
                 if (element.parent_id === parentId)
                 {
@@ -754,9 +754,9 @@ export class Products extends Component
 
         this.setState(
             {
-                kivalasztottkategoria: value,
+                kivalasztottKategoria: value,
                 alcsoportok: alcsoportok,
-                kivalasztottalcsoport: alcsoportok[0],
+                kivalasztottAlcsoport: alcsoportok[0],
             });
     }
 
@@ -764,7 +764,7 @@ export class Products extends Component
     {
         this.setState(
             {
-                kivalasztottalcsoport: value,
+                kivalasztottAlcsoport: value,
             });
     }
 

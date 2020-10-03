@@ -28,7 +28,7 @@ export class Login extends Component {
             jelszo: '',
             felhasznalonevVan: true,
             jelszoVan: true,
-            buttonishidden: false,
+            isButtonHidden: false,
             loading: false,
         };
     }
@@ -61,7 +61,7 @@ export class Login extends Component {
                     <Text onPress={this.onForgotPress.bind(this)} style={styles.forgotPasswordText}>Elfelejtettem a jelszavamat</Text>
                 </ScrollComponent>
 
-                <ButtonContainer hidden={this.state.buttonishidden} style={{ bottom: 0 }}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={{ bottom: 0 }}>
                     <ButtonComponent onPress={this.onLoginPress.bind(this)} text="Bejelentkezés" />
                 </ButtonContainer>
                 {this._renderIndicator()}
@@ -141,14 +141,14 @@ export class Login extends Component {
 
     _keyboardDidShow() {
         this.setState(state => {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
 
     _keyboardDidHide() {
         this.setState(state => {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }
