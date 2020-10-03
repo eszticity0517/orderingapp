@@ -20,6 +20,7 @@ import {Favourites} from './components/favourites';
 import {EmptyCart} from './components/empty-cart';
 import {Chat} from './components/chat';
 import {Products} from './components/products';
+import {ReceiptInfo} from './components/receipt-info';
 
 const AppNavigator = createStackNavigator(
   {
@@ -34,6 +35,7 @@ const AppNavigator = createStackNavigator(
     EmptyCart: {screen: EmptyCart},
     Chat: {screen: Chat},
     Products: {screen: Products},
+    ReceiptInfo: {screen: ReceiptInfo},
   },
   {
     headerMode: 'screen',
