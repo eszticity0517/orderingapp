@@ -21,6 +21,7 @@ import {EmptyCart} from './components/empty-cart';
 import {Chat} from './components/chat';
 import {Products} from './components/products';
 import {ReceiptInfo} from './components/receipt-info';
+import {Reorder} from './components/reorder';
 
 const AppNavigator = createStackNavigator(
   {
@@ -36,6 +37,7 @@ const AppNavigator = createStackNavigator(
     Chat: {screen: Chat},
     Products: {screen: Products},
     ReceiptInfo: {screen: ReceiptInfo},
+    Reorder: {screen: Reorder},
   },
   {
     headerMode: 'screen',
