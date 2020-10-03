@@ -14,8 +14,6 @@ export class Orders extends Component {
         headerShown: false,
     };
 
-    //#region
-
     constructor() {
         super();
         this.state = {
@@ -109,11 +107,6 @@ export class Orders extends Component {
         AppState.removeEventListener('change', this._handleAppStateChange);
     }
 
-
-    //#endregion
-
-    //#region
-
     onPress(value) {
         this.props.navigation.navigate(value);
     }
@@ -141,8 +134,6 @@ export class Orders extends Component {
             });
         }
     }
-
-    //#endregion
 }
 
 export const styles = StyleSheet.create({

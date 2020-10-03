@@ -532,6 +532,4 @@ export class Favourites extends Component
             });
         }
     }
-
-    //#endregion
 }
