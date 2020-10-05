@@ -16,8 +16,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export class ReceiptInfo extends Component
 {
-    // If we have a basket in AsyncStorage, we assign it to this. If not, we create a new one.
-    _basket;
+    // If we have a cart in AsyncStorage, we assign it to this. If not, we create a new one.
+    _cart;
 
     static navigationOptions = {
         header: null,
@@ -41,16 +41,16 @@ export class ReceiptInfo extends Component
             appState: AppState.currentState,
             loading: false,
             isMenuOpened: false,
-            basket: null,
+            cart: null,
         };
     }
 
     componentWillMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         // This component mounts once hence it is the first component in the stacknavigator.
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
 
     componentDidMount()
@@ -72,39 +72,39 @@ export class ReceiptInfo extends Component
         //         });
 
         //         // CLONE BASKET HERE
-        //         global.getData('basket').then(basket =>
+        //         global.getData('cart').then(cart =>
         //         {
-        //             if (basket !== null)
+        //             if (cart !== null)
         //             {
-        //                 this.setState({ basket: JSON.parse(basket)});
+        //                 this.setState({ cart: JSON.parse(cart)});
 
         //                 let ossztomeg = 0;
 
-        //                 if (this.state.basket !== null)
+        //                 if (this.state.cart !== null)
         //                 {
-        //                     for (let i = 0; i < this.state.basket.tetelek.length; i++)
+        //                     for (let i = 0; i < this.state.cart.tetelek.length; i++)
         //                     {
-        //                         ossztomeg += parseFloat(this.state.basket.tetelek[i].tomeg) * this.state.basket.tetelek[i].mennyiseg;
+        //                         ossztomeg += parseFloat(this.state.cart.tetelek[i].tomeg) * this.state.cart.tetelek[i].mennyiseg;
         //                     }
         //                 }
 
-        //                 var basket = JSON.parse(JSON.stringify(this.state.basket));
-        //                 basket.tomeg = ossztomeg;
+        //                 var cart = JSON.parse(JSON.stringify(this.state.cart));
+        //                 cart.tomeg = ossztomeg;
 
-        //                 this.setState({ basket: basket });
+        //                 this.setState({ cart: cart });
 
         //                 // We calculate  the price of every product once.
 
         //                 let termekekara = 0;
 
-        //                 if (this.state.basket !== null)
+        //                 if (this.state.cart !== null)
         //                 {
-        //                     for (let i = 0; i < this.state.basket.tetelek.length; i++)
+        //                     for (let i = 0; i < this.state.cart.tetelek.length; i++)
         //                     {
-        //                         var termek = this.state.basket.tetelek[i];
+        //                         var termek = this.state.cart.tetelek[i];
         //                         if (termek.kedv_nettoear === null)
         //                         {
-        //                             termekekara += this.state.basket.tetelek[i].nettoear * (this.state.basket.tetelek[i].mennyiseg);
+        //                             termekekara += this.state.cart.tetelek[i].nettoear * (this.state.cart.tetelek[i].mennyiseg);
         //                         }
         //                         else
         //                         {
@@ -150,18 +150,18 @@ export class ReceiptInfo extends Component
         //                                         }
         //                                         else
         //                                         {
-        //                                             termekekara += this.state.basket.tetelek[i].nettoear * (this.state.basket.tetelek[i].mennyiseg);
+        //                                             termekekara += this.state.cart.tetelek[i].nettoear * (this.state.cart.tetelek[i].mennyiseg);
         //                                         }
         //                                     }
         //                                     else if (!kedvezmenyezettKiszerelesDarabszama)
         //                                     {
-        //                                         termekekara += this.state.basket.tetelek[i].nettoear * (this.state.basket.tetelek[i].mennyiseg);
+        //                                         termekekara += this.state.cart.tetelek[i].nettoear * (this.state.cart.tetelek[i].mennyiseg);
         //                                     }
         //                                 });
         //                             }
         //                             else
         //                             {
-        //                                 termekekara += this.state.basket.tetelek[i].nettoear * (this.state.basket.tetelek[i].mennyiseg);
+        //                                 termekekara += this.state.cart.tetelek[i].nettoear * (this.state.cart.tetelek[i].mennyiseg);
         //                             }
         //                         }
         //                     }
@@ -448,15 +448,15 @@ export class ReceiptInfo extends Component
 
     renderTermekekAra()
     {
-        let termekekara;
-        if (this.state.wayOfReceivingValue === 'Kiszállítás')
-        {
-            termekekara = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]} hidden={this.state.isButtonHidden}>
-                <TotalComponent text="Termékek ára" sum={Math.round(this.state.termekekara)} light />
-            </ButtonContainer>;
-        }
-
-        return termekekara;
+        return (
+            this.state.wayOfReceivingValue === 'Kiszállítás' ?
+                (<ButtonContainer
+                    style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]}
+                    hidden={this.state.isButtonHidden}
+                >
+                    <TotalComponent text="Termékek ára" sum={Math.round(this.state.termekekara)} light />
+                </ButtonContainer>) : undefined
+        );
     }
 
     renderAruAtvetelek()
@@ -539,7 +539,7 @@ export class ReceiptInfo extends Component
     componentWillUnmount()
     {
         // this.subs.forEach(sub => sub.remove());
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }
@@ -557,7 +557,7 @@ export class ReceiptInfo extends Component
         this.cimekMenu.show();
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {
@@ -569,7 +569,7 @@ export class ReceiptInfo extends Component
         }
     }
 
-    _keyboardDidShow()
+    keyboardDidShow()
     {
         this.setState(state =>
         {
@@ -578,7 +578,7 @@ export class ReceiptInfo extends Component
         });
     }
 
-    _keyboardDidHide()
+    keyboardDidHide()
     {
         this.setState(state =>
         {
@@ -622,7 +622,7 @@ export class ReceiptInfo extends Component
 
         if (value === 'OrderIsDone')
         {
-            // Delete zero elements JUST here. Original basket remains unchanged.
+            // Delete zero elements JUST here. Original cart remains unchanged.
 
 
 
@@ -630,9 +630,9 @@ export class ReceiptInfo extends Component
             {
                 if (element.megn === this.state.wayOfReceivingValue)
                 {
-                    var basket = JSON.parse(JSON.stringify(this.state.basket));
-                    basket.atvetel_id = element.id;
-                    this.setState({ basket: basket });
+                    var cart = JSON.parse(JSON.stringify(this.state.cart));
+                    cart.atvetel_id = element.id;
+                    this.setState({ cart: cart });
                 }
             });
 
@@ -640,27 +640,27 @@ export class ReceiptInfo extends Component
             {
                 if (element.cim === this.state.addressValue)
                 {
-                    var basket = JSON.parse(JSON.stringify(this.state.basket));
-                    basket.cim_id = parseInt(element.id);
-                    this.setState({ basket: basket });
+                    var cart = JSON.parse(JSON.stringify(this.state.cart));
+                    cart.cim_id = parseInt(element.id);
+                    this.setState({ cart: cart });
                 }
             });
 
-            if (this.state.basket.cim_id === null || this.state.wayOfReceivingValue === 'Raktári átvétel')
+            if (this.state.cart.cim_id === null || this.state.wayOfReceivingValue === 'Raktári átvétel')
             {
-                var basket = JSON.parse(JSON.stringify(this.state.basket));
-                basket.cim_id = 0;
-                this.setState({ basket: basket });
+                var cart = JSON.parse(JSON.stringify(this.state.cart));
+                cart.cim_id = 0;
+                this.setState({ cart: cart });
             }
 
-            var basket = JSON.parse(JSON.stringify(this.state.basket));
-            basket.megjegyzes = this.state.megjegyzes;
-            basket.megjegyzes = this.state.fuvardij;
-            this.setState({ basket: basket });
+            var cart = JSON.parse(JSON.stringify(this.state.cart));
+            cart.megjegyzes = this.state.megjegyzes;
+            cart.megjegyzes = this.state.fuvardij;
+            this.setState({ cart: cart });
 
             var szallitasiadatok = this.state.wayOfReceivingValue === 'Kiszállítás' ? this.state.addressValue : 'Raktári átvétel';
 
-            this.state.basket.tetelek.forEach(element =>
+            this.state.cart.tetelek.forEach(element =>
             {
                 var cikk_id = parseFloat(element.cikk_id);
 
@@ -694,12 +694,12 @@ export class ReceiptInfo extends Component
                                     // Change the original quantity of the element
                                     element.mennyiseg = nemKedvezmenyezettMennyiseg.toString();
 
-                                    var basket = JSON.parse(JSON.stringify(this.state.basket));
-                                    basket.tetelek.push(kedvezmenyesElem);
+                                    var cart = JSON.parse(JSON.stringify(this.state.cart));
+                                    cart.tetelek.push(kedvezmenyesElem);
 
-                                    this.setState({ basket: basket });
+                                    this.setState({ cart: cart });
 
-                                    global.storeData('basket', JSON.stringify(this.state.basket));
+                                    global.storeData('cart', JSON.stringify(this.state.cart));
                                 }
                                 else
                                 {
@@ -727,15 +727,15 @@ export class ReceiptInfo extends Component
                 element.cikk_id = cikk_id;
             });
 
-            if (this.state.basket.partner_id === null)
+            if (this.state.cart.partner_id === null)
             {
-                var basket = JSON.parse(JSON.stringify(this.state.basket));
-                basket.partner_id = parseInt(this.state.partnerId);
+                var cart = JSON.parse(JSON.stringify(this.state.cart));
+                cart.partner_id = parseInt(this.state.partnerId);
 
-                this.setState({ basket: basket });
+                this.setState({ cart: cart });
             }
 
-            var temporaryBasket = JSON.parse(JSON.stringify(this.state.basket));
+            var temporaryBasket = JSON.parse(JSON.stringify(this.state.cart));
 
             for (let i = 0; i < temporaryBasket.tetelek.length; i++)
             {
@@ -829,24 +829,24 @@ export class ReceiptInfo extends Component
 
     handleNavigateBack()
     {
-        global.getData('basket').then(basket =>
+        global.getData('cart').then(cart =>
         {
-            this.setState({ basket: JSON.parse(basket) });
+            this.setState({ cart: JSON.parse(cart) });
 
             let ossztomeg = 0;
 
-            if (this.state.basket !== null)
+            if (this.state.cart !== null)
             {
-                for (let i = 0; i < this.state.basket.tetelek.length; i++)
+                for (let i = 0; i < this.state.cart.tetelek.length; i++)
                 {
-                    ossztomeg += parseFloat(this.state.basket.tetelek[i].tomeg) * this.state.basket.tetelek[i].mennyiseg;
+                    ossztomeg += parseFloat(this.state.cart.tetelek[i].tomeg) * this.state.cart.tetelek[i].mennyiseg;
                 }
             }
 
-            var basket = JSON.parse(JSON.stringify(this.state.basket));
-            basket.tomeg = ossztomeg;
+            var cart = JSON.parse(JSON.stringify(this.state.cart));
+            cart.tomeg = ossztomeg;
 
-            this.setState({ basket: basket });
+            this.setState({ cart: cart });
         });
     }
 }

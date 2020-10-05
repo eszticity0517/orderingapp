@@ -30,7 +30,7 @@ export class Profile extends Component
 
     componentDidMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
 
         // global.getData('partner_id').then(partnerId =>
         // {
@@ -119,7 +119,7 @@ export class Profile extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     onPress()
@@ -170,7 +170,7 @@ export class Profile extends Component
 
         //                     AsyncStorage.clear().then(() =>
         //                     {
-        //                         global.removeItemValue('basket').then(() =>
+        //                         global.removeItemValue('cart').then(() =>
         //                         {
         //                             this.props.navigation.navigate('Login');
         //                         });
@@ -191,7 +191,7 @@ export class Profile extends Component
         // });
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {
