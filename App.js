@@ -22,6 +22,7 @@ import {Chat} from './components/chat';
 import {Products} from './components/products';
 import {ReceiptInfo} from './components/receipt-info';
 import {Reorder} from './components/reorder';
+import {OrderInProgress} from './components/order-in-progress';
 
 const AppNavigator = createStackNavigator(
   {
@@ -38,6 +39,7 @@ const AppNavigator = createStackNavigator(
     Products: {screen: Products},
     ReceiptInfo: {screen: ReceiptInfo},
     Reorder: {screen: Reorder},
+    OrderInProgress: {screen: OrderInProgress},
   },
   {
     headerMode: 'screen',
