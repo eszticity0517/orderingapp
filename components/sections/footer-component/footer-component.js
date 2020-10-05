@@ -31,8 +31,8 @@ export class FooterComponent extends Component
     {
         var orderstate;
 
-        global.getData('basket').then(basket => {
-            if (basket === null)
+        global.getData('cart').then(cart => {
+            if (cart === null)
             {
                 orderstate = 'EmptyCart';
             }

@@ -26,8 +26,8 @@ export class Reorder extends Component
             loading: false,
             isMenuOpened: false,
             sum: 0,
-            basket: null,
-            orderwithdata: null,
+            cart: null,
+            orderWithData: null,
             products: [],
             items: null,
             order: null,
@@ -62,75 +62,53 @@ export class Reorder extends Component
 
     renderCancelButton()
     {
-        var cancelbutton;
-
-        if (this.state.isReorderWanted)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
-            cancelbutton = (<View style={{ height: 30, width: '100%', marginTop: 20, marginBottom: 20 }}>
+            return null;
+        }
+
+        return (this.state.isReorderWanted ?
+            (<View style={{ height: 30, width: '100%', marginTop: 20, marginBottom: 20 }}>
                 <ButtonComponent onPress={this.onReorderPress.bind(this)} text="Mégsem" />
-            </View>);
-        }
-
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
-        {
-            cancelbutton = null;
-        }
-
-        return cancelbutton;
+            </View>) : undefined
+        );
     }
 
     renderNewOrReorderContainer()
     {
-        var orderornewcontainer;
-
-        if (this.state.isReorderWanted)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
-            orderornewcontainer = (<ButtonContainer>
-                <ButtonComponent onPress={(value) => this.onPress('OrderInProgress')} text="Kosárba" backgroundColor='#77D353' />
-            </ButtonContainer>);
+            return null;
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
-        {
-            orderornewcontainer = null;
-        }
-
-        return orderornewcontainer;
+        return (this.state.isReorderWanted ?
+            (<ButtonContainer>
+                <ButtonComponent onPress={() => this.onPress('OrderInProgress')} text="Kosárba" backgroundColor="#77D353" />
+            </ButtonContainer>) : undefined
+        );
     }
 
     renderBackButton()
     {
-        var backbutton;
-
-        if (!this.state.isReorderWanted)
-        {
-            backbutton = <ButtonContainer>
+        return (!this.state.isReorderWanted ?
+            (<ButtonContainer>
                 <ButtonComponent onPress={() => this.onPress('Orders')} text="Vissza" backgroundColor="#989898" />
-            </ButtonContainer>;
-        }
-
-        return backbutton;
+            </ButtonContainer>) : undefined
+        );
     }
 
     renderReorderButton()
     {
-        var reorderbutton;
-
-        if (!this.state.isReorderWanted)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
-            reorderbutton = (
-            <ButtonContainer style={styles.upperbuttoncontainer}>
+            return null;
+        }
+
+        return (!this.state.isReorderWanted ?
+            (<ButtonContainer style={styles.upperbuttoncontainer}>
                 <ButtonComponent onPress={this.onReorderPress.bind(this)} text="Újrarendelés másként" />
-            </ButtonContainer>
-            );
-        }
-
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
-        {
-            reorderbutton = null;
-        }
-
-        return reorderbutton;
+            </ButtonContainer>) : undefined
+        );
     }
 
     renderElemek()
@@ -151,18 +129,20 @@ export class Reorder extends Component
             );
         }
 
-        if (this.state.orderwithdata !== null && this.state.orderwithdata.items === null)
+        if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
-            elemek = <View style={{ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' }}>
+            return (<View style={{ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' }}>
                 <Text style={styles.welcomenomargin}>Az elemek nem tölthetők be.</Text>
-            </View>;
+            </View>);
         }
+
+        return elemek;
     }
 
 
     componentWillMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     componentDidMount()
@@ -213,16 +193,16 @@ export class Reorder extends Component
                     {
                         this.setState({
                             loading: false,
-                            orderwithdata: responseJson.success,
+                            orderWithData: responseJson.success,
                         });
 
                         var sum = 0;
 
-                        if (this.state.orderwithdata.items !== null)
+                        if (this.state.orderWithData.items !== null)
                         {
-                            for (let i = 0; i < this.state.orderwithdata.items.length; i++)
+                            for (let i = 0; i < this.state.orderWithData.items.length; i++)
                             {
-                                sum += this.state.orderwithdata.items[i].cikk.nettoear * this.state.orderwithdata.items[i].mennyiseg;
+                                sum += this.state.orderWithData.items[i].cikk.nettoear * this.state.orderWithData.items[i].mennyiseg;
                             }
 
                             this.setState({ sum: sum });
@@ -271,14 +251,14 @@ export class Reorder extends Component
 
                                         item.kivalasztva = false;
 
-                                        if (this.state.orderwithdata.items[i].cikk.kiszereles !== null)
+                                        if (this.state.orderWithData.items[i].cikk.kiszereles !== null)
                                         {
                                             var kivalasztottegyseg;
                                             var valtoszam;
 
-                                            const dividend = parseFloat(this.state.orderwithdata.items[i].mennyiseg);
+                                            const dividend = parseFloat(this.state.orderWithData.items[i].mennyiseg);
 
-                                            this.state.orderwithdata.items[i].cikk.kiszereles.reverse().forEach(element =>
+                                            this.state.orderWithData.items[i].cikk.kiszereles.reverse().forEach(element =>
                                             {
                                                 let divisor = parseFloat(element.valtoszam);
 
@@ -295,11 +275,11 @@ export class Reorder extends Component
                                                         kivalasztottegyseg = element.megn;
                                                         secondaryMennyiseg = dividend % divisor;
 
-                                                        const index = this.state.orderwithdata.items[i].cikk.kiszereles.map(e => e.uid).indexOf(element.uid);
+                                                        const index = this.state.orderWithData.items[i].cikk.kiszereles.map(e => e.uid).indexOf(element.uid);
 
-                                                        for (let k = index + 1; k < this.state.orderwithdata.items[i].cikk.kiszereles.length - index; k++)
+                                                        for (let k = index + 1; k < this.state.orderWithData.items[i].cikk.kiszereles.length - index; k++)
                                                         {
-                                                            let element2 = this.state.orderwithdata.items[i].cikk.kiszereles[k];
+                                                            let element2 = this.state.orderWithData.items[i].cikk.kiszereles[k];
                                                             let divisor = parseFloat(element2.valtoszam);
 
                                                             if (secondaryMennyiseg % divisor === 0 && !secondaryKivalasztottEgyseg)
@@ -312,23 +292,23 @@ export class Reorder extends Component
                                                 }
                                             });
 
-                                            this.state.orderwithdata.items[i].cikk.kiszereles.reverse();
+                                            this.state.orderWithData.items[i].cikk.kiszereles.reverse();
 
                                             if (!kivalasztottegyseg)
                                             {
-                                                item.kivalasztottegyseg = this.state.orderwithdata.items[i].cikk.egyseg;
-                                                item.mennyiseg = parseInt(this.state.orderwithdata.items[i].mennyiseg);
+                                                item.kivalasztottegyseg = this.state.orderWithData.items[i].cikk.egyseg;
+                                                item.mennyiseg = parseInt(this.state.orderWithData.items[i].mennyiseg);
                                             }
                                             else
                                             {
                                                 item.kivalasztottegyseg = kivalasztottegyseg;
-                                                item.mennyiseg = Math.floor(parseInt(this.state.orderwithdata.items[i].mennyiseg) / valtoszam);
+                                                item.mennyiseg = Math.floor(parseInt(this.state.orderWithData.items[i].mennyiseg) / valtoszam);
                                             }
                                         }
                                         else
                                         {
-                                            item.kivalasztottegyseg = this.state.orderwithdata.items[i].cikk.egyseg;
-                                            item.mennyiseg = parseInt(this.state.orderwithdata.items[i].mennyiseg);
+                                            item.kivalasztottegyseg = this.state.orderWithData.items[i].cikk.egyseg;
+                                            item.mennyiseg = parseInt(this.state.orderWithData.items[i].mennyiseg);
                                         }
 
                                         // We get this from _ordersWithData first
@@ -404,7 +384,7 @@ export class Reorder extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     onMenuOpenPress()
@@ -432,12 +412,12 @@ export class Reorder extends Component
     {
         if (value === 'OrderInProgress')
         {
-            // We check the existence of the basket.
-            global.getData('basket').then(basket =>
+            // We check the existence of the cart.
+            global.getData('cart').then(cart =>
             {
-                if (basket !== null)
+                if (cart !== null)
                 {
-                    this.setState({ basket: JSON.parse(basket)});
+                    this.setState({ cart: JSON.parse(cart)});
 
                     for (let i = 0; i < this.state.products.length; i++)
                     {
@@ -445,7 +425,7 @@ export class Reorder extends Component
 
                         var sikerultTalalni = false;
 
-                        this.state.basket.tetelek.forEach(tetel =>
+                        this.state.cart.tetelek.forEach(tetel =>
                         {
                             if (tetel.cikk_id === element.id)
                             {
@@ -456,9 +436,9 @@ export class Reorder extends Component
 
                         if (!sikerultTalalni)
                         {
-                            var basket = JSON.parse(JSON.stringify(this.state.basket));
+                            var cart = JSON.parse(JSON.stringify(this.state.cart));
 
-                            basket.tetelek.push({
+                            cart.tetelek.push({
                                 cikk_id: element.id, // Termékek oldal
                                 mennyiseg: element.mennyiseg, // Termékek oldal
                                 nettoear: element.nettoear,
@@ -475,19 +455,19 @@ export class Reorder extends Component
                                 uid: element.uid,
                             });
 
-                            this.setState({ basket: basket });
+                            this.setState({ cart: cart });
                         }
                     }
 
                     // We save the new product immediately.
-                    global.storeData('basket', JSON.stringify(this.state.basket));
+                    global.storeData('cart', JSON.stringify(this.state.cart));
                 }
                 else
                 {
-                    // We did not create the basket yet.
-                    if (this.state.basket === null)
+                    // We did not create the cart yet.
+                    if (this.state.cart === null)
                     {
-                        var basket = {
+                        var cart = {
                             partner_id: parseInt(this.state.partnerId), //Termékek oldal
                             atvetel_id: null, // Áruátvétel módja oldal
                             cim_id: null, // Áruátvétel módja oldal
@@ -501,7 +481,7 @@ export class Reorder extends Component
                         {
                             let element = this.state.products[i];
 
-                            basket.tetelek.push({
+                            cart.tetelek.push({
                                 cikk_id: element.id, // Termékek oldal
                                 mennyiseg: element.mennyiseg, // Termékek oldal
                                 nettoear: element.nettoear,
@@ -519,8 +499,8 @@ export class Reorder extends Component
                             });
                         }
                         // We save the new product immediately.
-                        this.setState({ basket: basket });
-                        global.storeData('basket', JSON.stringify(this.state.basket));
+                        this.setState({ cart: cart });
+                        global.storeData('cart', JSON.stringify(this.state.cart));
                     }
                 }
 
@@ -613,7 +593,7 @@ export class Reorder extends Component
     {
         var index = 0;
 
-        var products = JSON.parse(JSON.stringify(this.state.basket));
+        var products = JSON.parse(JSON.stringify(this.state.cart));
 
         products.forEach(element =>
         {
@@ -656,22 +636,15 @@ export class Reorder extends Component
 
     onPickerValueChange(uid, value)
     {
-        // We use this to get the right element from the basket.
-        var chosenUid;
-
-        var kedv_nettoear = null;
-
         var products = this.state.products.slice();
 
         products.forEach(termek =>
         {
             if (termek.uid === uid)
             {
-                var valtoszam = 1;
                 var kezdetikiszereles = termek.kivalasztottegyseg;
 
                 termek.kivalasztottegyseg = value;
-                chosenUid = uid;
 
                 this.setState({ products: products });
                 products = this.state.products.slice();
@@ -758,7 +731,7 @@ export class Reorder extends Component
         }
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {

@@ -12,7 +12,7 @@ export class NewsElement extends Component
                 </View>
                 <View style={[styles.block, { flex: 1 }]}>
                     <Text style={styles.thickerGreenText}>{this.props.text}</Text>
-                    <Text style={styles.thickerGreenText}>{this.props.unitprice} Ft.- / {this.props.unit}</Text>
+                    <Text style={styles.thickerBlackText}>{this.props.unitprice} Ft.- / {this.props.unit}</Text>
                 </View>
             </View>
         );
@@ -25,7 +25,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#77D353',
     },
-    thickerblackText: {
+    thickerBlackText: {
         fontSize: 12,
         fontWeight: 'bold',
         color: '#77D353',

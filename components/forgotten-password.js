@@ -1,36 +1,33 @@
-import React, {Component} from 'react';
-import {Keyboard, Text, TextInput, StyleSheet} from 'react-native';
-import {ScrollComponent} from './common/scroll-component';
-import {ButtonComponent} from './common/button-component';
-import {ButtonContainer} from './common/button-container';
-import {ErrorText} from './common/error-text';
-import {CarouselComponent} from './sections/carousel-component';
+import React, { Component } from 'react';
+import { Keyboard, Text, TextInput, StyleSheet } from 'react-native';
+import { ScrollComponent } from './common/scroll-component';
+import { ButtonComponent } from './common/button-component';
+import { ButtonContainer } from './common/button-container';
+import { ErrorText } from './common/error-text';
+import { CarouselComponent } from './sections/carousel-component';
 import '../global.js';
-import {Indicator} from './common/indicator';
+import { Indicator } from './common/indicator';
 import { Container } from './common/container';
 
-export class ForgottenPassword extends Component
-{
+export class ForgottenPassword extends Component {
     static navigationOptions = {
         headerShown: false,
     };
 
-    constructor()
-    {
+    constructor() {
         super();
         this.state = {
             email: '',
             emailVan: true,
             felhasznalonev: '',
             felhasznalonevVan: true,
-            buttonishidden: false,
+            isButtonHidden: false,
             size: global.size,
             loading: false,
         };
     }
 
-    render()
-    {
+    render() {
         return (
             <Container>
                 <ScrollComponent>
@@ -48,170 +45,161 @@ export class ForgottenPassword extends Component
                 </ScrollComponent>
 
 
-                <ButtonContainer hidden={this.state.buttonishidden} style={styles.upperButtonContainer}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={styles.upperButtonContainer}>
                     <ButtonComponent onPress={this.onSendPress.bind(this)} text="Új jelszó küldése" />
                 </ButtonContainer>
-                <ButtonContainer hidden={this.state.buttonishidden}>
+                <ButtonContainer hidden={this.state.isButtonHidden}>
                     <ButtonComponent onPress={this.onCancelPress.bind(this)} text="Mégsem" backgroundColor="#989898" />
                 </ButtonContainer>
-                <Indicator  transparent={false} visible={this.state.loading}/>
+                <Indicator transparent={false} visible={this.state.loading} />
             </Container>);
     }
 
-    componentWillMount()
-    {
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+    componentWillMount() {
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
 
-    componentWillUnmount()
-    {
+    componentWillUnmount() {
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }
 
-    _keyboardDidShow()
-    {
-        this.setState(state =>
-        {
-            state.buttonishidden = true;
+    keyboardDidShow() {
+        this.setState(state => {
+            state.isButtonHidden = true;
             return state;
         });
     }
 
-    _keyboardDidHide()
-    {
-        this.setState(state =>
-        {
-            state.buttonishidden = false;
+    keyboardDidHide() {
+        this.setState(state => {
+            state.isButtonHidden = false;
             return state;
         });
     }
 
-    onCancelPress()
-    {
+    onCancelPress() {
         this.props.navigation.navigate('Login');
     }
 
-    onSendPress()
-    {
-        if (this.state.email.trim() === '' || this.state.felhasznalonev.trim() === '')
-        {
-            if (this.state.email.trim() === '')
-            {
-                this.setState(state =>
-                {
-                    return { emailVan: false };
-                });
-            }
-            if (this.state.felhasznalonev.trim() === '')
-            {
-                this.setState(state =>
-                {
-                    return { felhasznalonevVan: false };
-                });
-            }
-        }
-
-        else {
+    onSendPress() {
+        if (this.state.email.trim() !== '' || this.state.felhasznalonev.trim() !== '') {
             this.props.navigation.navigate('PasswordSent');
+
+            //     var values = {
+            //         id: true,
+            //     };
+
+            //     var formBody = [];
+            //     for (var property in values)
+            //     {
+            //         var encodedKey = encodeURIComponent(property);
+            //         var encodedValue = encodeURIComponent(values[property]);
+            //         formBody.push(encodedKey + '=' + encodedValue);
+            //     }
+
+            //     formBody = formBody.join('&');
+
+            //     this.setState({loading: true});
+            //     fetch(global.baseUrl, {
+            //         method: 'POST',
+            //         headers: {
+            //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            //         },
+            //         body: formBody,
+            //     }).then((response) => response.json())
+            //         .then((responseJson) =>
+            //         {
+            //             this.setState({loading: false});
+            //             var originalVendor = responseJson.vendor;
+
+            //             values = {
+            //                 id: JSON.stringify({
+            //                     vendor: base64.decode(originalVendor),
+            //                     object: 'rshop',
+            //                     method: 'newPin',
+
+            //                     params: {
+            //                         partner_id: this.state.felhasznalonev,
+            //                         email: this.state.email,
+            //                     },
+            //                 }),
+            //             };
+
+            //             formBody = [];
+            //             for (var property in values)
+            //             {
+            //                 var encodedKey = encodeURIComponent(property);
+            //                 var encodedValue = encodeURIComponent(values[property]);
+            //                 formBody.push(encodedKey + '=' + encodedValue);
+            //             }
+
+            //             formBody = formBody.join('&');
+            //             this.setState({loading: true});
+            //             fetch(global.baseUrl, {
+            //                 method: 'POST',
+            //                 headers: {
+            //                     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+            //                 },
+            //                 body: formBody,
+            //             }).then((response) => response.json())
+            //                 .then((responseJson) =>
+            //                 {
+            //                     this.setState({loading: false});
+            //                     if (responseJson.success)
+            //                     {
+            //                         this.setState(state =>
+            //                         {
+            //                             state.email = '';
+            //                             state.felhasznalonev = '';
+            //                             state.emailVan = true;
+            //                             state.jelszovan = true;
+            //                         });
+
+            //                         this.props.navigation.navigate('PasswordIsSent');
+
+            //                     }
+            //                 })
+            //                 .catch((error) =>
+            //                 {
+            //                     this.setState({loading: false});
+            //                     console.error(error);
+            //                 });
+            //             // Its important to make these fields empty, because componentDidMount wont be called anymore.
+            //         })
+            //         .catch((error) =>
+            //         {
+            //             this.setState({loading: false});
+            //             console.error(error);
+            //         });
         }
 
-        // else
-        // {
-        //     var values = {
-        //         id: true,
-        //     };
+        if (this.state.email.trim() === '') {
+            this.setState(state => {
+                return { emailVan: false };
+            });
+        }
+        else {
+            this.setState(state => {
+                return { emailVan: true };
+            });
+        }
 
-        //     var formBody = [];
-        //     for (var property in values)
-        //     {
-        //         var encodedKey = encodeURIComponent(property);
-        //         var encodedValue = encodeURIComponent(values[property]);
-        //         formBody.push(encodedKey + '=' + encodedValue);
-        //     }
-
-        //     formBody = formBody.join('&');
-
-        //     this.setState({loading: true});
-        //     fetch(global.baseUrl, {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        //         },
-        //         body: formBody,
-        //     }).then((response) => response.json())
-        //         .then((responseJson) =>
-        //         {
-        //             this.setState({loading: false});
-        //             var originalVendor = responseJson.vendor;
-
-        //             values = {
-        //                 id: JSON.stringify({
-        //                     vendor: base64.decode(originalVendor),
-        //                     object: 'rshop',
-        //                     method: 'newPin',
-
-        //                     params: {
-        //                         partner_id: this.state.felhasznalonev,
-        //                         email: this.state.email,
-        //                     },
-        //                 }),
-        //             };
-
-        //             formBody = [];
-        //             for (var property in values)
-        //             {
-        //                 var encodedKey = encodeURIComponent(property);
-        //                 var encodedValue = encodeURIComponent(values[property]);
-        //                 formBody.push(encodedKey + '=' + encodedValue);
-        //             }
-
-        //             formBody = formBody.join('&');
-        //             this.setState({loading: true});
-        //             fetch(global.baseUrl, {
-        //                 method: 'POST',
-        //                 headers: {
-        //                     'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-        //                 },
-        //                 body: formBody,
-        //             }).then((response) => response.json())
-        //                 .then((responseJson) =>
-        //                 {
-        //                     this.setState({loading: false});
-        //                     if (responseJson.success)
-        //                     {
-        //                         this.setState(state =>
-        //                         {
-        //                             state.email = '';
-        //                             state.felhasznalonev = '';
-        //                             state.emailVan = true;
-        //                             state.jelszovan = true;
-        //                         });
-
-        //                         this.props.navigation.navigate('PasswordIsSent');
-
-        //                     }
-        //                 })
-        //                 .catch((error) =>
-        //                 {
-        //                     this.setState({loading: false});
-        //                     console.error(error);
-        //                 });
-        //             // Its important to make these fields empty, because componentDidMount wont be called anymore.
-        //         })
-        //         .catch((error) =>
-        //         {
-        //             this.setState({loading: false});
-        //             console.error(error);
-        //         });
-        // }
+        if (this.state.felhasznalonev.trim() === '') {
+            this.setState(state => {
+                return { felhasznalonevVan: false };
+            });
+        }
+        else {
+            this.setState(state => {
+                return { felhasznalonevVan: true };
+            });
+        }
     }
 
-    onChangeText(value, name)
-    {
-        this.setState(state =>
-        {
+    onChangeText(value, name) {
+        this.setState(state => {
             state[name] = value;
             return state;
         });

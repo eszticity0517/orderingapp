@@ -33,21 +33,21 @@ export class Favourites extends Component
             isCategoryOpen: false,
             isGroupOpen: false,
             size: global.size,
-            buttonishidden: false,
+            isButtonHidden: false,
             partnerId: null,
             appState: AppState.currentState,
             loading: false,
-            basket: null,
+            cart: null,
             products: null,
         };
     }
 
     componentWillMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         // This component mounts once hence it is the first component in the stacknavigator.
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
 
     componentDidMount()
@@ -134,7 +134,7 @@ export class Favourites extends Component
     componentWillUnmount()
     {
         this.subs.forEach(sub => sub.remove());
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }
@@ -159,7 +159,7 @@ export class Favourites extends Component
                     {this.renderTermekek()}
                 </ScrollView>
 
-                <FooterComponent hidden={this.state.buttonishidden} navigation={this.props.navigation} />
+                <FooterComponent hidden={this.state.isButtonHidden} navigation={this.props.navigation} />
                 <Indicator transparent={false} visible={this.state.loading} />
             </Container >);
     }
@@ -168,7 +168,10 @@ export class Favourites extends Component
     {
         let termekek = [];
 
-        if (!this.state.products) return termekek;
+        if (!this.state.products)
+        {
+            return termekek;
+        }
 
         for (let i = 0; i < this.state.products.length; i++)
         {
@@ -192,9 +195,9 @@ export class Favourites extends Component
 
     handleNavigateBack()
     {
-        global.getData('basket').then(basket =>
+        global.getData('cart').then(cart =>
         {
-            if (basket === null)
+            if (cart === null)
             {
                 var products = this.state.products.slice();
 
@@ -204,27 +207,27 @@ export class Favourites extends Component
                 });
 
                 this.setState({
-                    basket: null,
+                    cart: null,
                     products: products,
                 });
             }
         });
     }
 
-    _keyboardDidShow()
+    keyboardDidShow()
     {
         this.setState(state =>
         {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
 
-    _keyboardDidHide()
+    keyboardDidHide()
     {
         this.setState(state =>
         {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }
@@ -237,19 +240,19 @@ export class Favourites extends Component
         // {
         //     if (element.uid === uid && element.kivalasztottmennyiseg > 0)
         //     {
-        //         // We check the existence of the basket.
-        //         global.getData('basket').then(basket =>
+        //         // We check the existence of the cart.
+        //         global.getData('cart').then(cart =>
         //         {
-        //             if (basket !== null)
+        //             if (cart !== null)
         //             {
-        //                 var basket = JSON.parse(basket);
+        //                 var cart = JSON.parse(cart);
 
         //                 // We should find another element with the same name to gain the quantity
         //                 // Register te success in a boolean
 
         //                 var sikerultTalalni = false;
 
-        //                 basket.tetelek.forEach(tetel =>
+        //                 cart.tetelek.forEach(tetel =>
         //                 {
         //                     if (tetel.cikk_id === element.id)
         //                     {
@@ -260,7 +263,7 @@ export class Favourites extends Component
 
         //                 if (!sikerultTalalni)
         //                 {
-        //                     basket.tetelek.push({
+        //                     cart.tetelek.push({
         //                         cikk_id: element.id, // Termékek oldal
         //                         mennyiseg: element.kivalasztottmennyiseg, // Termékek oldal
         //                         nettoear: element.nettoear,
@@ -289,7 +292,7 @@ export class Favourites extends Component
         //                             {
         //                                 element.kivalasztottmennyiseg = 0;
         //                                 element.kedv_nettoear = null;
-        //                                 this.setState({ basket: JSON.parse(basket) });
+        //                                 this.setState({ cart: JSON.parse(cart) });
         //                             },
         //                         },
         //                     ],
@@ -297,14 +300,14 @@ export class Favourites extends Component
         //                 );
 
         //                 // We save the new product immediately.
-        //                 global.storeData('basket', JSON.stringify(basket));
+        //                 global.storeData('cart', JSON.stringify(cart));
         //             }
         //             else
         //             {
-        //                 // We did not create the basket yet.
-        //                 if (this.state.basket === null)
+        //                 // We did not create the cart yet.
+        //                 if (this.state.cart === null)
         //                 {
-        //                     var basket = {
+        //                     var cart = {
         //                         partner_id: parseInt(this.state.partnerId), //Termékek oldal
         //                         atvetel_id: null, // Áruátvétel módja oldal
         //                         cim_id: null, // Áruátvétel módja oldal
@@ -314,7 +317,7 @@ export class Favourites extends Component
         //                         tetelek: [],
         //                     };
 
-        //                     basket.tetelek.push({
+        //                     cart.tetelek.push({
         //                         cikk_id: element.id, // Termékek oldal
         //                         mennyiseg: element.kivalasztottmennyiseg, // Termékek oldal
         //                         nettoear: element.nettoear,
@@ -341,7 +344,7 @@ export class Favourites extends Component
         //                                 {
         //                                     element.kivalasztottmennyiseg = 0;
         //                                     element.kedv_nettoear = null;
-        //                                     this.setState({ basket: basket });
+        //                                     this.setState({ cart: cart });
         //                                 },
         //                             },
         //                         ],
@@ -349,7 +352,7 @@ export class Favourites extends Component
         //                     );
 
         //                     // We save the new product immediately.
-        //                     global.storeData('basket', JSON.stringify(basket));
+        //                     global.storeData('cart', JSON.stringify(cart));
 
         //                 }
         //             }
@@ -521,7 +524,7 @@ export class Favourites extends Component
         });
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {

@@ -26,7 +26,7 @@ export class EmptyCart extends Component
 
     componentWillMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
     }
 
     render()
@@ -49,7 +49,7 @@ export class EmptyCart extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     onMenuOpenPress()
@@ -77,7 +77,7 @@ export class EmptyCart extends Component
         this.props.navigation.navigate(value);
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {

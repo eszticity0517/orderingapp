@@ -28,7 +28,7 @@ export class Home extends Component
 
     componentDidMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
 
         // global.getData('partner_id').then(partnerId =>
         // {
@@ -175,7 +175,7 @@ export class Home extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     onPress(value)
@@ -183,7 +183,7 @@ export class Home extends Component
         this.props.navigation.navigate(value);
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {

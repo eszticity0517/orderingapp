@@ -53,10 +53,10 @@ export class HeaderMenuComponent extends Component {
     }
 
     onBasketPress() {
-        global.getData('basket').then(basket => {
-            if (basket === null) {
+        global.getData('cart').then(cart => {
+            if (cart === null) {
                 this.props.onMenuOpenPress();
-                this.props.navigation.navigate('EmptyBasket');
+                this.props.navigation.navigate('EmptyCart');
             }
             else {
                 this.props.onMenuOpenPress();

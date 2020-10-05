@@ -36,15 +36,15 @@ export class Products extends Component
             buttonishidden: false,
             partnerId: null,
             isFocused: false,
-            kivalasztottkategoria: null,
-            kivalasztottalcsoport: null,
+            kivalasztottKategoria: null,
+            kivalasztottAlcsoport: null,
             kategoriak: [],
             alcsoportok: [],
             appState: AppState.currentState,
             loading: false,
             products: null,
-            basket: null,
-            kategoriakesalcsoportok: null,
+            cart: null,
+            kategoriakEsAlcsoportok: null,
         };
     }
 
@@ -55,13 +55,13 @@ export class Products extends Component
                 <View style={styles.productViewContainer}>
                     <DropdownComponent
                         onPress={this.showKategoriakMenu}
-                        title={this.state.kivalasztottkategoria}
+                        title={this.state.kivalasztottKategoria}
                     />
 
                     <View style={{ marginTop: 20 / 2 }}>
                         <DropdownComponent
                             onPress={this.showAlcsoportokMenu}
-                            title={this.state.kivalasztottalcsoport}
+                            title={this.state.kivalasztottAlcsoport}
                         />
                     </View>
 
@@ -180,10 +180,10 @@ export class Products extends Component
 
     componentDidMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
         // This component mounts once hence it is the first component in the stacknavigator.
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
 
         this.subs = [
             this.props.navigation.addListener('didFocus', () => this.handleNavigateBack()),
@@ -231,40 +231,40 @@ export class Products extends Component
         //             {
         //                 this.setState({
         //                     loading: false,
-        //                     kategoriakesalcsoportok: responseJson,
+        //                     kategoriakEsAlcsoportok: responseJson,
         //                 });
 
         //                 let kategoriak = [];
         //                 let parentId;
 
-        //                 for (let i = 0; i < this.state.kategoriakesalcsoportok.length; i++)
+        //                 for (let i = 0; i < this.state.kategoriakEsAlcsoportok.length; i++)
         //                 {
-        //                     if (this.state.kategoriakesalcsoportok[i].parent_id === '0')
+        //                     if (this.state.kategoriakEsAlcsoportok[i].parent_id === '0')
         //                     {
-        //                         kategoriak.push(this.state.kategoriakesalcsoportok[i].megn);
+        //                         kategoriak.push(this.state.kategoriakEsAlcsoportok[i].megn);
 
         //                         if (!parentId)
         //                         {
-        //                             parentId = this.state.kategoriakesalcsoportok[i].id;
+        //                             parentId = this.state.kategoriakEsAlcsoportok[i].id;
         //                         }
         //                     }
         //                 }
 
         //                 let alcsoportok = [];
 
-        //                 for (let i = 0; i < this.state.kategoriakesalcsoportok.length; i++)
+        //                 for (let i = 0; i < this.state.kategoriakEsAlcsoportok.length; i++)
         //                 {
-        //                     if (this.state.kategoriakesalcsoportok[i].parent_id === parentId)
+        //                     if (this.state.kategoriakEsAlcsoportok[i].parent_id === parentId)
         //                     {
-        //                         alcsoportok.push(this.state.kategoriakesalcsoportok[i].megn);
+        //                         alcsoportok.push(this.state.kategoriakEsAlcsoportok[i].megn);
         //                     }
         //                 }
 
         //                 this.setState({
         //                     kategoriak: kategoriak,
-        //                     kivalasztottkategoria: kategoriak[0],
+        //                     kivalasztottKategoria: kategoriak[0],
         //                     alcsoportok: alcsoportok,
-        //                     kivalasztottalcsoport: alcsoportok[0],
+        //                     kivalasztottAlcsoport: alcsoportok[0],
         //                 });
         //             })
 
@@ -279,15 +279,15 @@ export class Products extends Component
 
     componentDidUpdate(prevProps, prevState)
     {
-        if (this.state.kivalasztottalcsoport !== prevState.kivalasztottalcsoport)
+        if (this.state.kivalasztottAlcsoport !== prevState.kivalasztottAlcsoport)
         {
             this.setState({ products: null });
 
             // global.getData('vendor').then(vendor =>
             // {
-            //     this.state.kategoriakesalcsoportok.forEach(element =>
+            //     this.state.kategoriakEsAlcsoportok.forEach(element =>
             //     {
-            //         if (element.megn === this.state.kivalasztottalcsoport)
+            //         if (element.megn === this.state.kivalasztottAlcsoport)
             //         {
 
             //             var values = {
@@ -363,7 +363,7 @@ export class Products extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
         this.subs.forEach(sub => sub.remove());
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
@@ -381,9 +381,9 @@ export class Products extends Component
 
     handleNavigateBack()
     {
-        global.getData('basket').then(basket =>
+        global.getData('cart').then(cart =>
         {
-            if (basket === null)
+            if (cart === null)
             {
                 var products = this.state.products.slice();
 
@@ -394,13 +394,13 @@ export class Products extends Component
 
                 this.setState({
                     products: products,
-                    basket: null,
+                    cart: null,
                 });
             }
         });
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {
@@ -412,7 +412,7 @@ export class Products extends Component
         }
     }
 
-    _keyboardDidShow()
+    keyboardDidShow()
     {
         this.setState(state =>
         {
@@ -421,7 +421,7 @@ export class Products extends Component
         });
     }
 
-    _keyboardDidHide()
+    keyboardDidHide()
     {
         this.setState(state =>
         {
@@ -436,20 +436,20 @@ export class Products extends Component
         {
             // if (element.uid === uid && element.kivalasztottmennyiseg > 0)
             // {
-            //     // We check the existence of the basket.
-            //     global.getData('basket').then(basket =>
+            //     // We check the existence of the cart.
+            //     global.getData('cart').then(cart =>
             //     {
-            //         if (basket !== null)
+            //         if (cart !== null)
             //         {
-            //             this.setState({ basket: JSON.parse(basket) });
+            //             this.setState({ cart: JSON.parse(cart) });
 
             //             // We should find another element with the same name to gain the quantity
             //             // Register te success in a boolean
 
             //             var sikerultTalalni = false;
 
-            //             var basket = JSON.parse(JSON.stringify(this.state.basket));
-            //             basket.tetelek.forEach(tetel =>
+            //             var cart = JSON.parse(JSON.stringify(this.state.cart));
+            //             cart.tetelek.forEach(tetel =>
             //             {
             //                 if (tetel.cikk_id === element.id)
             //                 {
@@ -460,7 +460,7 @@ export class Products extends Component
 
             //             if (!sikerultTalalni)
             //             {
-            //                 basket.tetelek.push({
+            //                 cart.tetelek.push({
             //                     cikk_id: element.id, // Termékek oldal
             //                     mennyiseg: element.kivalasztottmennyiseg, // Termékek oldal
             //                     nettoear: element.nettoear,
@@ -489,7 +489,7 @@ export class Products extends Component
             //                         {
             //                             element.kivalasztottmennyiseg = 0;
             //                             element.kedv_nettoear = null;
-            //                             this.setState({ basket: basket });
+            //                             this.setState({ cart: cart });
             //                         },
             //                     },
             //                 ],
@@ -497,15 +497,15 @@ export class Products extends Component
             //             );
 
             //             // We save the new product immediately.
-            //             global.storeData('basket', JSON.stringify(basket));
+            //             global.storeData('cart', JSON.stringify(cart));
 
             //         }
             //         else
             //         {
-            //             // We did not create the basket yet.
-            //             if (this.state.basket === null)
+            //             // We did not create the cart yet.
+            //             if (this.state.cart === null)
             //             {
-            //                 var basket = {
+            //                 var cart = {
             //                     partner_id: parseInt(this.state.partnerId), //Termékek oldal
             //                     atvetel_id: null, // Áruátvétel módja oldal
             //                     cim_id: null, // Áruátvétel módja oldal
@@ -515,7 +515,7 @@ export class Products extends Component
             //                     tetelek: [],
             //                 };
 
-            //                 basket.tetelek.push({
+            //                 cart.tetelek.push({
             //                     cikk_id: element.id, // Termékek oldal
             //                     mennyiseg: element.kivalasztottmennyiseg, // Termékek oldal
             //                     nettoear: element.nettoear,
@@ -544,7 +544,7 @@ export class Products extends Component
             //                             {
             //                                 element.kivalasztottmennyiseg = 0;
             //                                 element.kedv_nettoear = null;
-            //                                 this.setState({ basket: basket });
+            //                                 this.setState({ cart: cart });
             //                             },
             //                         },
             //                     ],
@@ -552,7 +552,7 @@ export class Products extends Component
             //                 );
 
             //                 // We save the new product immediately.
-            //                 global.storeData('basket', JSON.stringify(basket));
+            //                 global.storeData('cart', JSON.stringify(cart));
 
             //             }
             //         }
@@ -633,7 +633,7 @@ export class Products extends Component
 
     onPickerValueChange(uid, value)
     {
-        // We use this to get the right element from the basket.
+        // We use this to get the right element from the cart.
         var chosenUid;
 
         var kedv_nettoear = null;
@@ -731,7 +731,7 @@ export class Products extends Component
     {
         let parentId;
 
-        this.state.kategoriakesalcsoportok.forEach(element =>
+        this.state.kategoriakEsAlcsoportok.forEach(element =>
         {
             if (element.megn === value)
             {
@@ -743,7 +743,7 @@ export class Products extends Component
 
         if (parentId)
         {
-            this.state.kategoriakesalcsoportok.forEach(element =>
+            this.state.kategoriakEsAlcsoportok.forEach(element =>
             {
                 if (element.parent_id === parentId)
                 {
@@ -754,9 +754,9 @@ export class Products extends Component
 
         this.setState(
             {
-                kivalasztottkategoria: value,
+                kivalasztottKategoria: value,
                 alcsoportok: alcsoportok,
-                kivalasztottalcsoport: alcsoportok[0],
+                kivalasztottAlcsoport: alcsoportok[0],
             });
     }
 
@@ -764,7 +764,7 @@ export class Products extends Component
     {
         this.setState(
             {
-                kivalasztottalcsoport: value,
+                kivalasztottAlcsoport: value,
             });
     }
 

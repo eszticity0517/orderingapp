@@ -14,8 +14,8 @@ import { Container } from './common/container';
 import {StyleSheet} from 'react-native';
 
 export class Login extends Component {
-    _intervalHandler;
-    _maintainBasketHandler;
+    intervalHandler;
+    maintainBasketHandler;
 
     static navigationOptions = {
         headerShown: false,
@@ -28,7 +28,7 @@ export class Login extends Component {
             jelszo: '',
             felhasznalonevVan: true,
             jelszoVan: true,
-            buttonishidden: false,
+            isButtonHidden: false,
             loading: false,
         };
     }
@@ -39,8 +39,8 @@ export class Login extends Component {
             this.props.navigation.addListener('willBlur', () => console.log('blurred')),
         ];
         // This component mounts once hence it is the first component in the stacknavigator.
-        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this._keyboardDidShow.bind(this));
-        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this._keyboardDidHide.bind(this));
+        this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', this.keyboardDidShow.bind(this));
+        this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', this.keyboardDidHide.bind(this));
     }
 
     render() {
@@ -50,55 +50,55 @@ export class Login extends Component {
                     <CarouselComponent />
                     <Text style={{ marginTop: 20 }}>
                         Partnerazonosító
-                        {this._renderFelhasznalonevErrorMessage()}
+                        {this.renderFelhasznalonevErrorMessage()}
                     </Text>
                     <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" value={this.state.felhasznalonev} onChangeText={(value) => this.onUsernameText(value, 'felhasznalonev')} />
                     <Text>
                         PIN kód
-                        {this._renderJelszoErrorMessage()}
+                        {this.renderJelszoErrorMessage()}
                     </Text>
                     <TextInput onSubmitEditing={Keyboard.dismiss} keyboardType="numeric" secureTextEntry={true} value={this.state.jelszo} onChangeText={(value) => this.onPasswordText(value, 'jelszo')} />
                     <Text onPress={this.onForgotPress.bind(this)} style={styles.forgotPasswordText}>Elfelejtettem a jelszavamat</Text>
                 </ScrollComponent>
 
-                <ButtonContainer hidden={this.state.buttonishidden} style={{ bottom: 0 }}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={{ bottom: 0 }}>
                     <ButtonComponent onPress={this.onLoginPress.bind(this)} text="Bejelentkezés" />
                 </ButtonContainer>
-                {this._renderIndicator()}
+                {this.renderIndicator()}
             </Container>
         );
     }
 
     componentWillUnmount() {
         this.subs.forEach(sub => sub.remove());
-        clearTimeout(this._maintainBasketHandler);
-        clearInterval(this._intervalHandler);
+        clearTimeout(this.maintainBasketHandler);
+        clearInterval(this.intervalHandler);
         this.keyboardDidShowListener.remove();
         this.keyboardDidHideListener.remove();
     }
 
-    _renderIndicator() {
+    renderIndicator() {
         return (this.state.loading ? <Indicator transparent={false} /> : undefined);
     }
 
-    _renderFelhasznalonevErrorMessage() {
+    renderFelhasznalonevErrorMessage() {
         return (this.state.felhasznalonevVan ? undefined : (<ErrorText keyboardType="numeric" text="Kötelező megadni." />));
     }
 
-    _renderJelszoErrorMessage() {
+    renderJelszoErrorMessage() {
         return (this.state.felhasznalonevVan ? undefined : <ErrorText text="Kötelező megadni." hidden={this.state.jelszoVan} />);
     }
 
     handleNavigateBack() {
         global.getData('maintainBasket').then(maintainBasket => {
-            if (maintainBasket !== null && !this._maintainBasketHandler) {
-                this._maintainBasketHandler = setTimeout(this.removeMaintainBasket, 600000);
+            if (maintainBasket !== null && !this.maintainBasketHandler) {
+                this.maintainBasketHandler = setTimeout(this.removeMaintainBasket, 600000);
             }
         });
     }
 
-    _startInterval() {
-        this._intervalHandler = setInterval(() => {
+    startInterval() {
+        this.intervalHandler = setInterval(() => {
             global.getData('partner_id').then(partnerId => {
                 if (partnerId !== null) {
                     global.getData('vendor').then(vendor => {
@@ -139,55 +139,30 @@ export class Login extends Component {
         }, 25000);
     }
 
-    _keyboardDidShow() {
+    keyboardDidShow() {
         this.setState(state => {
-            state.buttonishidden = true;
+            state.isButtonHidden = true;
             return state;
         });
     }
 
-    _keyboardDidHide() {
+    keyboardDidHide() {
         this.setState(state => {
-            state.buttonishidden = false;
+            state.isButtonHidden = false;
             return state;
         });
     }
 
     onLoginPress() {
-        clearTimeout(this._maintainBasketHandler);
-        this._maintainBasketHandler = undefined;
+        clearTimeout(this.maintainBasketHandler);
+        this.maintainBasketHandler = undefined;
 
-        if (this.state.felhasznalonev.trim() === '' || this.state.jelszo.trim() === '') {
-            if (this.state.felhasznalonev.trim() === '') {
-                this.setState(() => {
-                    return { felhasznalonevVan: false };
-                });
-            }
-
-            if (this.state.felhasznalonev.trim() !== '') {
-                this.setState(() => {
-                    return { felhasznalonevVan: true };
-                });
-            }
-
-            if (this.state.jelszo.trim() === '') {
-                this.setState(() => {
-                    return { jelszoVan: false };
-                });
-            }
-
-            if (this.state.jelszo.trim() !== '') {
-                this.setState(() => {
-                    return { jelszoVan: true };
-                });
-            }
-        }
-        else {
-
+        if (this.state.felhasznalonev.trim() !== '' || this.state.jelszo.trim() !== '')
+        {
             // this.setState({
             //     loading: true,
             // });
-    
+
             this.props.navigation.navigate('Home');
 
             // var values = {
@@ -267,12 +242,12 @@ export class Login extends Component {
             //                         return state;
             //                     });
 
-            //                     this._startInterval();
+            //                     this.startInterval();
 
             //                     global.getData('maintainBasket').then(maintainBasket => {
             //                         if (maintainBasket === null) {
-            //                             // If the basket remained from previous usage, we have to delete it.
-            //                             global.removeItemValue('basket').then(() => {
+            //                             // If the cart remained from previous usage, we have to delete it.
+            //                             global.removeItemValue('cart').then(() => {
             //                                 this.props.navigation.navigate('Home');
             //                             });
             //                         }
@@ -313,10 +288,33 @@ export class Login extends Component {
             //         console.error(error);
             //     });
         }
+
+
+        if (this.state.felhasznalonev.trim() === '') {
+            this.setState(() => {
+                return { felhasznalonevVan: false };
+            });
+        }
+        else {
+            this.setState(() => {
+                return { felhasznalonevVan: true };
+            });
+        }
+
+        if (this.state.jelszo.trim() === '') {
+            this.setState(() => {
+                return { jelszoVan: false };
+            });
+        }
+        else {
+            this.setState(() => {
+                return { jelszoVan: true };
+            });
+        }
     }
 
     onForgotPress() {
-        clearTimeout(this._maintainBasketHandler);
+        clearTimeout(this.maintainBasketHandler);
         this.props.navigation.navigate('ForgottenPassword');
     }
 

@@ -26,7 +26,7 @@ export class Orders extends Component {
     }
 
     componentDidMount() {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
 
         // global.getData('partner_id').then(partnerId =>
         // {
@@ -104,7 +104,7 @@ export class Orders extends Component {
     }
 
     componentWillUnmount() {
-        AppState.removeEventListener('change', this._handleAppStateChange);
+        AppState.removeEventListener('change', this.handleAppStateChange);
     }
 
     onPress(value) {
@@ -126,7 +126,7 @@ export class Orders extends Component {
         }
     }
 
-    _handleAppStateChange = (nextAppState) => {
+    handleAppStateChange = (nextAppState) => {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active') {
             this.setState({ appState: nextAppState });
             AsyncStorage.setItem('maintainBasket', 'yes').then(() => {

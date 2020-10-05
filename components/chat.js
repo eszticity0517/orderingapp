@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 export class Chat extends Component
 {
-    _intervalHandler;
+    intervalHandler;
 
     static navigationOptions = {
         headerShown: false,
@@ -47,7 +47,7 @@ export class Chat extends Component
 
     componentDidMount()
     {
-        AppState.addEventListener('change', this._handleAppStateChange);
+        AppState.addEventListener('change', this.handleAppStateChange);
 
         // global.getData('partner_id').then(partnerId =>
         // {
@@ -134,8 +134,8 @@ export class Chat extends Component
 
     componentWillUnmount()
     {
-        AppState.removeEventListener('change', this._handleAppStateChange);
-        clearInterval(this._intervalHandler);
+        AppState.removeEventListener('change', this.handleAppStateChange);
+        clearInterval(this.intervalHandler);
     }
 
     onMenuOpenPress()
@@ -160,7 +160,7 @@ export class Chat extends Component
 
     _startInterval()
     {
-        this._intervalHandler = setInterval(() =>
+        this.intervalHandler = setInterval(() =>
         {
             global.getData('partner_id').then(partnerId =>
             {
@@ -292,7 +292,7 @@ export class Chat extends Component
         );
     }
 
-    _handleAppStateChange = (nextAppState) =>
+    handleAppStateChange = (nextAppState) =>
     {
         if (nextAppState.match(/inactive|background/) && this.state.appState === 'active')
         {
