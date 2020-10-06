@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import PropTypes from 'prop-types';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
+import { ProductElementChecker } from './components/product-element-checker';
 
 export class ProductElement extends Component {
     static propTypes = {
@@ -117,23 +118,16 @@ export class ProductElement extends Component {
         </View>) : <View style={{ flex: 0.3, height: 20 * 5, borderBottomColor: 'black', borderBottomWidth: 1, justifyContent: 'center' }} />;
     }
 
-    renderChecker() {
-        let checker = this.areButtonsHidden() ? (<View style={{ flex: 0.1, height: 20 * 5, borderBottomColor: 'black', borderBottomWidth: 1, justifyContent: 'center' }}>
-            <TouchableOpacity style={
-                {
-                    backgroundColor: '#e4eef0',
-                    height: 20 * 3.5,
-                    width: '100%',
-                    justifyContent: 'center',
-                    borderLeftWidth: 1,
-                    borderLeftColor: 'white',
-                    alignItems: 'center',
-                }} onPress={(uid) => this.props.onCheck(this.props.product.uid)}>
-                <Image source={require('../../Sources/Products/cart_over.png')} style={{ width: Math.round(20 / 1.5), height: Math.round(20 / 1.5), opacity: 0.5 }} />
-            </TouchableOpacity>
-        </View>) : undefined;
-
-        return checker;
+    renderChecker()
+    {
+        return (this.areButtonsHidden() ?
+            (<ProductElementChecker
+                product={this.props.product}
+                onCheck={this.props.onCheck.bind(this)}
+            />)
+            :
+            undefined
+        );
     }
 
     renderKiszereles() {
