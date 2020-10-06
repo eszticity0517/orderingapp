@@ -7,6 +7,11 @@ export class ProductElementAmountSelector extends Component
 {
     render()
     {
+        if (this.props.hidden)
+        {
+            return (<View style={styles.selectorContainer} />);
+        }
+
         return (
             <View style={styles.selectorContainer}>
                 <View style={styles.innerContainer}>
