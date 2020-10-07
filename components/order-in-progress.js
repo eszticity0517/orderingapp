@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { HeaderComponent } from './sections/header-component';
 import { ButtonComponent } from './common/button-component';
 import { SeparatorLine } from './common/separator-line';
-import { CartElement } from './sections/cart-element';
+import { ProductElement } from './sections/product-element';
 import { TotalComponent } from './sections/total-component';
 import { ButtonContainer } from './common/button-container';
 import { Container } from './common/container';
@@ -180,7 +180,7 @@ export class OrderInProgress extends Component {
         if (this.state.basket !== null) {
             for (let i = 0; i < this.state.basket.tetelek.length; i++) {
                 termekek.push(
-                    <CartElement
+                    <ProductElement
                         key={i}
                         product={JSON.parse(JSON.stringify(this.state.basket.tetelek[i]))}
                         onCheck={(value) => this.onDeleteCheck(value)}
