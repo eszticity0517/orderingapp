@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
-import {AppState, Text, View, StyleSheet} from 'react-native';
-import { Container } from './common/container';
-import {FooterComponent} from './sections/footer-component';
-import {ButtonComponent} from './common/button-component';
-import {SummaryComponent} from './sections/summary-component';
-import '../global.js';
-import {Indicator} from './common/indicator';
+import {AppState, Text, View} from 'react-native';
+import { Container } from '../common/container';
+import {FooterComponent} from '../sections/footer-component';
+import {ButtonComponent} from '../common/button-component';
+import {SummaryComponent} from '../sections/summary-component';
+import '../../global.js';
+import {Indicator} from '../common/indicator';
 import AsyncStorage from '@react-native-community/async-storage';
-import mainStyles from '../main-styles.scss';
+import mainStyles from '../../main-styles.scss';
+import styles from './profile.scss';
+
 export class Profile extends Component
 {
     // These will be displayed.
@@ -202,11 +204,3 @@ export class Profile extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    welcomeSmall: {
-        fontSize: 15,
-        textAlign: 'center',
-    }
-});
-
