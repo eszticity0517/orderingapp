@@ -20,6 +20,7 @@ import { Indicator } from './common/indicator';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
 import { Container } from './common/container';
 import AsyncStorage from '@react-native-community/async-storage';
+import mainStyles from '../main-styles.scss';
 
 export class Products extends Component
 {
@@ -74,7 +75,7 @@ export class Products extends Component
                 </View>
 
                 <ScrollView
-                    style={styles.scroller}
+                    style={mainStyles.scroller}
                     scrollEnabled={this.isScrollEnabled()}
                 >
                     {this.renderTermekek()}
@@ -793,11 +794,5 @@ export const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         paddingTop:20,
-    },
-    scroller: {
-        flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-        marginBottom: 55,
     },
 });
