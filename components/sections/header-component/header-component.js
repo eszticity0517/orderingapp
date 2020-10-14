@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet} from 'react-native';
+import {AppRegistry, Text, View} from 'react-native';
 import {HeaderMenuComponent} from './components/header-menu-component';
 import '../../../global';
 import { HeaderCloseButton } from './components/header-close-button';
 import { HeaderMenuHandlerButton } from './components/header-menu-handler-button';
 import mainStyles from '../../../main-styles.scss';
+import styles from './header-component.scss';
 
 export class HeaderComponent extends Component
 {
@@ -109,19 +110,5 @@ export class HeaderComponent extends Component
         this.props.navigation.navigate(value);
     }
 }
-
-export const styles = StyleSheet.create({
-    secondaryHeaderShape: {
-        position: 'absolute',
-        zIndex: 1,
-        left: -20,
-        backgroundColor: 'white',
-    },
-    primaryHeaderShape: {
-        flexDirection: 'row',
-        backgroundColor: '#77D353',
-        padding: 20,
-    },
-});
 
 AppRegistry.registerComponent('HeaderComponent', () => HeaderComponent);
