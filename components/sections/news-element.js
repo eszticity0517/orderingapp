@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Image, Text, View, StyleSheet} from 'react-native';
+import mainStyles from '../../main-styles.scss';
 
 export class NewsElement extends Component
 {
@@ -11,8 +12,8 @@ export class NewsElement extends Component
                     <Image source={this.props.source} style={{ width: 40, height: 40 }} />
                 </View>
                 <View style={[styles.block, { flex: 1 }]}>
-                    <Text style={styles.thickerGreenText}>{this.props.text}</Text>
-                    <Text style={styles.thickerBlackText}>{this.props.unitprice} Ft.- / {this.props.unit}</Text>
+                    <Text style={mainStyles.thickerGreenText}>{this.props.text}</Text>
+                    <Text style={mainStyles.thickerBlackText}>{this.props.unitprice} Ft.- / {this.props.unit}</Text>
                 </View>
             </View>
         );
@@ -20,16 +21,6 @@ export class NewsElement extends Component
 }
 
 export const styles = StyleSheet.create({
-    thickerGreenText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
-    thickerBlackText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
     block: {
         height: 20 * 4,
         borderBottomColor: 'black',

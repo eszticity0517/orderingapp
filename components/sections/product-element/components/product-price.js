@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet} from 'react-native';
+import mainStyles from '../../../../main-styles.scss';
 
 export class ProductPrice extends Component
 {
@@ -7,7 +8,7 @@ export class ProductPrice extends Component
     {
         return (
             <View style={styles.priceContainer}>
-                <Text style={styles.thickerBlackText}>{this.props.product.megn}</Text>
+                <Text style={mainStyles.thickerBlackText}>{this.props.product.megn}</Text>
                 {this.renderPrice()}
                 {this.renderBreakdown()}
             </View>
@@ -18,14 +19,14 @@ export class ProductPrice extends Component
     {
         if (this.props.total)
         {
-            return (<Text style={styles.thickerBlackText}>{Math.round(this.props.total)} Ft.-</Text>);
+            return (<Text style={mainStyles.thickerBlackText}>{Math.round(this.props.total)} Ft.-</Text>);
         }
 
         else if (!this.props.displayTotal)
         {
             if (this.props.product.kiszereles === null || this.props.showPieces)
             {
-                return (<Text style={styles.thickerBlackText}>{this.props.product.nettoear} Ft.- / {this.props.product.egyseg}</Text>);
+                return (<Text style={mainStyles.thickerBlackText}>{this.props.product.nettoear} Ft.- / {this.props.product.egyseg}</Text>);
             }
             else if (this.props.product.kiszereles !== null && !this.props.showPieces)
             {
@@ -38,7 +39,7 @@ export class ProductPrice extends Component
                     }
                 });
 
-                return (<Text style={styles.thickerBlackText}>{Math.round(this.props.product.nettoear * valtoszam)} Ft.- / {this.props.product.kivalasztottegyseg}</Text>);
+                return (<Text style={mainStyles.thickerBlackText}>{Math.round(this.props.product.nettoear * valtoszam)} Ft.- / {this.props.product.kivalasztottegyseg}</Text>);
             }
         }
 
@@ -71,16 +72,6 @@ export class ProductPrice extends Component
 }
 
 export const styles = StyleSheet.create({
-    thickerBlackText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: 'black',
-    },
-    thickerGreenText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
     priceContainer: {
         flex: 0.5,
         height: 20 * 5,

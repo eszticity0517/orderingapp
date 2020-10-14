@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-
-import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
 import { OrderElementContainer } from './components/order-element-container';
 import { OrderElementDetails } from './components/order-element-details';
 import { OrderElementIconButton } from './components/order-element-icon-button';
@@ -67,12 +65,3 @@ export class OrderElement extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    thickerGreenText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
-});
-

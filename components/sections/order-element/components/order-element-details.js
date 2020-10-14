@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import { Text, View, StyleSheet} from 'react-native';
+import mainStyles from '../../../../main-styles.scss';
 
 export class OrderElementDetails extends Component {
     render()
     {
         return (
             <View style={styles.container}>
-                <Text numberOfLines={1} style={styles.thickerGreenText}>{this.props.createDate}</Text>
+                <Text numberOfLines={1} style={mainStyles.thickerGreenText}>{this.props.createDate}</Text>
                 <Text numberOfLines={1} style={styles.productText}>({this.props.products}</Text>
             </View>
         );
@@ -14,11 +15,6 @@ export class OrderElementDetails extends Component {
 }
 
 export const styles = StyleSheet.create({
-    thickerGreenText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
     container: {
         flex: 5,
         height: 80,
