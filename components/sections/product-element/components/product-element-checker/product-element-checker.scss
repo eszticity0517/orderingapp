@@ -1,0 +1,21 @@
+.checkerContainer {
+    flex: 0.1;
+    height: 100px;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    justify-content: center;
+};
+.touchable  {
+    background-color: #e4eef0;
+    height: 70px;
+    width: 100%;
+    justify-content: center;
+    border-left-width: 1px;
+    border-left-color: white;
+    align-items: center;
+};
+.image {
+    width: 13px;
+    height: 13px;
+    opacity: 0.5;
+};
