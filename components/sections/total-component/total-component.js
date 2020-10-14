@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, AppRegistry } from 'react-native';
-import '../../global';
+import {Text, View } from 'react-native';
+import '../../../global';
+import { styles } from './total-component.scss';
 
 export class TotalComponent extends Component
 {
@@ -24,14 +25,3 @@ export class TotalComponent extends Component
         );
     }
 }
-export const styles = StyleSheet.create({
-    totalContainer: {
-        height: 20 * 1.5,
-        borderTopRightRadius: 20,
-        borderBottomRightRadius: 20,
-        backgroundColor: '#77D353',
-        flexDirection: 'row',
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-});
