@@ -7,20 +7,20 @@ import
     TextInput,
     View,
     Text,
-    StyleSheet,
 } from 'react-native';
 
-import { FooterComponent } from './sections/footer-component';
-import { SeparatorLine } from './common/separator-line';
-import { SearchFieldContainer } from './sections/search-field-container';
-import { ProductElement } from './sections/product-element';
-import { DropdownComponent } from './sections/dropdown-component';
-import '../global.js';
-import { Indicator } from './common/indicator';
+import { FooterComponent } from '../sections/footer-component';
+import { SeparatorLine } from '../common/separator-line';
+import { SearchFieldContainer } from '../sections/search-field-container';
+import { ProductElement } from '../sections/product-element';
+import { DropdownComponent } from '../sections/dropdown-component';
+import '../../global.js';
+import { Indicator } from '../common/indicator';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
-import { Container } from './common/container';
+import { Container } from '../common/container';
 import AsyncStorage from '@react-native-community/async-storage';
-import mainStyles from '../main-styles.scss';
+import mainStyles from '../../main-styles.scss';
+import styles from './products.scss';
 
 export class Products extends Component
 {
@@ -788,11 +788,3 @@ export class Products extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    productViewContainer: {
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop:20,
-    },
-});
