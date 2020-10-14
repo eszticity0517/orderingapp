@@ -2,15 +2,15 @@ import base64 from 'react-native-base64';
 
 import React, { Component } from 'react';
 import { Alert, Keyboard, Text, TextInput } from 'react-native';
-
-import { ErrorText } from './common/error-text';
-import { ButtonComponent } from './common/button-component';
-import { CarouselComponent } from './sections/carousel-component';
-import { ScrollComponent } from './common/scroll-component';
-import { ButtonContainer } from './common/button-container';
-import '../global.js';
-import { Indicator } from './common/indicator';
-import { Container } from './common/container';
+import styles from "./login.scss";
+import { ErrorText } from '../common/error-text';
+import { ButtonComponent } from '../common/button-component';
+import { CarouselComponent } from '../sections/carousel-component';
+import { ScrollComponent } from '../common/scroll-component';
+import { ButtonContainer } from '../common/button-container';
+import '../../global.js';
+import { Indicator } from '../common/indicator';
+import { Container } from '../common/container';
 import {StyleSheet} from 'react-native';
 
 export class Login extends Component {
@@ -361,14 +361,3 @@ export class Login extends Component {
         // }
     }
 }
-
-export const styles = StyleSheet.create({
-    forgotPasswordText: {
-        textAlign: 'center',
-        textDecorationLine: 'underline',
-        textDecorationColor: 'black',
-        marginTop: 10,
-    },
-});
-
-
