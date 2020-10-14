@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import mainStyles from '../../../../../../main-styles.scss';
+import mainStyles from '../../../../../../../main-styles.scss';
+import styles from './amount-display.scss';
 
 export class AmountDisplay extends Component
 {
@@ -42,9 +43,3 @@ export class AmountDisplay extends Component
         return mennyiseg;
     }
 }
-
-export const styles = StyleSheet.create({
-    amountText: {
-        fontSize: 10,
-    },
-});
