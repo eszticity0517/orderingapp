@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View} from 'react-native';
+import styles from './separator-line.scss';
 
 export class SeparatorLine extends Component
 {
@@ -17,11 +18,3 @@ export class SeparatorLine extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    line: {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-    }
-});
-
