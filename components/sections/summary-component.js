@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View} from 'react-native';
 import '../../global';
+import mainStyles from '../../main-styles.scss';
 
 export class SummaryComponent extends Component
 {
@@ -137,27 +138,19 @@ export class SummaryComponent extends Component
         return (
             <View style={{ flexDirection: 'row', marginTop: 20 }}>
                 <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 2, borderRightColor: 'black' }}>
-                    <Text style={styles.thickerblackText}>{this.state.nyitottRendelesek}</Text>
+                    <Text style={mainStyles.thickerGreenText}>{this.state.nyitottRendelesek}</Text>
                     <Text>nyitott</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 2, borderRightColor: 'black' }}>
-                    <Text style={styles.thickerBlackText}>{this.state.teljesitettRendelesek}</Text>
+                    <Text style={mainStyles.thickerGreenText}>{this.state.teljesitettRendelesek}</Text>
                     <Text>teljesített</Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center' }}>
-                    <Text style={styles.thickerBlackText}>{this.state.uzenetekSzama}</Text>
+                    <Text style={mainStyles.thickerGreenText}>{this.state.uzenetekSzama}</Text>
                     <Text>üzenet</Text>
                 </View>
             </View>
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    thickerBlackText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
-});
 
