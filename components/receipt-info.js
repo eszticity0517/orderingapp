@@ -13,6 +13,7 @@ import '../global.js';
 import {Indicator} from './common/indicator';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
 import AsyncStorage from '@react-native-community/async-storage';
+import mainStyles from '../main-styles.scss';
 
 export class ReceiptInfo extends Component
 {
@@ -419,7 +420,7 @@ export class ReceiptInfo extends Component
                 {this.renderTermekekAra()}
                 {this.renderFuvardij()}
 
-                <ButtonContainer style={styles.upperButtonContainer} hidden={this.state.isButtonHidden}>
+                <ButtonContainer style={mainStyles.upperButtonContainer} hidden={this.state.isButtonHidden}>
                     <TotalComponent text="Teljes összeg" sum={this.renderVegosszeg()} />
                 </ButtonContainer>
 
@@ -438,7 +439,7 @@ export class ReceiptInfo extends Component
 
         if (this.state.wayOfReceivingValue === 'Kiszállítás')
         {
-            fuvardij = <ButtonContainer style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 1.5 }]} hidden={this.state.isButtonHidden}>
+            fuvardij = <ButtonContainer style={[mainStyles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 1.5 }]} hidden={this.state.isButtonHidden}>
                 <TotalComponent text="Fuvardíj" sum={Math.round(this.state.fuvardij)} light />
             </ButtonContainer>;
         }
@@ -451,7 +452,7 @@ export class ReceiptInfo extends Component
         return (
             this.state.wayOfReceivingValue === 'Kiszállítás' ?
                 (<ButtonContainer
-                    style={[styles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]}
+                    style={[mainStyles.upperButtonContainer, { bottom: (20 * 2 + 20 / 2) * 2 }]}
                     hidden={this.state.isButtonHidden}
                 >
                     <TotalComponent text="Termékek ára" sum={Math.round(this.state.termekekara)} light />
@@ -850,20 +851,3 @@ export class ReceiptInfo extends Component
         });
     }
 }
-
-export const styles = StyleSheet.create({
-    upperButtonContainer: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        height: 20 * 2 + 20 / 2,
-        flexDirection: 'row',
-        bottom: 20 * 2 + 20 / 2,
-        flex: 1,
-        alignSelf: 'stretch',
-        right: 0,
-        left: 0,
-        zIndex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-});

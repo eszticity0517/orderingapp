@@ -9,6 +9,7 @@ import { ButtonContainer } from './common/button-container';
 import { Container } from './common/container';
 import '../global.js';
 import {Indicator} from './common/indicator';
+import mainStyles from '../main-styles.scss';
 
 export class Reorder extends Component
 {
@@ -105,7 +106,7 @@ export class Reorder extends Component
         }
 
         return (!this.state.isReorderWanted ?
-            (<ButtonContainer style={styles.upperbuttoncontainer}>
+            (<ButtonContainer style={mainStyles.upperButtonContainer}>
                 <ButtonComponent onPress={this.onReorderPress.bind(this)} text="Újrarendelés másként" />
             </ButtonContainer>) : undefined
         );
@@ -132,7 +133,7 @@ export class Reorder extends Component
         if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
             return (<View style={{ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' }}>
-                <Text style={styles.welcomenomargin}>Az elemek nem tölthetők be.</Text>
+                <Text style={mainStyles.welcomeNoMargin}>Az elemek nem tölthetők be.</Text>
             </View>);
         }
 
@@ -743,10 +744,3 @@ export class Reorder extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    welcomeNoMargin: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-});

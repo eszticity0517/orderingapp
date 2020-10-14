@@ -7,6 +7,7 @@ import {ScrollComponent} from './common/scroll-component';
 import {Container} from './common/container';
 import AsyncStorage from '@react-native-community/async-storage';
 import '../global.js';
+import mainStyles from '../main-styles.scss';
 
 export class EmptyCart extends Component
 {
@@ -36,7 +37,7 @@ export class EmptyCart extends Component
                 <ScrollComponent appearance="view">
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
                     <View style={{ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 20 * 4, width: this.state.size.width - 40}}>
-                        <Text style={styles.welcomeNoMargin}>A kosár üres.</Text>
+                        <Text style={mainStyles.welcomeNoMargin}>A kosár üres.</Text>
                     </View>
 
                 </ScrollComponent>
@@ -88,12 +89,3 @@ export class EmptyCart extends Component
         }
     }
 }
-
-
-export const styles = StyleSheet.create({
-    welcomeNoMargin: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-});
-

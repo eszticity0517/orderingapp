@@ -1,0 +1,20 @@
+.welcomeNoMargin
+{
+    font-size: 20px;
+    text-align: center;
+};
+.upperButtonContainer
+{
+    position: absolute;
+    background-color: white;
+    height: 50px;
+    flex-direction: row;
+    bottom: 50px;
+    flex: 1;
+    align-self: stretch;
+    right: 0px;
+    left: 0px;
+    z-index: 1;
+    padding-left: 20px;
+    padding-right: 20px;
+}
