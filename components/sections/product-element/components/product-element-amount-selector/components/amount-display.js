@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import mainStyles from '../../../../../../main-styles.scss';
 
 export class AmountDisplay extends Component
 {
     render()
     {
         return (
-            <View style={styles.counterActionsContainer}>
+            <View style={mainStyles.amountActionContainer}>
                 <Text style={styles.amountText}>{this.renderMennyiseg()}</Text>
             </View>
         );
@@ -43,11 +44,6 @@ export class AmountDisplay extends Component
 }
 
 export const styles = StyleSheet.create({
-    amountActionContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     amountText: {
         fontSize: 10,
     },

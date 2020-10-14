@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
+import mainStyles from '../../../../../../main-styles.scss';
 
 export class AmountActionButton extends Component {
     render()
@@ -7,7 +8,7 @@ export class AmountActionButton extends Component {
         return (
             <TouchableOpacity
                 onPress={() => this.props.onPress(this.props.product.uid, this.renderChangeAmount())}
-                style={styles.amountActionContainer}
+                style={mainStyles.amountActionContainer}
             >
                 {this.renderButtonText()}
             </TouchableOpacity>
@@ -24,13 +25,5 @@ export class AmountActionButton extends Component {
         return (this.props.mode === 'increase' ? 1 : -1);
     }
 }
-
-export const styles = StyleSheet.create({
-    amountActionContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 
