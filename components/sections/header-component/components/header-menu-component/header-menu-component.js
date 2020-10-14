@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { AppRegistry, View, StyleSheet } from 'react-native';
-import '../../../../global.js';
-import {OpeningMenuElement} from '../../opening-menu-element';
+import { AppRegistry, View } from 'react-native';
+import '../../../../../global.js';
+import {OpeningMenuElement} from '../../../opening-menu-element';
+import styles from './header-menu-component.scss';
 
 export class HeaderMenuComponent extends Component {
     static navigationOptions = {
@@ -65,17 +66,5 @@ export class HeaderMenuComponent extends Component {
         });
     }
 }
-
-export const styles = StyleSheet.create({
-    openingMenuContainer: {
-        zIndex: 2,
-        backgroundColor: 'white',
-        width: '100%',
-        position: 'absolute',
-        marginTop: 20 * 2,
-        borderTopWidth: 3,
-        borderTopColor: 'black',
-    },
-});
 
 AppRegistry.registerComponent('HeaderMenuComponent', () => HeaderMenuComponent);
