@@ -6,6 +6,7 @@ import { ButtonComponent } from './common/button-component';
 import { ButtonContainer } from './common/button-container';
 import { CarouselComponent } from './sections/carousel-component';
 import '../global.js';
+import mainStyles from '../main-styles.scss';
 
 export class PasswordSent extends Component {
     static navigationOptions = {
@@ -24,7 +25,7 @@ export class PasswordSent extends Component {
             <Container>
                 <ScrollComponent>
                     <CarouselComponent />
-                    <Text style={styles.welcome}>Az új jelszót elküldtük.</Text>
+                    <Text style={mainStyles.bigCenteredText}>Az új jelszót elküldtük.</Text>
                 </ScrollComponent>
 
                 <ButtonContainer>
@@ -38,11 +39,3 @@ export class PasswordSent extends Component {
         this.props.navigation.navigate('Login');
     }
 }
-
-export const styles = StyleSheet.create({
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-});

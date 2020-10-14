@@ -4,6 +4,7 @@ import {HeaderMenuComponent} from './components/header-menu-component';
 import '../../../global';
 import { HeaderCloseButton } from './components/header-close-button';
 import { HeaderMenuHandlerButton } from './components/header-menu-handler-button';
+import mainStyles from '../../../main-styles.scss';
 
 export class HeaderComponent extends Component
 {
@@ -41,7 +42,7 @@ export class HeaderComponent extends Component
 
                 <View flexDirection="row" style={{ position: 'absolute', zIndex: 1 }}>
                     <HeaderCloseButton onPress={this.props.onPress.bind(this)}/>
-                    <Text style={styles.welcome}>Áttekintés</Text>
+                    <Text style={mainStyles.bigCenteredText}>Áttekintés</Text>
                     <HeaderMenuHandlerButton onMenuOpenPress={this.props.onMenuOpenPress.bind(this)} />
                 </View>
                 <View style={[styles.primaryHeaderShape, {
@@ -110,11 +111,6 @@ export class HeaderComponent extends Component
 }
 
 export const styles = StyleSheet.create({
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
     secondaryHeaderShape: {
         position: 'absolute',
         zIndex: 1,

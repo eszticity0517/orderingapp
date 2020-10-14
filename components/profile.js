@@ -7,7 +7,7 @@ import {SummaryComponent} from './sections/summary-component';
 import '../global.js';
 import {Indicator} from './common/indicator';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import mainStyles from '../main-styles.scss';
 export class Profile extends Component
 {
     // These will be displayed.
@@ -103,7 +103,7 @@ export class Profile extends Component
         return (
             <Container>
                 <View style={{ width: '100%', flex:1, flexDirection:'column', justifyContent: 'center', alignItems: 'center', marginBottom: 55 }}>
-                    <Text style={styles.welcome}>{megnevezes}</Text>
+                    <Text style={mainStyles.bigCenteredText}>{megnevezes}</Text>
                     {cimek}
 
                     <SummaryComponent />
@@ -207,11 +207,6 @@ export const styles = StyleSheet.create({
     welcomeSmall: {
         fontSize: 15,
         textAlign: 'center',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
+    }
 });
 
