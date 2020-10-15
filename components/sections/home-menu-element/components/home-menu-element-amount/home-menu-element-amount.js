@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text} from 'react-native';
-import '../../../../global';
+import {Text} from 'react-native';
+import '../../../../../global';
+import styles from './home-menu-element-amount.scss';
 
 export class HomeMenuElementAmount extends Component
 {
@@ -24,12 +25,3 @@ export class HomeMenuElementAmount extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    amountText: {
-        color: 'green',
-        fontWeight: '400',
-        textAlign: 'center',
-        flex: 1,
-    },
-});
