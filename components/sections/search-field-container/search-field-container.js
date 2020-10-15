@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Image, View, StyleSheet} from 'react-native';
+import {Image, View} from 'react-native';
+import styles from './search-field-container.scss';
 
 export class SearchFieldContainer extends Component
 {
@@ -17,22 +18,3 @@ export class SearchFieldContainer extends Component
         );
     }
 }
-
-
-export const styles = StyleSheet.create({
-    searchFieldContainer: {
-        marginTop: 20 / 2,
-        marginBottom: 20 / 2,
-        height: 50,
-        backgroundColor: '#e4eef0',
-        borderRadius: 20 * 2,
-        paddingTop: 20 / 2,
-        paddingBottom: 20 / 2,
-        paddingRight: 20,
-        paddingLeft: 20,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
-    },
-});
