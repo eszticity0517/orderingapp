@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet} from 'react-native';
-import mainStyles from '../../../../main-styles.scss';
+import { Text, View } from 'react-native';
+import mainStyles from '../../../../../main-styles.scss';
+import styles from './product-price.scss';
 
 export class ProductPrice extends Component
 {
@@ -70,18 +71,3 @@ export class ProductPrice extends Component
         return lebontas;
     }
 }
-
-export const styles = StyleSheet.create({
-    priceContainer: {
-        flex: 0.5,
-        height: 20 * 5,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-    },
-    breakdownText: {
-        fontSize: 10,
-        fontFamily: 'italic',
-    },
-});
-
