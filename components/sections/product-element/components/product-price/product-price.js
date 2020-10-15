@@ -8,7 +8,7 @@ export class ProductPrice extends Component
     render()
     {
         return (
-            <View style={styles.priceContainer}>
+            <View style={mainStyles.imageIconContainer}>
                 <Text style={mainStyles.thickerBlackText}>{this.props.product.megn}</Text>
                 {this.renderPrice()}
                 {this.renderBreakdown()}
