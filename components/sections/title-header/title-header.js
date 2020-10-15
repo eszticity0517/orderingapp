@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
-import { SeparatorLine } from '../common/separator-line';
+import { Text, View } from 'react-native';
+import { SeparatorLine } from '../../common/separator-line';
+import styles from './title-header.scss';
 
 export class TitleHeader extends Component
 {
@@ -16,16 +17,3 @@ export class TitleHeader extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    container: {
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-    text: {
-        fontSize: 20,
-        margin: 10,
-    },
-});
-
-
