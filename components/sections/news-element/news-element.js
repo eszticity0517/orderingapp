@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Image, Text, View, StyleSheet} from 'react-native';
-import mainStyles from '../../main-styles.scss';
+import {Image, Text, View } from 'react-native';
+import mainStyles from '../../../main-styles.scss';
+import styles from './news-element.scss';
 
 export class NewsElement extends Component
 {
@@ -19,14 +20,3 @@ export class NewsElement extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    block: {
-        height: 20 * 4,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-    },
-});
-
-
