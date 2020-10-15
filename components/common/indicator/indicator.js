@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
-import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {ActivityIndicator, View} from 'react-native';
+import styles from './indicator.scss';
 
 export class Indicator extends Component
 {
@@ -19,21 +20,7 @@ export class Indicator extends Component
                 </View>
             );
         }
-        
+
         return null;
     }
 }
-
-export const styles = StyleSheet.create({
-    indicator: {
-        position: 'absolute',
-        justifyContent: 'center',
-        alignItems: 'center',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        zIndex: 100,
-        backgroundColor: 'rgba(0, 0, 0, 0.02)'
-    }
-});
