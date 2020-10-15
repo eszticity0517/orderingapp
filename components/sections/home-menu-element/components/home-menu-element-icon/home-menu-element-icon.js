@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { TouchableOpacity, Image } from 'react-native';
-import styles from './home-menu-element-icon-scss';
+import styles from './home-menu-element-icon.scss';
 
 export class HomeMenuElementIcon extends PureComponent
 {
