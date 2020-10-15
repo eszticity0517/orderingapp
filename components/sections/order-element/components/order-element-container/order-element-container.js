@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-
-import {View, StyleSheet} from 'react-native';
-
+import {View} from 'react-native';
+import styles from './order-element-container.scss';
 
 export class OrderElementContainer extends Component
 {
@@ -13,11 +12,3 @@ export class OrderElementContainer extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        borderBottomColor: 'black',
-        borderBottomWidth: 1
-    },
-});
