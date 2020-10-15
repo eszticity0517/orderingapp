@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {StyleSheet} from 'react-native';
+import styles from './button-component.scss';
 
 export class ButtonComponent extends Component
 {
@@ -32,15 +32,3 @@ export class ButtonComponent extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    touchableHighlightStyle: {
-        flex: 1,
-        alignSelf: 'stretch'
-    },
-    buttonText: {
-        color: "white",
-        fontWeight: "300"
-    }
-});
-
