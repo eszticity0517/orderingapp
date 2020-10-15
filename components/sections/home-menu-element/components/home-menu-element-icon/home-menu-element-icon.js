@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
-import { TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, Image } from 'react-native';
+import styles from './home-menu-element-icon-scss';
 
 export class HomeMenuElementIcon extends PureComponent
 {
@@ -12,13 +13,3 @@ export class HomeMenuElementIcon extends PureComponent
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    image:
-    {
-        flex: 1,
-        width: 20 * 1.5,
-        height: 20 * 1.5,
-    },
-});
-
