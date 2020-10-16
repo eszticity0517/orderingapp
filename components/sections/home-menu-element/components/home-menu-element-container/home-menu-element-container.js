@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
-import '../../../../global';
+import {View} from 'react-native';
+import '../../../../../global';
+import styles from './home-menu-element-container.scss';
 
 export class HomeMenuElementContainer extends Component
 {
@@ -21,13 +22,4 @@ export class HomeMenuElementContainer extends Component
         );
     }
 }
-
-
-export const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        borderBottomWidth: 2,
-        borderBottomColor: '#898989',
-    },
-});
 
