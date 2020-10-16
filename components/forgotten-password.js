@@ -33,12 +33,12 @@ export class ForgottenPassword extends Component {
             <Container>
                 <ScrollComponent>
                     <CarouselComponent />
-                    <Text style={{ marginTop: 20 }}>
+                    <Text style={mainStyles.withMarginTop20}>
                         Partnerazonosító
                     <ErrorText text="Kötelező megadni." hidden={this.state.felhasznalonevVan} />
                     </Text>
                     <TextInput autoFocus={false} value={this.state.felhasznalonev} onChangeText={(value) => this.onChangeText(value, 'felhasznalonev')} />
-                    <Text style={{ marginTop: 20 }}>
+                    <Text style={mainStyles.withMarginTop20}>
                         E-mail cím
                     <ErrorText text="Kötelező megadni." hidden={this.state.emailVan} />
                     </Text>

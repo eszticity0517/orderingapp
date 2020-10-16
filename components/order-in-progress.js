@@ -197,7 +197,7 @@ export class OrderInProgress extends Component {
             <Container>
                 <View style={{ paddingLeft: 20, paddingRight: 20 }}>
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
-                    <View style={{ marginTop: 20 }}>
+                    <View style={mainStyles.withMarginTop20}>
                         <SeparatorLine />
                     </View>
                 </View>

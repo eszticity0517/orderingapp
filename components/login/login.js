@@ -1,8 +1,6 @@
-import base64 from 'react-native-base64';
-
 import React, { Component } from 'react';
-import { Alert, Keyboard, Text, TextInput } from 'react-native';
-import styles from "./login.scss";
+import {  Keyboard, Text, TextInput } from 'react-native';
+import styles from './login.scss';
 import { ErrorText } from '../common/error-text';
 import { ButtonComponent } from '../common/button-component';
 import { CarouselComponent } from '../sections/carousel-component';
@@ -11,7 +9,7 @@ import { ButtonContainer } from '../common/button-container';
 import '../../global.js';
 import { Indicator } from '../common/indicator';
 import { Container } from '../common/container';
-import {StyleSheet} from 'react-native';
+import mainStyles from '../../main-styles.scss';
 
 export class Login extends Component {
     intervalHandler;
@@ -48,7 +46,7 @@ export class Login extends Component {
             <Container>
                 <ScrollComponent>
                     <CarouselComponent />
-                    <Text style={{ marginTop: 20 }}>
+                    <Text style={mainStyles.withMarginTop20}>
                         Partnerazonosító
                         {this.renderFelhasznalonevErrorMessage()}
                     </Text>
