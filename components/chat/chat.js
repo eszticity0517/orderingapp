@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {AppState, View} from 'react-native';
 import {Bubble, GiftedChat} from 'react-native-gifted-chat';
-import {ChatHeaderComponent} from './sections/chat-header-component';
-import '../global.js';
-import {Indicator} from './common/indicator';
+import {ChatHeaderComponent} from '../sections/chat-header-component';
+import '../../global.js';
+import {Indicator} from '../common/indicator';
 import AsyncStorage from '@react-native-community/async-storage';
+import styles from './chat.scss';
 
 export class Chat extends Component
 {
@@ -30,7 +31,7 @@ export class Chat extends Component
     render()
     {
         return (
-            <View style={{ width: '100%', height: '100%' }}>
+            <View style={styles.chatContainer}>
                 <ChatHeaderComponent navigation={this.props.navigation} onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened}/>
                 <GiftedChat
                     renderBubble={this.renderBubble}
