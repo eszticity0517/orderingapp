@@ -19,16 +19,21 @@ export class CarouselComponent extends Component
             <View>
                 <Carousel
                     delay={3000}
-                    style={{ width: this.state.size.width - 20 * 2, height: this.state.size.height / 3}}
+                    style={this._renderCarouselImageStyle()}
                     autoplay
                 >
-                    <Image source={require('../../../Sources/Carousel/image_0001.png')} style={{ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 }} />
-                    <Image source={require('../../../Sources/Carousel/image_0002.png')} style={{ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 }} />
-                    <Image source={require('../../../Sources/Carousel/image_0003.png')} style={{ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 }} />
-                    <Image source={require('../../../Sources/Carousel/image_0004.png')} style={{ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 }} />
-                    <Image source={require('../../../Sources/Carousel/image_0005.png')} style={{ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 }} />
+                    <Image source={require('../../../Sources/Carousel/image_0001.png')} style={this._renderCarouselImageStyle()} />
+                    <Image source={require('../../../Sources/Carousel/image_0002.png')} style={this._renderCarouselImageStyle()} />
+                    <Image source={require('../../../Sources/Carousel/image_0003.png')} style={this._renderCarouselImageStyle()} />
+                    <Image source={require('../../../Sources/Carousel/image_0004.png')} style={this._renderCarouselImageStyle()} />
+                    <Image source={require('../../../Sources/Carousel/image_0005.png')} style={this._renderCarouselImageStyle()} />
                 </Carousel>
             </View>
         );
+    }
+
+    _renderCarouselImageStyle()
+    {
+        return ({ opacity: 0.4, width: this.state.size.width - 20 * 2, height: this.state.size.height / 3 });
     }
 }
