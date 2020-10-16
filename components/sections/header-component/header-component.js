@@ -52,8 +52,8 @@ export class HeaderComponent extends Component
                 }]}>
                     <View style={{ flex: 2, marginTop: this.state.size.height / 6 - 20 }}>
                         <Text>SZÁLLÍTÁS</Text>
-                        <Text style={{ color: 'white' }}>{this.state.partnerneve}</Text>
-                        <Text style={{ color: 'white' }}>{this.props.szallitasiadatok}</Text>
+                        <Text style={mainStyles.whiteText}>{this.state.partnerneve}</Text>
+                        <Text style={mainStyles.whiteText}>{this.props.szallitasiadatok}</Text>
                         <Text>A RENDELÉS ADATAI:</Text>
                     </View>
 
@@ -90,7 +90,7 @@ export class HeaderComponent extends Component
             <View style={{ flex: 1, marginTop: this.state.size.height / 6 - 20 }}>
                 <Text>{this.props.orderdate}</Text>
                 <Text>{Math.round(this.props.total)} Ft.-</Text>
-                <Text style={{ color: 'white' }}>{this.renderStatusz()}</Text>
+                <Text style={mainStyles.whiteText}>{this.renderStatusz()}</Text>
             </View>
             );
         }
