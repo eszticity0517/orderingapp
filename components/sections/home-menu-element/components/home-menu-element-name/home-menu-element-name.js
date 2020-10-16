@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-import { Text, StyleSheet } from 'react-native';
-import '../../../../global';
+import { Text } from 'react-native';
+import '../../../../../global';
+import styles from './home-menu-element-name.scss';
 
 export class HomeMenuElementName extends PureComponent
 {
@@ -24,11 +25,3 @@ export class HomeMenuElementName extends PureComponent
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    name:
-    {
-        flex: 2,
-        textTransform: 'uppercase',
-    },
-});
