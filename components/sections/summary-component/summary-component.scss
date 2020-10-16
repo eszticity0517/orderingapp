@@ -1,0 +1,15 @@
+.blockWithBorder {
+    flex: 1;
+    align-items: 'center';
+    border-right-width: 2px;
+    border-right-color: black;
+}
+
+.blockWithoutBorder {
+    flex: 1;
+    align-items: 'center';
+}
+ .summaryContainer {
+    flex-direction: row;
+    margin-top: 20px;
+}

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
-import '../../global';
+import '../../../global';
 import mainStyles from '../../main-styles.scss';
+import styles from './summary-component.scss';
 
 export class SummaryComponent extends Component
 {
@@ -136,16 +137,16 @@ export class SummaryComponent extends Component
     render()
     {
         return (
-            <View style={{ flexDirection: 'row', marginTop: 20 }}>
-                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 2, borderRightColor: 'black' }}>
+            <View style={styles.summaryComponent}>
+                <View style={styles.blockWithBorder}>
                     <Text style={mainStyles.thickerGreenText}>{this.state.nyitottRendelesek}</Text>
                     <Text>nyitott</Text>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center', borderRightWidth: 2, borderRightColor: 'black' }}>
+                <View style={styles.blockWithBorder}>
                     <Text style={mainStyles.thickerGreenText}>{this.state.teljesitettRendelesek}</Text>
                     <Text>teljesített</Text>
                 </View>
-                <View style={{ flex: 1, alignItems: 'center' }}>
+                <View style={styles.blockWithoutBorder}>
                     <Text style={mainStyles.thickerGreenText}>{this.state.uzenetekSzama}</Text>
                     <Text>üzenet</Text>
                 </View>
