@@ -465,11 +465,11 @@ export class ReceiptInfo extends Component
         var aruatvetelek = [];
 
         // We need to add the cancel button manually, unless it won't be visible.
-        aruatvetelek.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+        aruatvetelek.push(<Text style={mainStyles.greyText}>Vissza</Text>);
 
         for (let i = 0; i < this.state.aruatvetelek.length; i++)
         {
-            aruatvetelek.push(<Text style={{ color: 'black' }}>{this.state.aruatvetelek[i].megn}</Text>);
+            aruatvetelek.push(<Text style={mainStyles.blackText}>{this.state.aruatvetelek[i].megn}</Text>);
         }
 
         return aruatvetelek;
@@ -526,11 +526,11 @@ export class ReceiptInfo extends Component
     {
         let cimErtekek = [];
         // We need to add the cancel button manually, unless it won't be visible.
-        cimErtekek.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+        cimErtekek.push(<Text style={mainStyles.greyText}>Vissza</Text>);
 
         for (let i = 0; i < this.state.cimek.length; i++)
         {
-            cimErtekek.push(<Text style={{ color: 'black' }}>{this.state.cimek[i].cim}</Text>);
+            cimErtekek.push(<Text style={mainStyles.blackText}>{this.state.cimek[i].cim}</Text>);
         }
 
         return cimErtekek;

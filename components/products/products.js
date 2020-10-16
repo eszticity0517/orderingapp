@@ -125,11 +125,11 @@ export class Products extends Component
     {
         var alcsoportok = [];
 
-        alcsoportok.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+        alcsoportok.push(<Text style={mainStyles.greyText}>Vissza</Text>);
 
         for (let i = 0; i < this.state.alcsoportok.length; i++)
         {
-            alcsoportok.push(<Text style={{ color: 'black' }}>{this.state.alcsoportok[i]}</Text>);
+            alcsoportok.push(<Text style={mainStyles.blackText}>{this.state.alcsoportok[i]}</Text>);
         }
 
         return alcsoportok;
@@ -139,11 +139,11 @@ export class Products extends Component
     {
         var kategoriak = [];
 
-        kategoriak.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+        kategoriak.push(<Text style={mainStyles.greyText}>Vissza</Text>);
 
         for (let i = 0; i < this.state.kategoriak.length; i++)
         {
-            kategoriak.push(<Text style={{ color: 'black' }}>{this.state.kategoriak[i]}</Text>);
+            kategoriak.push(<Text style={mainStyles.blackText}>{this.state.kategoriak[i]}</Text>);
         }
 
         return kategoriak;
