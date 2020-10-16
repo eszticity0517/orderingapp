@@ -482,7 +482,7 @@ export class ReceiptInfo extends Component
 
     renderNoteLabel()
     {
-        return (this.state.wayOfReceivingValue === 'Raktári átvétel' ? <Text style={{ marginTop: 20 / 2 }}>Megjegyzés</Text> : null);
+        return (this.state.wayOfReceivingValue === 'Raktári átvétel' ? <Text style={mainStyles.withMarginTop10}>Megjegyzés</Text> : null);
     }
 
     renderMarginBottom()
@@ -509,7 +509,7 @@ export class ReceiptInfo extends Component
         if (this.state.wayOfReceivingValue === 'Kiszállítás')
         {
             cimek = (
-                <View style={{ marginTop: 20 / 2 }}>
+                <View style={mainStyles.withMarginTop10}>
                     <DropdownComponent
                         onPress={this.showCimekMenu}
                         title={this.state.addressValue}

@@ -59,7 +59,7 @@ export class Products extends Component
                         title={this.state.kivalasztottKategoria}
                     />
 
-                    <View style={{ marginTop: 20 / 2 }}>
+                    <View style={mainStyles.withMarginTop10}>
                         <DropdownComponent
                             onPress={this.showAlcsoportokMenu}
                             title={this.state.kivalasztottAlcsoport}
