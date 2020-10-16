@@ -10,7 +10,7 @@ export class NewsElement extends Component
         return (
             <View style={mainStyles.flexRow}>
                 <View style={[styles.block, { flex: 0.3 }]}>
-                    <Image source={this.props.source} style={{ width: 40, height: 40 }} />
+                    <Image source={this.props.source} style={mainStyles.image} />
                 </View>
                 <View style={[styles.block, { flex: 1 }]}>
                     <Text style={mainStyles.thickerGreenText}>{this.props.text}</Text>

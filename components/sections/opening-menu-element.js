@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
+import mainStyles from '../../main-styles.scss';
 
 export class OpeningMenuElement extends Component
 {
@@ -9,7 +10,7 @@ export class OpeningMenuElement extends Component
             <View flexDirection="row" style={{ height: 40 }}>
                 <TouchableOpacity style={{ flex: 0.5, justifyContent: "center", height: 40 }} onPress={this.props.onPress.bind(this)}>
                     <Image
-                        style={{ width: 40, height: 40 }}
+                        style={mainStyles.image}
                         source={this.props.source}
                     />
                 </TouchableOpacity>
