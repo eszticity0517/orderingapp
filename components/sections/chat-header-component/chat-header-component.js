@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
-import {HeaderMenuComponent} from './header-component/components/header-menu-component';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
+import {HeaderMenuComponent} from '../header-component/components/header-menu-component';
+import styles from './chat-header-component.scss';
 
 export class ChatHeaderComponent extends Component
 {
@@ -16,7 +17,7 @@ export class ChatHeaderComponent extends Component
                     <TouchableOpacity style={{ flex: 0.1, justifyContent: 'center', height: 20 * 2 }} onPress={this.props.onMenuOpenPress.bind(this)}>
                         <Image
                             style={{ width: 20, height: 20 * 0.75, marginRight: 20 / 2 }}
-                            source={require('../../Sources/Chat/openMenu_over.png')}
+                            source={require('../../../Sources/Chat/openMenu_over.png')}
                         />
                     </TouchableOpacity>
                 </View>
@@ -29,13 +30,3 @@ export class ChatHeaderComponent extends Component
         return (this.props.isMenuOpened ? <HeaderMenuComponent navigation={this.props.navigation} onMenuOpenPress={this.props.onMenuOpenPress.bind(this)} /> : undefined);
     }
 }
-
-
-
-export const styles = StyleSheet.create({
-    welcomeSmallNoTextAlign: {
-        fontSize: 15,
-        color: 'white',
-    },
-});
-
