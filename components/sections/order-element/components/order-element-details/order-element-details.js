@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { Text, View, StyleSheet} from 'react-native';
-import mainStyles from '../../../../main-styles.scss';
+import { Text, View} from 'react-native';
+import mainStyles from '../../../../../main-styles.scss';
+import styles from './order-element-details.scss';
 
 export class OrderElementDetails extends Component {
     render()
@@ -13,14 +14,3 @@ export class OrderElementDetails extends Component {
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    container: {
-        flex: 5,
-        height: 80,
-        justifyContent: 'center',
-    },
-    productText: {
-        fontStyle: 'italic'
-    }
-});
