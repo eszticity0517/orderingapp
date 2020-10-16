@@ -6,6 +6,7 @@ import { ProductElementAmountSelector } from './components/product-element-amoun
 import { ProductImage } from './components/product-image';
 import { ProductPackagingSelector } from './components/product-packaging-selector';
 import { ProductPrice } from './components/product-price';
+import mainStyles from '../../../main-styles.scss';
 
 export class ProductElement extends Component {
     static propTypes = {
@@ -14,7 +15,7 @@ export class ProductElement extends Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={mainStyles.flexRow}>
                 <ProductImage product={this.props.product}/>
                 <ProductPrice
                     total={this.props.total}

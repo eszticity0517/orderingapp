@@ -8,7 +8,7 @@ export class NewsElement extends Component
     render()
     {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={mainStyles.flexRow}>
                 <View style={[styles.block, { flex: 0.3 }]}>
                     <Image source={this.props.source} style={{ width: 40, height: 40 }} />
                 </View>
