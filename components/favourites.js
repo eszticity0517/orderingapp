@@ -17,6 +17,7 @@ import { ProductElement } from './sections/product-element';
 import '../global.js';
 import {Indicator} from './common/indicator';
 import {Container} from './common/container';
+import mainStyles from '../main-styles.scss';
 
 export class Favourites extends Component
 {
@@ -143,7 +144,7 @@ export class Favourites extends Component
     {
         return (
             <Container>
-                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                <View style={mainStyles.paddedView}>
                     <SearchFieldContainer>
                         <TextInput underlineColorAndroid={'transparent'} value={this.state.filter} onChangeText={(value) => this.onChangeText(value, 'filter')} />
                         <SeparatorLine/>

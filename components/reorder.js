@@ -39,7 +39,7 @@ export class Reorder extends Component
     {
         return (
             <Container>
-                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                <View style={mainStyles.paddedView}>
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} orderstatus={this.state.order ? this.state.order.nyitott : 0} orderdate={this.state.order ? this.state.order.kelt : null} total={this.state.sum} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
                     {this.renderCancelButton()}
                     <SeparatorLine />
