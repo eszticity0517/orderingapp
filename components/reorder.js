@@ -44,12 +44,7 @@ export class Reorder extends Component
                     {this.renderCancelButton()}
                     <SeparatorLine />
                 </View>
-                <ScrollView style={{
-                    flex: 1,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    marginBottom: 55,
-                }}>
+                <ScrollView style={mainStyles.scroller}>
                     {this.renderElemek()}
                 </ScrollView>
 

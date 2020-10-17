@@ -201,12 +201,7 @@ export class OrderInProgress extends Component {
                         <SeparatorLine />
                     </View>
                 </View>
-                <ScrollView style={{
-                    flex: 1,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    marginBottom: 55,
-                }}>
+                <ScrollView style={mainStyles.scroller}>
                     {termekek}
                 </ScrollView>
 

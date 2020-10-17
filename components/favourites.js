@@ -151,12 +151,7 @@ export class Favourites extends Component
                     </SearchFieldContainer>
                     <SeparatorLine />
                 </View>
-                <ScrollView style={{
-                    flex: 1,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    marginBottom: 55,
-                }}>
+                <ScrollView style={mainStyles.scroller}>
                     {this.renderTermekek()}
                 </ScrollView>
 
