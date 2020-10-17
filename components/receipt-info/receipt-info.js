@@ -409,7 +409,7 @@ export class ReceiptInfo extends Component
                     {this.renderCimek()}
 
                     {this.renderNoteLabel()}
-                    <View style={{ height: 20 * 1.5}}>
+                    <View style={styles.textInputContainer}>
                         <TextInput underlineColorAndroid={'transparent'} placeholder={this.renderNotePlaceholder()} value={this.state.megjegyzes} onChangeText={(value) => this.onChangeText(value, 'megjegyzes')} />
                         <SeparatorLine style={this.renderSeparatorLineStyle()}/>
                     </View>
