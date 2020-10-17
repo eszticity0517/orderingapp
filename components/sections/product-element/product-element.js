@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet} from 'react-native';
+import { View} from 'react-native';
 import PropTypes from 'prop-types';
 import { ProductElementChecker } from './components/product-element-checker';
 import { ProductElementAmountSelector } from './components/product-element-amount-selector';
 import { ProductImage } from './components/product-image';
 import { ProductPackagingSelector } from './components/product-packaging-selector';
 import { ProductPrice } from './components/product-price';
+import mainStyles from '../../../main-styles.scss';
 
 export class ProductElement extends Component {
     static propTypes = {
@@ -14,7 +15,7 @@ export class ProductElement extends Component {
 
     render() {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={mainStyles.flexRow}>
                 <ProductImage product={this.props.product}/>
                 <ProductPrice
                     total={this.props.total}
@@ -109,17 +110,3 @@ export class ProductElement extends Component {
         return false;
     }
 }
-
-export const styles = StyleSheet.create({
-    thickerBlackText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
-    thickerGreenText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        color: '#77D353',
-    },
-});
-

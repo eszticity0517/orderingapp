@@ -8,6 +8,7 @@ import { CarouselComponent } from './sections/carousel-component';
 import '../global.js';
 import { Indicator } from './common/indicator';
 import { Container } from './common/container';
+import mainStyles from '../main-styles.scss';
 
 export class ForgottenPassword extends Component {
     static navigationOptions = {
@@ -32,12 +33,12 @@ export class ForgottenPassword extends Component {
             <Container>
                 <ScrollComponent>
                     <CarouselComponent />
-                    <Text style={{ marginTop: 20 }}>
+                    <Text style={mainStyles.withMarginTop20}>
                         Partnerazonosító
                     <ErrorText text="Kötelező megadni." hidden={this.state.felhasznalonevVan} />
                     </Text>
                     <TextInput autoFocus={false} value={this.state.felhasznalonev} onChangeText={(value) => this.onChangeText(value, 'felhasznalonev')} />
-                    <Text style={{ marginTop: 20 }}>
+                    <Text style={mainStyles.withMarginTop20}>
                         E-mail cím
                     <ErrorText text="Kötelező megadni." hidden={this.state.emailVan} />
                     </Text>
@@ -45,7 +46,7 @@ export class ForgottenPassword extends Component {
                 </ScrollComponent>
 
 
-                <ButtonContainer hidden={this.state.isButtonHidden} style={styles.upperButtonContainer}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={mainStyles.upperButtonContainer}>
                     <ButtonComponent onPress={this.onSendPress.bind(this)} text="Új jelszó küldése" />
                 </ButtonContainer>
                 <ButtonContainer hidden={this.state.isButtonHidden}>
@@ -205,20 +206,3 @@ export class ForgottenPassword extends Component {
         });
     }
 }
-
-export const styles = StyleSheet.create({
-    upperButtonContainer: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        height: 20 * 2 + 20 / 2,
-        flexDirection: 'row',
-        bottom: 20 * 2 + 20 / 2,
-        flex: 1,
-        alignSelf: 'stretch',
-        right: 0,
-        left: 0,
-        zIndex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-});

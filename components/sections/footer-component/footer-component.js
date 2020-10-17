@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import {ButtonContainer} from '../../common/button-container';
 import '../../../global';
-import {StyleSheet} from 'react-native';
 import { FooterIconButton } from './components/footer-icon-button';
+import styles from './footer-component.scss';
 
 export class FooterComponent extends Component
 {
@@ -36,7 +36,8 @@ export class FooterComponent extends Component
             {
                 orderstate = 'EmptyCart';
             }
-            else {
+            else
+            {
                 orderstate = 'OrderInProgress';
             }
 
@@ -44,28 +45,3 @@ export class FooterComponent extends Component
         });
     }
 }
-
-export const styles = StyleSheet.create({
-    footerButtonContainer: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        height: 50,
-        flexDirection: 'row',
-        flex: 1,
-        alignSelf: 'stretch',
-        right: 0,
-        left: 0,
-        zIndex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-        bottom: 12,
-    },
-    innerContainer: {
-        height: 40,
-        width: '100%',
-        backgroundColor: 'black',
-        flexDirection: 'row',
-        alignSelf: 'stretch',
-    },
-});
-

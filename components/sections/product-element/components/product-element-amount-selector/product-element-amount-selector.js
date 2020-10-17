@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Text, TouchableOpacity, View} from 'react-native';
 import { AmountActionButton } from './components/amount-action-button';
 import { AmountDisplay } from './components/amount-display';
+import styles from './product-element-amount-selector.scss';
 
 export class ProductElementAmountSelector extends Component
 {
@@ -26,27 +27,4 @@ export class ProductElementAmountSelector extends Component
         );
     }
 }
-
-export const styles = StyleSheet.create({
-    selectorContainer: {
-        flex: 0.1,
-        height: 20 * 5,
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-    },
-    innerContainer: {
-        flexDirection: 'row',
-        height: 20 * 1.5,
-        backgroundColor: '#e4eef0',
-        borderBottomColor: 'white',
-        borderBottomWidth: 1
-    },
-    touchable: {
-        backgroundColor: '#e4eef0',
-        height: 20 * 2, flex: 0.6,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 

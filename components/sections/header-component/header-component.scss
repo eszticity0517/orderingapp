@@ -1,0 +1,16 @@
+.secondaryHeaderShape {
+    position: absolute;
+    z-index: 1;
+    left: -20px;
+    background-color: white;
+}
+.primaryHeaderShape {
+    flex-direction: row;
+    background-color: #77D353;
+    padding: 20px;
+}
+.innerContainer {
+    position: absolute;
+    z-index: 1;
+}
+

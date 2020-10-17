@@ -8,6 +8,7 @@ import '../global.js';
 import { Indicator } from './common/indicator';
 import { Container } from './common/container';
 import { TitleHeader } from './sections/title-header';
+import mainStyles from '../main-styles.scss';
 
 export class Orders extends Component {
     static navigationOptions = {
@@ -93,7 +94,7 @@ export class Orders extends Component {
             <Container>
                 <TitleHeader title="Összes rendelés"/>
 
-                <ScrollComponent style={styles.scroll}>
+                <ScrollComponent style={mainStyles.scroller}>
                     {rendelesek}
                 </ScrollComponent>
 
@@ -135,12 +136,3 @@ export class Orders extends Component {
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    scroll: {
-        flex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-        marginBottom: 55,
-    },
-});

@@ -1,0 +1,14 @@
+.totalContainer {
+    height: 30px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: #77D353;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.innerContainer {
+    flex: 1;
+    justify-content: center;
+}

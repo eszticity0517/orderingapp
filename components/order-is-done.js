@@ -7,6 +7,7 @@ import { ScrollComponent } from './common/scroll-component';
 import '../global.js';
 import { Container } from './common/container';
 import { ButtonContainer } from './common/button-container';
+import mainStyles from '../main-styles.scss';
 
 export class OrderIsDone extends Component
 {
@@ -31,8 +32,8 @@ export class OrderIsDone extends Component
             <Container>
                 <ScrollComponent appearance="view">
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} szallitasiadatok={this.state.szallitasiadatok} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
-                    <View style={{ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 20 * 4, width: this.state.size.width - 40 }}>
-                        <Text style={styles.welcomeNoMargin}>Rendelését rögzítettük.</Text>
+                    <View style={this._renderButtonContainerStyle()}>
+                        <Text style={mainStyles.welcomeNoMargin}>Rendelését rögzítettük.</Text>
                     </View>
                 </ScrollComponent>
                 <ButtonContainer>
@@ -40,6 +41,11 @@ export class OrderIsDone extends Component
                 </ButtonContainer>
             </Container>
         );
+    }
+
+    _renderButtonContainerStyle()
+    {
+        return ({ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 80, width: this.state.size.width - 40 });
     }
 
     componentDidMount()
@@ -98,11 +104,3 @@ export class OrderIsDone extends Component
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    welcomeNoMargin: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-});
-

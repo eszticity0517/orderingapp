@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Image, Text, TouchableOpacity, View, StyleSheet} from 'react-native';
+import { Text, View} from 'react-native';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
+import mainStyles from '../../../../main-styles.scss';
 
 export class ProductPackagingSelector extends Component
 {
@@ -28,18 +29,18 @@ export class ProductPackagingSelector extends Component
     {
         let kiszereles = [];
 
-        kiszereles.push(<Text style={{ color: 'grey' }}>Vissza</Text>);
+        kiszereles.push(<Text style={mainStyles.greyText}>Vissza</Text>);
 
         if (this.props.product.kiszereles !== null)
         {
             for (let i = 0; i < this.props.product.kiszereles.length; i++)
             {
-                kiszereles.push(<Text style={{ color: 'black' }}>{this.props.product.kiszereles[i].megn}</Text>);
+                kiszereles.push(<Text style={mainStyles.blackText}>{this.props.product.kiszereles[i].megn}</Text>);
             }
         }
         else
         {
-            kiszereles.push(<Text style={{ color: 'black' }}>{this.props.product.kivalasztottegyseg}</Text>);
+            kiszereles.push(<Text style={mainStyles.blackText}>{this.props.product.kivalasztottegyseg}</Text>);
         }
 
         return kiszereles;

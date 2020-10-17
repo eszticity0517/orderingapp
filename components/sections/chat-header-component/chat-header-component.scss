@@ -1,0 +1,31 @@
+.welcomeSmallNoTextAlign {
+    font-size: 15px;
+    color: white;
+}
+
+.innerContainer {
+    padding-left: 10px;
+    flex-direction: row;
+    height: 40px;
+    width: 100%;
+    background-color: #77D353;
+    align-self: stretch;
+}
+
+.titleContainer {
+    flex: 0.9;
+    justify-content: center;
+    height: 40px;
+}
+
+.imageContainer {
+    flex: 0.1;
+    justify-content: 'center'; 
+    height: 40px;
+}
+
+.image {
+    width: 20px;
+    height: 15px;
+    margin-right: 10px;
+}

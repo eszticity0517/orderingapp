@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {AppRegistry, Text, View, StyleSheet} from 'react-native';
+import {AppRegistry, Text, View} from 'react-native';
 import {HeaderMenuComponent} from './components/header-menu-component';
 import '../../../global';
 import { HeaderCloseButton } from './components/header-close-button';
 import { HeaderMenuHandlerButton } from './components/header-menu-handler-button';
+import mainStyles from '../../../main-styles.scss';
+import styles from './header-component.scss';
 
 export class HeaderComponent extends Component
 {
@@ -39,19 +41,19 @@ export class HeaderComponent extends Component
                 {this.renderMenuComponent()}
                 {this.renderSecondaryHeaderShape()}
 
-                <View flexDirection="row" style={{ position: 'absolute', zIndex: 1 }}>
+                <View flexDirection="row" style={styles.innerContainer}>
                     <HeaderCloseButton onPress={this.props.onPress.bind(this)}/>
-                    <Text style={styles.welcome}>Áttekintés</Text>
+                    <Text style={mainStyles.bigCenteredText}>Áttekintés</Text>
                     <HeaderMenuHandlerButton onMenuOpenPress={this.props.onMenuOpenPress.bind(this)} />
                 </View>
                 <View style={[styles.primaryHeaderShape, {
                     height: this.state.size.height / 3,
                     width: this.state.size.width - 40,
                 }]}>
-                    <View style={{ flex: 2, marginTop: this.state.size.height / 6 - 20 }}>
+                    <View style={[this._renderContainerStyle(2)]}>
                         <Text>SZÁLLÍTÁS</Text>
-                        <Text style={{ color: 'white' }}>{this.state.partnerneve}</Text>
-                        <Text style={{ color: 'white' }}>{this.props.szallitasiadatok}</Text>
+                        <Text style={mainStyles.whiteText}>{this.state.partnerneve}</Text>
+                        <Text style={mainStyles.whiteText}>{this.props.szallitasiadatok}</Text>
                         <Text>A RENDELÉS ADATAI:</Text>
                     </View>
 
@@ -59,6 +61,11 @@ export class HeaderComponent extends Component
                 </View>
             </View>
         );
+    }
+
+    _renderContainerStyle(flex)
+    {
+        return ({fley: flex, marginTop: this.state.size.height / 6 - 20});
     }
 
     renderSecondaryHeaderShape()
@@ -85,10 +92,10 @@ export class HeaderComponent extends Component
         if (this.props.orderdate && this.props.total)
         {
             return (
-            <View style={{ flex: 1, marginTop: this.state.size.height / 6 - 20 }}>
+            <View style={this._renderContainerStyle(1)}>
                 <Text>{this.props.orderdate}</Text>
                 <Text>{Math.round(this.props.total)} Ft.-</Text>
-                <Text style={{ color: 'white' }}>{this.renderStatusz()}</Text>
+                <Text style={mainStyles.whiteText}>{this.renderStatusz()}</Text>
             </View>
             );
         }
@@ -108,24 +115,5 @@ export class HeaderComponent extends Component
         this.props.navigation.navigate(value);
     }
 }
-
-export const styles = StyleSheet.create({
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    secondaryHeaderShape: {
-        position: 'absolute',
-        zIndex: 1,
-        left: -20,
-        backgroundColor: 'white',
-    },
-    primaryHeaderShape: {
-        flexDirection: 'row',
-        backgroundColor: '#77D353',
-        padding: 20,
-    },
-});
 
 AppRegistry.registerComponent('HeaderComponent', () => HeaderComponent);

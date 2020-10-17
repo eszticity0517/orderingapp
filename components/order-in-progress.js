@@ -10,6 +10,8 @@ import { TotalComponent } from './sections/total-component';
 import { ButtonContainer } from './common/button-container';
 import { Container } from './common/container';
 import '../global.js';
+import mainStyles from '../main-styles.scss';
+
 export class OrderInProgress extends Component {
     static navigationOptions = {
         headerShown: false,
@@ -193,22 +195,17 @@ export class OrderInProgress extends Component {
 
         return (
             <Container>
-                <View style={{ paddingLeft: 20, paddingRight: 20 }}>
+                <View style={mainStyles.paddedView}>
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
-                    <View style={{ marginTop: 20 }}>
+                    <View style={mainStyles.withMarginTop20}>
                         <SeparatorLine />
                     </View>
                 </View>
-                <ScrollView style={{
-                    flex: 1,
-                    paddingLeft: 20,
-                    paddingRight: 20,
-                    marginBottom: 55,
-                }}>
+                <ScrollView style={mainStyles.scroller}>
                     {termekek}
                 </ScrollView>
 
-                <ButtonContainer style={styles.upperButtonContainer}>
+                <ButtonContainer style={mainStyles.upperButtonContainer}>
                     <TotalComponent text="Teljes összeg" sum={Math.round(this.state.vegosszeg)} />
                 </ButtonContainer>
 
@@ -477,22 +474,5 @@ export class OrderInProgress extends Component {
         }
     }
 }
-
-export const styles = StyleSheet.create({
-    upperButtonContainer: {
-        position: 'absolute',
-        backgroundColor: 'white',
-        height: 20 * 2 + 20 / 2,
-        flexDirection: 'row',
-        bottom: 20 * 2 + 20 / 2,
-        flex: 1,
-        alignSelf: 'stretch',
-        right: 0,
-        left: 0,
-        zIndex: 1,
-        paddingLeft: 20,
-        paddingRight: 20,
-    },
-});
 
 AppRegistry.registerComponent('OrderInProgress', () => OrderInProgress);

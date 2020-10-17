@@ -1,0 +1,18 @@
+.welcomeSmall {
+    font-size: 15px;
+    text-align: center;
+}
+
+.innerContainer {
+    width: 100%;
+    flex:1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.buttonContainer {
+    padding: 20px;
+    width: 100%;
+}
