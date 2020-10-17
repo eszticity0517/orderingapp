@@ -12,10 +12,10 @@ export class DropdownComponent extends Component
             return (
                 <TouchableOpacity onPress={this.props.onPress.bind(this)}>
                     <View style={styles.innerContainer}>
-                        <View style={{ flex: 9 }}>
+                        <View style={styles.title}>
                             <Text>{this.props.title}</Text>
                         </View>
-                        <View style={{ flex: 1, justifyContent: 'center' }}>
+                        <View style={styles.imageContainer}>
                             <Image
                                 source={require('../../../Sources/Products/icon-arrow-down-b-512.png')}
                                 style={mainStyles.smallImage}

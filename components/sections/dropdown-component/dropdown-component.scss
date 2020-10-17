@@ -6,3 +6,12 @@
     flex-direction: row;
     padding: 10px;
 };
+
+.title {
+    flex: 9;
+}
+
+.imageContainer {
+    flex: 1;
+    justify-content: center;
+}
