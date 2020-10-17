@@ -13,7 +13,7 @@ export class SeparatorLine extends Component
     {
         return (
             <View
-                style={styles.line}
+                style={[styles.line, this.props.style]}
             />
         );
     }

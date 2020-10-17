@@ -68,7 +68,7 @@ export class Products extends Component
 
                     <SearchFieldContainer>
                         <TextInput underlineColorAndroid={'transparent'} value={this.state.filter} onChangeText={(value) => this.onChangeText(value, 'filter')} />
-                        <View style={{ borderTopColor: 'black', borderBottomWidth: 1, flex: 1 }} />
+                        <SeparatorLine style={this._renderSeparatorLineStyle()}/>
                     </SearchFieldContainer>
 
                     <SeparatorLine />
@@ -119,6 +119,11 @@ export class Products extends Component
                 </View>
             </Container >
         );
+    }
+
+    _renderSeparatorLineStyle()
+    {
+        return ({ flex: 1 });
     }
 
     renderAlcsoportok()
