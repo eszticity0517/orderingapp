@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Alert, AppState, ScrollView, Text, View, StyleSheet } from 'react-native';
+import { Alert, AppState, ScrollView, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { HeaderComponent } from './sections/header-component';
-import { ButtonComponent } from './common/button-component';
-import { SeparatorLine } from './common/separator-line';
-import { ProductElement } from './sections/product-element';
-import { ButtonContainer } from './common/button-container';
-import { Container } from './common/container';
-import '../global.js';
-import {Indicator} from './common/indicator';
+import { HeaderComponent } from '../sections/header-component';
+import { ButtonComponent } from '../common/button-component';
+import { SeparatorLine } from '../common/separator-line';
+import { ProductElement } from '../sections/product-element';
+import { ButtonContainer } from '../common/button-container';
+import { Container } from '../common/container';
+import '../../global.js';
+import {Indicator} from '../common/indicator';
 import mainStyles from '../main-styles.scss';
+import styles from './reorder.scss';
 
 export class Reorder extends Component
 {
@@ -64,7 +65,7 @@ export class Reorder extends Component
         }
 
         return (this.state.isReorderWanted ?
-            (<View style={{ height: 30, width: '100%', marginTop: 20, marginBottom: 20 }}>
+            (<View style={styles.buttonContainer}>
                 <ButtonComponent onPress={this.onReorderPress.bind(this)} text="Mégsem" />
             </View>) : undefined
         );
@@ -127,7 +128,7 @@ export class Reorder extends Component
 
         if (this.state.orderWithData !== null && this.state.orderWithData.items === null)
         {
-            return (<View style={{ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' }}>
+            return (<View style={this._renderWarningTextStyle()}>
                 <Text style={mainStyles.welcomeNoMargin}>Az elemek nem tölthetők be.</Text>
             </View>);
         }
@@ -135,6 +136,10 @@ export class Reorder extends Component
         return elemek;
     }
 
+    _renderWarningTextStyle()
+    {
+        return ({ justifyContent: 'center', height: (this.state.size.height - 20 * 2) / 2 - 20 * 2, width: '100%' });
+    }
 
     componentWillMount()
     {
