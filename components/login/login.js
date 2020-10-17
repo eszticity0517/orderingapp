@@ -59,7 +59,7 @@ export class Login extends Component {
                     <Text onPress={this.onForgotPress.bind(this)} style={styles.forgotPasswordText}>Elfelejtettem a jelszavamat</Text>
                 </ScrollComponent>
 
-                <ButtonContainer hidden={this.state.isButtonHidden} style={{ bottom: 0 }}>
+                <ButtonContainer hidden={this.state.isButtonHidden} style={styles.buttonContainer}>
                     <ButtonComponent onPress={this.onLoginPress.bind(this)} text="Bejelentkezés" />
                 </ButtonContainer>
                 {this.renderIndicator()}
