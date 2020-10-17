@@ -90,7 +90,6 @@ export class Profile extends Component
 
     render()
     {
-        var backgroundColor = this.props.backgroundColor ? this.props.backgroundColor : '#323232';
         var megnevezes = this.state.partnerAdatok !== null ? this.state.partnerAdatok.megn : undefined;
         var cimek = [];
 
@@ -104,13 +103,13 @@ export class Profile extends Component
 
         return (
             <Container>
-                <View style={{ width: '100%', flex:1, flexDirection:'column', justifyContent: 'center', alignItems: 'center', marginBottom: 55 }}>
+                <View style={styles.innerContainer}>
                     <Text style={mainStyles.bigCenteredText}>{megnevezes}</Text>
                     {cimek}
 
                     <SummaryComponent />
 
-                    <View style={{ padding: 20, width: '100%' }}>
+                    <View style={styles.buttonContainer}>
                         <ButtonComponent type="stretch" onPress={this.onPress.bind(this)} text="Kijelentkezés" />
                     </View>
                 </View>

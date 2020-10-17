@@ -698,7 +698,7 @@ export class ReceiptInfo extends Component
                                     // Change the original quantity of the element
                                     element.mennyiseg = nemKedvezmenyezettMennyiseg.toString();
 
-                                    var cart = JSON.parse(JSON.stringify(this.state.cart));
+                                    cart = JSON.parse(JSON.stringify(this.state.cart));
                                     cart.tetelek.push(kedvezmenyesElem);
 
                                     this.setState({ cart: cart });
