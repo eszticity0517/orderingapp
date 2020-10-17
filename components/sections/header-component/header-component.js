@@ -41,7 +41,7 @@ export class HeaderComponent extends Component
                 {this.renderMenuComponent()}
                 {this.renderSecondaryHeaderShape()}
 
-                <View flexDirection="row" style={{ position: 'absolute', zIndex: 1 }}>
+                <View flexDirection="row" style={styles.innerContainer}>
                     <HeaderCloseButton onPress={this.props.onPress.bind(this)}/>
                     <Text style={mainStyles.bigCenteredText}>Áttekintés</Text>
                     <HeaderMenuHandlerButton onMenuOpenPress={this.props.onMenuOpenPress.bind(this)} />
@@ -50,7 +50,7 @@ export class HeaderComponent extends Component
                     height: this.state.size.height / 3,
                     width: this.state.size.width - 40,
                 }]}>
-                    <View style={{ flex: 2, marginTop: this.state.size.height / 6 - 20 }}>
+                    <View style={[this._renderContainerStyle(2)]}>
                         <Text>SZÁLLÍTÁS</Text>
                         <Text style={mainStyles.whiteText}>{this.state.partnerneve}</Text>
                         <Text style={mainStyles.whiteText}>{this.props.szallitasiadatok}</Text>
@@ -61,6 +61,11 @@ export class HeaderComponent extends Component
                 </View>
             </View>
         );
+    }
+
+    _renderContainerStyle(flex)
+    {
+        return ({fley: flex, marginTop: this.state.size.height / 6 - 20});
     }
 
     renderSecondaryHeaderShape()
@@ -87,7 +92,7 @@ export class HeaderComponent extends Component
         if (this.props.orderdate && this.props.total)
         {
             return (
-            <View style={{ flex: 1, marginTop: this.state.size.height / 6 - 20 }}>
+            <View style={this._renderContainerStyle(1)}>
                 <Text>{this.props.orderdate}</Text>
                 <Text>{Math.round(this.props.total)} Ft.-</Text>
                 <Text style={mainStyles.whiteText}>{this.renderStatusz()}</Text>
