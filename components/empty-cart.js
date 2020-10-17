@@ -36,7 +36,7 @@ export class EmptyCart extends Component
             <Container>
                 <ScrollComponent appearance="view">
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
-                    <View style={{ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 20 * 4, width: this.state.size.width - 40}}>
+                    <View style={[this._renderButtonContainerStyle()]}>
                         <Text style={mainStyles.welcomeNoMargin}>A kosár üres.</Text>
                     </View>
 
@@ -46,6 +46,11 @@ export class EmptyCart extends Component
                 </ButtonContainer>
             </Container>
         );
+    }
+
+    _renderButtonContainerStyle()
+    {
+        return ({ justifyContent: 'center', height: (this.state.size.height / 3) * 2 - 80, width: this.state.size.width - 40 });
     }
 
     componentWillUnmount()
