@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Image, Text, TouchableOpacity, View} from 'react-native';
 import styles from './dropdown-component.scss';
+import mainStyles from '../../../main-styles.scss';
 
 export class DropdownComponent extends Component
 {
@@ -17,7 +18,7 @@ export class DropdownComponent extends Component
                         <View style={{ flex: 1, justifyContent: 'center' }}>
                             <Image
                                 source={require('../../../Sources/Products/icon-arrow-down-b-512.png')}
-                                style={{ width: 20 / 1.5, height: 20 / 1.5 }}
+                                style={mainStyles.smallImage}
                             />
                         </View>
                     </View>
