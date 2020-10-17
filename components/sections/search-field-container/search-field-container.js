@@ -9,10 +9,10 @@ export class SearchFieldContainer extends Component
     {
         return (
             <View style={styles.searchFieldContainer}>
-                    <View style={{ flex: 0.1}}>
+                    <View style={styles.imagePart}>
                         <Image source={require('../../Sources/Products/search_over.png')} style={mainStyles.smallImage} />
                     </View>
-                    <View style={{ flex: 1 }}>
+                    <View style={styles.miscedPart}>
                         {this.props.children}
                     </View>
             </View>
