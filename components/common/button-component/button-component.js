@@ -11,9 +11,9 @@ export class ButtonComponent extends Component
         if (this.props.type && this.props.type === 'stretch')
         {
             return (
-                <View style={{ height: 60, width: '100%' }}>
+                <View style={styles.buttonMainContainer}>
                     <TouchableOpacity onPress={this.props.onPress.bind(this)} style={styles.touchableHighlightStyle}>
-                        <View style={{ backgroundColor: backgroundColor, alignItems: 'center', justifyContent: 'center', height: 30, borderRadius: 3 }}>
+                        <View style={[styles.buttonContainer, { backgroundColor: backgroundColor }]}>
                             <Text style={styles.buttonText}>{this.props.text.toUpperCase()}</Text>
                         </View>
                     </TouchableOpacity>
@@ -24,7 +24,7 @@ export class ButtonComponent extends Component
         {
             return (
                 <TouchableOpacity onPress={this.props.onPress.bind(this)} style={styles.touchableHighlightStyle}>
-                    <View style={{ backgroundColor: backgroundColor, alignItems: 'center', justifyContent: 'center', height: 30, borderRadius: 3 }}>
+                    <View style={[styles.buttonContainer, { backgroundColor: backgroundColor }]}>
                         <Text style={styles.buttonText}>{this.props.text.toUpperCase()}</Text>
                     </View>
                 </TouchableOpacity>
