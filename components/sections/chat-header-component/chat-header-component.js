@@ -10,13 +10,13 @@ export class ChatHeaderComponent extends Component
         return (
             <View>
                 {this.renderMenuComponent()}
-                <View style={{ paddingLeft: 20 / 2, flexDirection: 'row', height: 20 * 2, width: '100%', backgroundColor: "#77D353", alignSelf: 'stretch' }}>
-                    <View style={{ flex: 0.9, justifyContent: 'center', height: 20 * 2 }}>
+                <View style={styles.innerContainer}>
+                    <View style={styles.titleContainer}>
                         <Text style={styles.welcomeSmallNoTextAlign}>Chat</Text>
                     </View>
-                    <TouchableOpacity style={{ flex: 0.1, justifyContent: 'center', height: 20 * 2 }} onPress={this.props.onMenuOpenPress.bind(this)}>
+                    <TouchableOpacity style={styles.imageContainer} onPress={this.props.onMenuOpenPress.bind(this)}>
                         <Image
-                            style={{ width: 20, height: 20 * 0.75, marginRight: 20 / 2 }}
+                            style={styles.image}
                             source={require('../../../Sources/Chat/openMenu_over.png')}
                         />
                     </TouchableOpacity>
