@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import { AppState, Keyboard, Text, TextInput, View, Alert, StyleSheet } from 'react-native';
-
-import { HeaderComponent } from './sections/header-component';
-import { ButtonComponent } from './common/button-component';
-import { SeparatorLine } from './common/separator-line';
-import { ScrollComponent } from './common/scroll-component';
-import { ButtonContainer } from './common/button-container';
-import { Container } from './common/container';
-import { TotalComponent } from './sections/total-component';
-import { DropdownComponent } from './sections/dropdown-component';
-import '../global.js';
-import {Indicator} from './common/indicator';
+import { AppState, Keyboard, Text, TextInput, View, Alert } from 'react-native';
+import { HeaderComponent } from '../sections/header-component';
+import { ButtonComponent } from '../common/button-component';
+import { SeparatorLine } from '../common/separator-line';
+import { ScrollComponent } from '../common/scroll-component';
+import { ButtonContainer } from '../common/button-container';
+import { Container } from '../common/container';
+import { TotalComponent } from '../sections/total-component';
+import { DropdownComponent } from '../sections/dropdown-component';
+import '../../global.js';
+import {Indicator} from '../common/indicator';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
 import AsyncStorage from '@react-native-community/async-storage';
 import mainStyles from '../main-styles.scss';
+import styles from './receipt-info.scss';
 
 export class ReceiptInfo extends Component
 {
@@ -364,9 +364,7 @@ export class ReceiptInfo extends Component
 
                     <HeaderComponent onMenuOpenPress={this.onMenuOpenPress.bind(this)} isMenuOpened={this.state.isMenuOpened} navigation={this.props.navigation} onPress={(value) => this.onPress('Home')} />
 
-                    <View style={{ marginTop: 20, marginBottom: 20 }}>
-                        <SeparatorLine />
-                    </View>
+                    <SeparatorLine style={styles.separatorLine} />
 
                     <View>
                         <ActionSheet
@@ -413,7 +411,7 @@ export class ReceiptInfo extends Component
                     {this.renderNoteLabel()}
                     <View style={{ height: 20 * 1.5}}>
                         <TextInput underlineColorAndroid={'transparent'} placeholder={this.renderNotePlaceholder()} value={this.state.megjegyzes} onChangeText={(value) => this.onChangeText(value, 'megjegyzes')} />
-                        <View style={{ borderTopColor: 'black', borderBottomWidth: 2, flex: 1 }} />
+                        <SeparatorLine style={this.renderSeparatorLineStyle()}/>
                     </View>
                 </ScrollComponent>
 
@@ -431,6 +429,11 @@ export class ReceiptInfo extends Component
             </Container>
 
         );
+    }
+
+    renderSeparatorLineStyle()
+    {
+        return ({ flex: 1 });
     }
 
     renderFuvardij()
