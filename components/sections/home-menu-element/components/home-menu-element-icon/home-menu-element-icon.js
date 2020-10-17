@@ -7,7 +7,7 @@ export class HomeMenuElementIcon extends PureComponent
     render()
     {
         return (
-            <TouchableOpacity style={{ flex: 0.5 }} onPress={this.props.onPress.bind(this)}>
+            <TouchableOpacity style={styles.touchable} onPress={this.props.onPress.bind(this)}>
                 <Image source={this.props.source} style={styles.image} resizeMode="contain" />
             </TouchableOpacity>
         );
