@@ -14,7 +14,7 @@ export class Indicator extends Component
                     <ActivityIndicator
                         size="large"
                         color={this.props.color || '#fff'}
-                        style={{margin: 'auto', backgroundColor: 'transparent'}}
+                        style={styles.activityIndicator}
                         hidesWhenStopped={true}
                     />
                 </View>
